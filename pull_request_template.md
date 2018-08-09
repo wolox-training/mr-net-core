@@ -1,9 +1,11 @@
 ## Summary
+[Change!] Describe your feature, problems you had, notes, improvements and others.
 
-Created file index.html in main folder
-Created folder scss and file application.scss inside it
-Added application.css, appication.css.map and .sass-cache folder to .gitignore
+## Model
+[Change!] Show the model of the view.
 
-## Trello card 
+## Screenshots
+[Change!] Show the screenshots of the views you modified.
 
-https://trello.com/c/U2ZALLay
+Trello Card
+[Change!] Link to the associated Trello card.
