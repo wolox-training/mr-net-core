@@ -9,4 +9,3 @@
 
 ## Trello Card
 [Change!] Link to the associated Trello card.
-
