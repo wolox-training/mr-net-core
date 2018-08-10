@@ -1,14 +1,22 @@
-.title-img {
-  height: $title-decoration-height;
-  position: absolute;
-  width: $title-decoration-width;
-  }
-
 .title {
-  font-family: $text-font;
   font-size: $text-medium;
-  font-family: 'Roboto';
-  left: 3.35em;
+  left: 3.55em;
   position: relative;
-  top: 2.5em;
+  top: 2.7em;
+    &::before{
+      background: url('../assets/triangle.svg');
+      background-repeat: no-repeat;
+      content: '';
+      height: $title-decoration-height;
+      left: -3.35em;
+      position: absolute;
+      top: -2.5em;
+      width: $title-decoration-width;
+      z-index: -1;
+    }
  }
+
+.body-container {
+  width: 300px;
+  height: 300px;
+}

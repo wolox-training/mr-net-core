@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto');
 $blue: #00ADEE;
 $green: #BED23C;
 $grey: #C4C4C4;
@@ -9,4 +10,6 @@ $tech-logo-size: 100px;
 $text-big: 24px;
 $text-medium: 16px;
 $text-small: 12px;
-$text-font: Roboto;
+body{
+  font-family: 'Roboto';
+}
