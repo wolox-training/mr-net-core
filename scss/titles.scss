@@ -1,22 +1,18 @@
 .title {
   font-size: $text-medium;
-  left: 3.55em;
+  left: 56px;
   position: relative;
-  top: 2.7em;
-    &::before{
+  top: 43px;
+
+    &::before {
       background: url('../assets/triangle.svg');
       background-repeat: no-repeat;
       content: '';
       height: $title-decoration-height;
-      left: -3.35em;
+      left: -53px;
       position: absolute;
-      top: -2.5em;
+      top: -40px;
       width: $title-decoration-width;
       z-index: -1;
     }
  }
-
-.body-container {
-  width: 300px;
-  height: 300px;
-}
