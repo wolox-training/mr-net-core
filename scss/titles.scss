@@ -1,12 +1,14 @@
-.body-container {
-  display: flex;
-}
 .title-img {
-  height:  $title-decoration-height;
-  width: $title-decoration-width;
-}
-.title {
-  font-family: 'Roboto';
   height: $title-decoration-height;
-  margin-top: 50px
+  position: absolute;
+  width: $title-decoration-width;
+  }
+
+.title {
+  font-family: $text-font;
+  font-size: $text-medium;
+  font-family: 'Roboto';
+  left: 3.35em;
+  position: relative;
+  top: 2.5em;
  }
