@@ -1,6 +1,9 @@
 .tech-title {
   font-size: $text-medium;
-  margin: 2px 49px 3px
+  margin-bottom: 5px;
+  text-align: center;
+  width: 162px;
+  margin-top: 2px;
 }
 
 .tech-release {
@@ -25,7 +28,7 @@
 .tech-container {
   background-color: $green;
   border-radius: 3px;
-  height: 254px;
+  height: 294px;
   left: 20px;
   margin: 0 15px;
   position: relative;
@@ -37,15 +40,20 @@
     border-radius: 3px;
     content:'';
     display: block;
-    height: 244px;
+    height: 294px;
     left: -8px;
     position: absolute;
     top: -8px;
-    width: 168px;
+    width: 172px;
     }
 }
 
 .techs-container {
   display: flex;
-  margin: 20px 55px;
+  flex-wrap: wrap;
+  align-content: flex-start;
+  margin-left: 55px;
+  margin-top: 5px;
+  margin-bottom: 70px;
+  margin-right: 55px;
 }
