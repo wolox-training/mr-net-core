@@ -1,21 +1,25 @@
-.react-title {
+.tech-title {
   font-size: $text-medium;
-  position: absolute;
+  margin-bottom: 5px;
+  margin-left: 49px;
+  margin-top: 2px;
   right: 65px;
   top: 89px;
 }
 
-.react-release {
+.tech-release {
   font-size: $text-small;
   font-weight: bold;
-  position: absolute;
+  margin-left: 41px;
+  margin-bottom: 10px;
   right: 55px;
   top: 114px;
 }
 
-.react-text {
+.tech-text {
   font-size: $text-small;
-  position: absolute;
+  margin-top: 10px;
+  margin-left: 13px;
   right: 25px;
   text-align: center;
   top: 150px;
@@ -23,40 +27,41 @@
 }
 
 .react-img {
-  height: 70px;
-  left: 38px;
-  position: absolute;
+  height: 80px;
+  margin-bottom: 2px;
+  margin-left: 40px;
+  margin-top: 10px;
   top: 11px;
-  width: 70px;
-  z-index: +1;
+  width: 80px;
 }
 
-.react-container {
+.tech-container {
   background-color: $green;
   border-radius: 3px;
-  height: 244px;
+  height: 254px;
   left: 20px;
   position: relative;
   top: 8px;
-  width: 168px;
+  width: 172px;
   margin-right: 15px;
-    &::before {
-      border: 1px solid $green;
-      border-radius: 3px;
-      content:'';
-      display: block;
-      height: 244px;
-      left: -8px;
-      position: inherit;
-      top: -8px;
-      width: 168px;
-      z-index: -1;
+  margin-left: 15px;
+
+  &::before {
+    border: 1px solid $green;
+    border-radius: 3px;
+    content:'';
+    display: block;
+    height: 244px;
+    left: -8px;
+    position: absolute;
+    top: -8px;
+    width: 168px;
     }
 }
 
-.techs-container{
+.techs-container {
   display: flex;
-  margin-left: 70px;
-  margin-top: 25px;
+  margin-left: 55px;
+  margin-top: 20px;
   height: 800px;
 }
