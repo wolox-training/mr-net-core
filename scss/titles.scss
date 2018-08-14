@@ -1,0 +1,19 @@
+.title {
+  font-size: $text-medium;
+  margin-bottom: 35px;
+  margin-left: 60px;
+  margin-top: 50px;
+  position: relative;
+
+  &::before {
+    background: url('../assets/triangle.svg');
+    background-repeat: no-repeat;
+    content: '';
+    height: $title-decoration-height;
+    left: -53px;
+    position: absolute;
+    top: -40px;
+    width: $title-decoration-width;
+    z-index: -1;
+    }
+ }
