@@ -1,9 +1,7 @@
 .title {
   font-size: $text-medium;
   position: relative;
-  margin-bottom: 35px;
-  margin-left: 60px;
-  margin-top: 50px;
+  margin: 50px 0 35px 60px;
   &::before {
     background: url('../assets/triangle.svg');
     background-repeat: no-repeat;
