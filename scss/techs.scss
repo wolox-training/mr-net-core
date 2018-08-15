@@ -1,9 +1,8 @@
 .tech-title {
   font-size: $text-medium;
-  margin-bottom: 5px;
+  margin: 2px 0 3px 20px;
   text-align: center;
-  width: 162px;
-  margin-top: 2px;
+  width: 120px;
 }
 
 .tech-release {
@@ -14,7 +13,7 @@
 
 .tech-text {
   font-size: $text-small;
-  margin: 6px 0 0 13px;
+  margin: 7px 0 0 13px;
   text-align: center;
   width: 80%;
 }
@@ -48,10 +47,7 @@
 
 .techs-container {
   display: flex;
+  margin: 5px 55px 70px;
   flex-wrap: wrap;
   align-content: flex-start;
-  margin-left: 55px;
-  margin-top: 5px;
-  margin-bottom: 70px;
-  margin-right: 55px;
 }
