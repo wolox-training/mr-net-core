@@ -2,6 +2,7 @@
   font-size: $text-medium;
   margin: 50px 0 35px 60px;
   position: relative;
+  
   &::before {
     background: url('../assets/triangle.svg');
     background-repeat: no-repeat;
