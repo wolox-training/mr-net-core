@@ -16,6 +16,8 @@
   margin: 7px 0 0 13px;
   text-align: center;
   width: 80%;
+  height: 100%;
+  padding: 1px 1px 1px 1px;
 }
 
 .tech-img {
@@ -31,7 +33,6 @@
   margin: 10px 20px;
   position: relative;
   width: 172px;
-
   &::before {
     border: 1px solid $green;
     border-radius: 3px;
@@ -42,6 +43,7 @@
     position: absolute;
     top: -8px;
     width: 172px;
+    z-index: -1;
     }
 }
 
