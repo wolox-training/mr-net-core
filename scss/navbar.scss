@@ -1,0 +1,21 @@
+.navbar-logo{
+  height: $nav-logo-height;
+  align-self: center;
+
+}
+.navbar-text{
+  font-size: 25px;
+  align-self: center;
+}
+.navbar{
+  background-color: white;
+  height: $nav-height;
+  z-index: 2;
+  display:flex;
+  justify-content: space-between;
+  border-radius: 3px 3px 0 0;
+  padding: 0 20px;
+  box-shadow: 0 0 10px $grey;
+  position: fixed;
+  width: 100%;
+}
