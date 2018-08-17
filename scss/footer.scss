@@ -5,15 +5,14 @@
 
 .footer-text {
   align-self: center;
-  color: white;
+  color: $white;
   font-size: $text-small;
-  order: -1;
   padding: 10px 0 0 0;
 }
 
 .footer-copyright {
   align-self: flex-end;
-  color: white;
+  color: $white;
   font-size: 8px;
   padding: 0 10px 5px 0;
 }
