@@ -1,5 +1,7 @@
 .title {
+  display: flex;
   font-size: $text-medium;
+  justify-content: flex-start;
   margin: 50px 0 35px 60px;
   position: relative;
 
@@ -8,10 +10,19 @@
     background-repeat: no-repeat;
     content: '';
     height: $title-decoration-height;
-    left: -53px;
+    margin: -40px 0 0 -53px;
     position: absolute;
-    top: -40px;
     width: $title-decoration-width;
     z-index: -1;
     }
  }
+
+ @media only screen and (max-width: 1024px) {
+   .title {
+     justify-content: center;
+
+     &::before {
+       margin: -40px 0 0 -75px;
+    }
+  }
+}
