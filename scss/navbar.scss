@@ -10,12 +10,11 @@
 
 .navbar {
   background-color: white;
-  border-radius: 3px 3px 0 0;
   box-shadow: 0 0 10px $grey;
-  display:flex;
+  display: flex;
   height: $nav-height;
   justify-content: space-between;
-  padding: 0 20px;
+  padding: 0 20px 0 20px;
   position: fixed;
   width: 100%;
   z-index: 2;
