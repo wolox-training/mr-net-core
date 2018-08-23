@@ -1,6 +1,0 @@
-/home/mrios/Desktop/mr-net-core/training-net/obj/Debug/netcoreapp2.1/training-net.csprojAssemblyReference.cache
-/home/mrios/Desktop/mr-net-core/training-net/obj/Debug/netcoreapp2.1/training-net.csproj.CoreCompileInputs.cache
-/home/mrios/Desktop/mr-net-core/training-net/obj/Debug/netcoreapp2.1/training-net.RazorAssemblyInfo.cache
-/home/mrios/Desktop/mr-net-core/training-net/obj/Debug/netcoreapp2.1/training-net.RazorAssemblyInfo.cs
-/home/mrios/Desktop/mr-net-core/training-net/obj/Debug/netcoreapp2.1/training-net.AssemblyInfoInputs.cache
-/home/mrios/Desktop/mr-net-core/training-net/obj/Debug/netcoreapp2.1/training-net.AssemblyInfo.cs

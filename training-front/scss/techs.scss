@@ -1,0 +1,71 @@
+.tech-title {
+  font-size: $text-medium;
+  margin: 2px 0 3px 20px;
+  text-align: center;
+  width: 120px;
+}
+
+.tech-release {
+  font-size: $text-small;
+  font-weight: bold;
+  margin: 3px 0 6px 41px;
+}
+
+.tech-text {
+  font-size: $text-small;
+  margin: 7px 0 0 13px;
+  text-align: center;
+  width: 80%;
+}
+
+.tech-img {
+  height: 80px;
+  margin: 10px 0 6px 40px;
+  padding: 0 50px 0 0;
+}
+
+.tech-container {
+  display: flex;
+  flex-direction: column;
+  height: 294px;
+  margin: 15px 20px;
+  position: relative;
+  width: 172px;
+
+  &:first-child {
+    align-self: center;
+    border-right: 2px solid $green ;
+    grid-column: 1 / 2;
+    grid-row: 1 / 3;
+    height: 100%;
+    justify-content: center;
+    justify-self: end;
+  }
+}
+
+.techs-container {
+  align-content: end;
+  display: grid;
+  grid-template-columns: 200px 200px 200px;
+  grid-template-rows: 1fr 1fr;
+  margin: 5px 55px 70px;
+  padding: 0 0 0 150px;
+}
+
+@media only screen and (max-width: $desktop-min-width) {
+  .techs-container{
+    align-content: center;
+    grid-template-columns: 1fr;
+    grid-template-rows: auto;
+    padding: 0;
+  }
+
+  .tech-container {
+    justify-self: center;
+  }
+
+  .tech-container:first-child {
+    border-right: 0;
+    justify-self: center;
+  }
+}

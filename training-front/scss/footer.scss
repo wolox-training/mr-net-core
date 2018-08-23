@@ -1,0 +1,32 @@
+.footer-logo {
+  align-self: center;
+  height: $nav-logo-height;
+}
+
+.footer-text {
+  align-self: center;
+  color: $white;
+  font-size: $text-small;
+  padding: 10px 0 0 0;
+}
+
+.footer-copyright {
+  align-self: flex-end;
+  color: $white;
+  font-size: 8px;
+  padding: 0 10px 5px 0;
+}
+
+.footer {
+  background-color: $blue;
+  display: flex;
+  flex-direction: column;
+  height: $nav-height;
+  justify-content: space-around;
+}
+
+@media only screen and (max-width: $desktop-min-width) {
+  .footer-copyright {
+    align-self: center;
+  }
+}
