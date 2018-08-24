@@ -24,3 +24,9 @@
   height: $nav-height;
   justify-content: space-around;
 }
+
+@media only screen and (max-width: $desktop-min-width) {
+  .footer-copyright {
+    align-self: center;
+  }
+}
