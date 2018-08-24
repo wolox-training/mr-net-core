@@ -16,7 +16,7 @@ namespace MvcMovie.Controllers
         
         public IActionResult Index()
         {   
-            ViewData["Message"] = Localizer["DescriptionPage"];
+            ViewData["Message"] = Localizer["DescriptionPage "];
             return View();
         }
 
