@@ -11,7 +11,7 @@ namespace MvcMovie.Controllers
         }
         public IActionResult Welcome(string name)
         {
-            ViewData["Message"] = "Hello  " + name;
+            ViewData["Message"] = "Hello " + name;
             return View();
         }
     }
