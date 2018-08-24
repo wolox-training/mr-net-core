@@ -3,7 +3,7 @@ using System.Text.Encodings.Web;
 
 namespace MvcMovie.Controllers
 {
-    public class HelloWorldController : Controller
+    public class MoviesController : Controller
     {
         public IActionResult Index()
         {
@@ -14,5 +14,6 @@ namespace MvcMovie.Controllers
             ViewData["Message"] = "Hello " + name;
             return View();
         }
+        
     }
 }
