@@ -1,5 +1,9 @@
+@using Microsoft.AspNetCore.Mvc.Localization
+@using System.Globalization
+@inject IViewLocalizer Localizer
+
 @{
-    ViewData["Title"] = "Movie List";
+    ViewData["Title"] = Localizer["HomePage"];
 }
 
 <h2>My movie List</h2>
