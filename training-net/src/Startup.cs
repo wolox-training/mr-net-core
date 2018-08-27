@@ -47,11 +47,9 @@ namespace src
                 app.UseExceptionHandler("/Home/Error");
                 app.UseHsts();
             }
-
             app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseCookiePolicy();
-
             app.UseMvc(routes =>
             {
                 routes.MapRoute(
