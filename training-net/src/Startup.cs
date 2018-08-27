@@ -36,7 +36,6 @@ namespace MvcMovies
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
             services.AddDbContext<MvcMovie.Repositories.Database.DataBaseContext>(options =>  options.UseNpgsql(Configuration["MvcMovieContext"]));
             services.AddScoped<MvcMovie.Repositories.Database.DataBaseContext>();
-
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
