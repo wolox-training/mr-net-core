@@ -12,9 +12,6 @@ namespace MvcMovie.Controllers
         {
             this._localizer = localizer;
         }
-        // 
-        // GET: /HelloWorld/    
-
         public IActionResult Index()
         {   
             ViewData["Message"] = _localizer["ContactPage"];
@@ -23,16 +20,6 @@ namespace MvcMovie.Controllers
         public IActionResult Contact()
         {
             return View();
-        }
-        // 
-        // GET: /HelloWorld/Welcome/ 
-
-        // public IActionResult Welcome(string name, int numTimes = 1)
-        // {
-        //     ViewData["Message"] = "Hello " + name;
-        //     ViewData["NumTimes"] = numTimes;
-        //     return View();
-        // }
-        
+        }        
     }
 }
