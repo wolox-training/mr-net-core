@@ -16,18 +16,23 @@ namespace MvcMovie.Controllers
         // GET: /HelloWorld/    
 
         public IActionResult Index()
+        {   
+            ViewData["Message"] = _localizer["ContactPage"];
+            return View();
+        }
+        public IActionResult Contact()
         {
             return View();
         }
-
         // 
         // GET: /HelloWorld/Welcome/ 
 
-        public IActionResult Welcome(string name, int numTimes = 1)
-        {
-            ViewData["Message"] = "Hello " + name;
-            ViewData["NumTimes"] = numTimes;
-            return View();
-        }
+        // public IActionResult Welcome(string name, int numTimes = 1)
+        // {
+        //     ViewData["Message"] = "Hello " + name;
+        //     ViewData["NumTimes"] = numTimes;
+        //     return View();
+        // }
+        
     }
 }
