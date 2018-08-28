@@ -39,7 +39,7 @@ namespace MvcMovies
             services.AddScoped<MvcMovie.Repositories.Database.DataBaseContext>();
             services.AddJsonLocalization(options => options.ResourcesPath = "Resources");
             services.AddMvc().AddViewLocalization();
-            CultureInfo.CurrentCulture = new CultureInfo("en-US");
+            CultureInfo.CurrentUICulture = new CultureInfo("en-US");
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

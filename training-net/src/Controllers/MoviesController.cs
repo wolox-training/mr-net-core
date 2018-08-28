@@ -12,11 +12,14 @@ namespace MvcMovie.Controllers
         {
             this._localizer = localizer;
         }
+        
         public IActionResult Index()
         {   
             ViewData["Message"] = _localizer["ContactPage"];
+            ViewData["Message"] = ["DescriptionPage"];
             return View();
         }
+
         public IActionResult Contact()
         {
             return View();
