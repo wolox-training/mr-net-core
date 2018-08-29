@@ -36,7 +36,7 @@ namespace MvcMovies
 
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
-            services.AddDbContext<DataBaseContext>(options =>  options.UseNpgsql(Configuration["ConnectionString"]));
+            services.AddDbContext<DataBaseContext>(options =>  options.UseNpgsql(Configuration["DefaultConnection"]));
             services.AddScoped<DataBaseContext>();
             services.AddJsonLocalization(options => options.ResourcesPath = "Resources");
             services.AddMvc().AddViewLocalization();
