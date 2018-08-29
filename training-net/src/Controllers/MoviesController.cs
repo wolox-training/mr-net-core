@@ -8,6 +8,7 @@ namespace MvcMovie.Controllers
     {
         private readonly IHtmlLocalizer<MoviesController> _localizer;
         public IHtmlLocalizer<MoviesController> Localizer { get { return this._localizer; } }
+        
         public MoviesController(IHtmlLocalizer<MoviesController> localizer)
         {
             this._localizer = localizer;
