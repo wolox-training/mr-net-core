@@ -14,6 +14,5 @@ namespace MvcMovie.Controllers
             ViewData["Message"] = "Hello " + name;
             return View();
         }
-        
     }
 }
