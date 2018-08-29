@@ -29,10 +29,10 @@ namespace MvcMovie.Controllers
             return View();
         }
 
-         [HttpPost]
-         public IActionResult Create(MovieViewModel mvm)
-         {
-             UnitOfWork.Movies.Add(mvm);
-         }        
+       //  [HttpPost]
+        //  public IActionResult Create(MovieViewModel mvm)
+        //  {
+        //      UnitOfWork.Movies.Add(mvm);
+        //  }        
     }
 }
