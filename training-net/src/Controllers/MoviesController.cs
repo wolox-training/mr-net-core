@@ -1,8 +1,8 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Localization;
+using MvcMovie.Models;
 using MvcMovies.Models.Views;
 using Repositories.Interfaces;
-using System.Text.Encodings.Web;
 
 namespace MvcMovie.Controllers
 {
@@ -29,10 +29,13 @@ namespace MvcMovie.Controllers
             return View();
         }
 
-       //  [HttpPost]
-        //  public IActionResult Create(MovieViewModel mvm)
-        //  {
-        //      UnitOfWork.Movies.Add(mvm);
-        //  }        
+         [HttpPost]
+          public IActionResult Create(MovieViewModel mvm)
+          {
+            var movie = new Movie {ID=mvm.ID,Title=mvm.Title,ReleaseDate=mvm.ReleaseDate,Genre=mvm.Genre,Price=mvm.Price};
+            UnitOfWork.Movies.Add(movie);
+            UnitOfWork.Complete();
+            return View();
+          }        
     }
 }
