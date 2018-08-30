@@ -38,6 +38,7 @@ namespace MvcMovie.Controllers
             UnitOfWork.MovieRepository.Add(movie);
             UnitOfWork.Complete();
             return View();
+            
         }
 
         public IActionResult Edit(int id)
