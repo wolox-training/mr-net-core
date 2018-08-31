@@ -9,8 +9,9 @@ using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.EntityFrameworkCore;
 
-namespace src
+namespace MvcMovies
 {
     public class Startup
     {
@@ -33,6 +34,8 @@ namespace src
 
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+            services.AddDbContext<MvcMovie.Repositories.Database.DataBaseContext>(options =>  options.UseNpgsql(Configuration["MvcMovieContext"]));
+            services.AddScoped<MvcMovie.Repositories.Database.DataBaseContext>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
