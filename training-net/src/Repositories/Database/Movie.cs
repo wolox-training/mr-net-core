@@ -1,5 +1,3 @@
-// src/Models/Database/Movie.cs
-
 using System;
 
 namespace MvcMovie.Models.Database
