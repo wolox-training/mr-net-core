@@ -38,7 +38,7 @@ namespace MvcMovie.Controllers
             UnitOfWork.MovieRepository.Add(movie);
             UnitOfWork.Complete();
             return View();
-            
+
         }
 
         public IActionResult Edit(int id)
@@ -71,6 +71,25 @@ namespace MvcMovie.Controllers
                 }
             }
             return RedirectToAction("Index","Movies");
+        }
+
+        public IActionResult Details(int id)
+        {
+            var m = UnitOfWork.Movies.Get(id);
+
+            if (m==null)
+            {
+                return NotFound();
+            }
+            return View(new MovieViewModel{ID=m.ID,Title=m.Title,ReleaseDate=m.ReleaseDate,Genre=m.Genre,Price=m.Price});
+        }
+
+        public void Delete(int id)
+        {
+
+            UnitOfWork.Movies.Remove(UnitOfWork.Movies.Get(id));
+            UnitOfWork.Complete();
+            RedirectToAction("Index");
         }
     }
 }
