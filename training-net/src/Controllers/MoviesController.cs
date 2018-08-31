@@ -42,5 +42,24 @@ namespace MvcMovie.Controllers
             UnitOfWork.Complete();
             return View();
         }
+
+        public IActionResult Edit(int id)
+        {
+            var m = UnitOfWork.Movies.Get(id);
+
+             if (m==null)
+             {
+                 return NotFound();
+             }
+            return View(new MovieViewModel{ID=m.ID,Title=m.Title,ReleaseDate=m.ReleaseDate,Genre=m.Genre,Price=m.Price});
+        }
+
+        [HttpPost]
+        public IActionResult Edit(MovieViewModel mvm)
+        {   
+            UnitOfWork.Movies.Update(new Movie {ID=mvm.ID,Title=mvm.Title,ReleaseDate=mvm.ReleaseDate,Genre=mvm.Genre,Price=mvm.Price});
+            UnitOfWork.Complete();
+            return View();
+        }
     }
 }
