@@ -22,7 +22,7 @@ namespace MvcMovie.Controllers
         }
 
         public IActionResult Index() =>
-        View(UnitOfWork.Movies.GetAll().ToList().ConvertAll(x => { return new MovieViewModel{ID=x.ID,Title=x.Title,ReleaseDate=x.ReleaseDate,Genre=x.Genre,Price=x.Price};}));
+        View(UnitOfWork.Movies.GetAll().ToList().ConvertAll(x => { return new MovieViewModel{ ID = x.ID, Title = x.Title, ReleaseDate = x.ReleaseDate, Genre = x.Genre, Price = x.Price }; }));
 
 
         [HttpGet("Create")]
