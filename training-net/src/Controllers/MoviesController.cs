@@ -24,15 +24,16 @@ namespace MvcMovie.Controllers
             return View();
         }
 
+        [HttpGet("Create")]
         public IActionResult Create()
         {
             return View();
         }
 
-        [HttpPost]
+        [HttpPost("Create")]
         public IActionResult Create(MovieViewModel mvm)
         {
-            var movie = new Movie {ID=mvm.ID,Title=mvm.Title,ReleaseDate=mvm.ReleaseDate,Genre=mvm.Genre,Price=mvm.Price};
+            var movie = new Movie { ID = mvm.ID, Title = mvm.Title, ReleaseDate = mvm.ReleaseDate, Genre = mvm.Genre, Price = mvm.Price };
             UnitOfWork.Movies.Add(movie);
             UnitOfWork.Complete();
             return View();

@@ -5,9 +5,9 @@ using Repositories.Interfaces;
 
 namespace Repositories
 {
-    public class MoviesRepository : Repository<Movie>, IMoviesRepository
+    public class MovieRepository : Repository<Movie>, IMovieRepository
     {
-        public MoviesRepository(DbContext context) : base(context)
+        public MovieRepository(DbContext context) : base(context)
         {
         }
 

@@ -4,7 +4,7 @@ namespace Repositories.Interfaces
 {
     public interface IUnitOfWork : IDisposable
     {   
-        IMoviesRepository Movies{ get; }
+        IMovieRepository Movies{ get; }
         int Complete();
     }
 }

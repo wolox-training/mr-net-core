@@ -3,7 +3,7 @@ using Repositories.Interfaces;
 
 namespace Repositories.Interfaces
 {
-    public interface IMoviesRepository : IRepository<Movie>
+    public interface IMovieRepository : IRepository<Movie>
     {    
     }
 }
