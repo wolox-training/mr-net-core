@@ -25,10 +25,6 @@ namespace MvcMovie.Controllers
         public IActionResult Index() => 
         View(UnitOfWork.MovieRepository.GetAll().Select(movie =>  new MovieViewModel { ID = movie.ID, Title = movie.Title, ReleaseDate = movie.ReleaseDate, Genre = movie.Genre, Price = movie.Price }).ToList());
 
-        public IActionResult Index() =>
-        View(UnitOfWork.Movies.GetAll().ToList().ConvertAll(x => { return new MovieViewModel{ID=x.ID,Title=x.Title,ReleaseDate=x.ReleaseDate,Genre=x.Genre,Price=x.Price};}));
-
-
         [HttpGet("Create")]
         public IActionResult Create()
         {
@@ -46,20 +42,20 @@ namespace MvcMovie.Controllers
 
         public IActionResult Edit(int id)
         {
-            var m = UnitOfWork.Movies.Get(id);
+            var m = UnitOfWork.MovieRepository.Get(id);
 
              if (m==null)
              {
                  return NotFound();
              }
-            return View(new MovieViewModel{ID=m.ID,Title=m.Title,ReleaseDate=m.ReleaseDate,Genre=m.Genre,Price=m.Price});
+            return View(new MovieViewModel{ ID = m.ID, Title = m.Title, ReleaseDate = m.ReleaseDate, Genre = m.Genre, Price = m.Price });
         }
 
         [HttpPost]
         public IActionResult Edit(MovieViewModel mvm)
         {   
             try{
-            UnitOfWork.Movies.Update(new Movie {ID=mvm.ID,Title=mvm.Title,ReleaseDate=mvm.ReleaseDate,Genre=mvm.Genre,Price=mvm.Price});
+            UnitOfWork.MovieRepository.Update(new Movie { ID = mvm.ID, Title = mvm.Title, ReleaseDate = mvm.ReleaseDate, Genre = mvm.Genre, Price = mvm.Price });
             UnitOfWork.Complete();
             
             }
@@ -74,7 +70,7 @@ namespace MvcMovie.Controllers
                     throw;
                 }
             }
-            return RedirectToAction("Index");
+            return RedirectToAction("Index","Movies");
         }
     }
 }
