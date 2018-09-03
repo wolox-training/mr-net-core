@@ -1,3 +1,6 @@
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Localization;
 using MvcMovie.Models;
@@ -17,12 +20,9 @@ namespace MvcMovie.Controllers
             this._localizer = localizer;
             this._unitOfWork = unitOfWork;
         }
-        
-        public IActionResult Index()
-        {   
-            ViewData["Message"] = Localizer["DescriptionPage"];
-            return View();
-        }
+
+        public IActionResult Index() => 
+        View(UnitOfWork.MovieRepository.GetAll().Select(movie =>  new MovieViewModel { ID = movie.ID, Title = movie.Title, ReleaseDate = movie.ReleaseDate, Genre = movie.Genre, Price = movie.Price }).ToList());
 
         [HttpGet("Create")]
         public IActionResult Create()
@@ -34,9 +34,9 @@ namespace MvcMovie.Controllers
         public IActionResult Create(MovieViewModel mvm)
         {
             var movie = new Movie { ID = mvm.ID, Title = mvm.Title, ReleaseDate = mvm.ReleaseDate, Genre = mvm.Genre, Price = mvm.Price };
-            UnitOfWork.Movies.Add(movie);
+            UnitOfWork.MovieRepository.Add(movie);
             UnitOfWork.Complete();
             return View();
-        }        
+        }
     }
 }
