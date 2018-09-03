@@ -42,21 +42,20 @@ namespace MvcMovie.Controllers
 
         public IActionResult Edit(int id)
         {
-            var m = UnitOfWork.MovieRepository.Get(id);
-
-             if (m==null)
-             {
-                 return NotFound();
-             }
-            return View(new MovieViewModel{ ID = m.ID, Title = m.Title, ReleaseDate = m.ReleaseDate, Genre = m.Genre, Price = m.Price });
+            var movie = UnitOfWork.MovieRepository.Get(id);
+            if (movie==null)
+            {
+                return NotFound();
+            }
+            return View(new MovieViewModel{ ID = movie.ID, Title = movie.Title, ReleaseDate = movie.ReleaseDate, Genre = movie.Genre, Price = movie.Price });
         }
 
         [HttpPost]
         public IActionResult Edit(MovieViewModel mvm)
         {   
             try{
-            UnitOfWork.MovieRepository.Update(new Movie { ID = mvm.ID, Title = mvm.Title, ReleaseDate = mvm.ReleaseDate, Genre = mvm.Genre, Price = mvm.Price });
-            UnitOfWork.Complete();
+                UnitOfWork.MovieRepository.Update(new Movie { ID = mvm.ID, Title = mvm.Title, ReleaseDate = mvm.ReleaseDate, Genre = mvm.Genre, Price = mvm.Price });
+                UnitOfWork.Complete();
             
             }
             catch(DbUpdateConcurrencyException)
