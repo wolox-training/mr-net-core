@@ -12,6 +12,8 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.EntityFrameworkCore;
 using System.Globalization;
 using MvcMovie.Repositories.Database;
+using Repositories.Interfaces;
+using Persistence;
 
 namespace MvcMovies
 {
@@ -38,6 +40,7 @@ namespace MvcMovies
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
             services.AddDbContext<DataBaseContext>(options =>  options.UseNpgsql(Configuration["ConnectionString"]));
             services.AddScoped<DataBaseContext>();
+            services.AddScoped<IUnitOfWork, UnitOfWork>();
             services.AddJsonLocalization(options => options.ResourcesPath = "Resources");
             services.AddMvc().AddViewLocalization();
             CultureInfo.CurrentUICulture = new CultureInfo("es-MX");
