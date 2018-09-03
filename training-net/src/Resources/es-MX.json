@@ -6,5 +6,8 @@
     "Create": "Crear nueva",
     "Edit": "Editar",
     "Details": "Detalles",
-    "Delete": "Borrar"
+    "Delete": "Borrar",
+    "Back": "Volver a la Lista",
+    "Movie": "Película",
+    "Confirmation": "Borrar esta película?"
 }

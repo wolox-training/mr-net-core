@@ -82,8 +82,17 @@ namespace MvcMovie.Controllers
             }
             return View(new MovieViewModel{ID=m.ID,Title=m.Title,ReleaseDate=m.ReleaseDate,Genre=m.Genre,Price=m.Price});
         }
-
+        
         public IActionResult Delete(int id)
+        {
+            var m = UnitOfWork.MovieRepository.Get(id);
+            if (m==null)
+            {
+                return NotFound();
+            }
+            return View(new MovieViewModel{ID=m.ID,Title=m.Title,ReleaseDate=m.ReleaseDate,Genre=m.Genre,Price=m.Price});  
+        }
+        public IActionResult DeleteConfirmation(int id)
         {
             UnitOfWork.MovieRepository.Remove(UnitOfWork.MovieRepository.Get(id));
             UnitOfWork.Complete();

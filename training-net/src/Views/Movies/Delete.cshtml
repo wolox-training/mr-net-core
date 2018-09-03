@@ -4,14 +4,15 @@
 @inject IViewLocalizer Localizer
 
 @{
-    ViewData["Title"] = Localizer["Details"];
+    ViewData["Title"] = Localizer["Delete"];
     ViewData["Edit"] = Localizer["Edit"];
     ViewData["Back"] = Localizer["Back"];
-    ViewData["Details"] = Localizer["Details"];
+    ViewData["Delete"] = Localizer["Delete"];
+    ViewData["Confirmation"] = Localizer["Confirmation"];
     ViewData["Movie"] = Localizer["Movie"];
 }
 
-<h2>@ViewData["Details"]</h2>
+<h2>@ViewData["Confirmation"]</h2>
 
 <div>
     <h4>@ViewData["Movie"]</h4>
@@ -44,6 +45,9 @@
     </dl>
 </div>
 <div>
-    <a asp-action="Edit" asp-route-id="@Model.ID">@ViewData["Edit"]</a> |
-    <a asp-action="Index">@ViewData["Back"]</a>
+    <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <a asp-action="DeleteConfirmation" asp-route-id="@Model.ID" class="btn btn-default">@ViewData["Delete"]</a>
+            </div>
+        </div>
 </div>

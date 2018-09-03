@@ -6,5 +6,8 @@
     "Create": "Create New",
     "Edit": "Edit",
     "Details": "Details",
-    "Delete": "Delete"
+    "Delete": "Delete",
+    "Back": "Back to List",
+    "Movie": "Movie",
+    "Confirmation": "Delete this movie?"
 }
