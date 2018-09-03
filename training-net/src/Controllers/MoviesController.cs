@@ -53,10 +53,10 @@ namespace MvcMovie.Controllers
         [HttpPost]
         public IActionResult Edit(MovieViewModel mvm)
         {   
-            try{
+            try
+            {
                 UnitOfWork.MovieRepository.Update(new Movie { ID = mvm.ID, Title = mvm.Title, ReleaseDate = mvm.ReleaseDate, Genre = mvm.Genre, Price = mvm.Price });
-                UnitOfWork.Complete();
-            
+                UnitOfWork.Complete();     
             }
             catch(DbUpdateConcurrencyException)
             {
