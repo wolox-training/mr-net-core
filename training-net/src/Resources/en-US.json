@@ -3,5 +3,8 @@
     "ContactPage": "Your contact page.",
     "HomePage": "Home Page",
     "PageTitle": "My Movie list",
-    "Create": "Create New"
+    "Create": "Create New",
+    "Edit": "Edit",
+    "Details": "Details",
+    "Delete": "Delete"
 }
