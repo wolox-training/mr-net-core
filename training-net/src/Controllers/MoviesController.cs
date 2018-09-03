@@ -21,9 +21,8 @@ namespace MvcMovie.Controllers
             this._unitOfWork = unitOfWork;
         }
 
-        public IActionResult Index() =>
-        View(UnitOfWork.Movies.GetAll().ToList().ConvertAll(x => { return new MovieViewModel{ ID = x.ID, Title = x.Title, ReleaseDate = x.ReleaseDate, Genre = x.Genre, Price = x.Price }; }));
-
+        public IActionResult Index() => 
+        View(UnitOfWork.MovieRepository.GetAll().Select(movie =>  new MovieViewModel { ID = movie.ID, Title = movie.Title, ReleaseDate = movie.ReleaseDate, Genre = movie.Genre, Price = movie.Price }).ToList());
 
         [HttpGet("Create")]
         public IActionResult Create()
@@ -35,7 +34,7 @@ namespace MvcMovie.Controllers
         public IActionResult Create(MovieViewModel mvm)
         {
             var movie = new Movie { ID = mvm.ID, Title = mvm.Title, ReleaseDate = mvm.ReleaseDate, Genre = mvm.Genre, Price = mvm.Price };
-            UnitOfWork.Movies.Add(movie);
+            UnitOfWork.MovieRepository.Add(movie);
             UnitOfWork.Complete();
             return View();
         }
