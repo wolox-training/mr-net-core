@@ -38,7 +38,6 @@ namespace MvcMovie.Controllers
             UnitOfWork.MovieRepository.Add(movie);
             UnitOfWork.Complete();
             return View();
-
         }
 
         public IActionResult Edit(int id)
@@ -70,33 +69,37 @@ namespace MvcMovie.Controllers
                     throw;
                 }
             }
-            return RedirectToAction("Index","Movies");
+            return RedirectToAction("Index", "Movies");
         }
 
+        [HttpGet("Details")]
         public IActionResult Details(int id)
         {
-            var m = UnitOfWork.MovieRepository.Get(id);
-            if (m==null)
+            var movie = UnitOfWork.MovieRepository.Get(id);
+            if (movie == null)
             {
                 return NotFound();
             }
-            return View(new MovieViewModel{ID=m.ID,Title=m.Title,ReleaseDate=m.ReleaseDate,Genre=m.Genre,Price=m.Price});
+            return View(new MovieViewModel { ID = movie.ID, Title = movie.Title, ReleaseDate = movie.ReleaseDate, Genre = movie.Genre, Price = movie.Price });
         }
-        
+
+        [HttpGet("Delete")]
         public IActionResult Delete(int id)
         {
-            var m = UnitOfWork.MovieRepository.Get(id);
-            if (m==null)
+            var movie = UnitOfWork.MovieRepository.Get(id);
+            if (movie == null)
             {
                 return NotFound();
             }
-            return View(new MovieViewModel{ID=m.ID,Title=m.Title,ReleaseDate=m.ReleaseDate,Genre=m.Genre,Price=m.Price});  
+            return View(new MovieViewModel { ID = movie.ID, Title = movie.Title, ReleaseDate = movie.ReleaseDate,Genre = movie.Genre, Price = movie.Price });  
         }
-        public IActionResult DeleteConfirmation(int id)
+
+        [HttpPost("DeleteConfirmation")]
+        public IActionResult DeleteConfirmation(MovieViewModel mvm)
         {
-            UnitOfWork.MovieRepository.Remove(UnitOfWork.MovieRepository.Get(id));
+            UnitOfWork.MovieRepository.Remove(UnitOfWork.MovieRepository.Get(mvm.ID));
             UnitOfWork.Complete();
-            return RedirectToAction("Index","Movies");
+            return RedirectToAction("Index", "Movies");
         }
     }
 }
