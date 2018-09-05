@@ -1,6 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 
-namespace NetCoreBootstrap.Models.Views
+namespace MvcMovie.Models.Views
 {
     public class UserViewModel
     {

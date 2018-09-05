@@ -15,7 +15,7 @@ using MvcMovie.Repositories.Database;
 using Repositories.Interfaces;
 using Persistence;
 using Microsoft.AspNetCore.Identity;
-using NetCoreBootstrap.Models.Database;
+using MvcMovie.Models;
 
 namespace MvcMovies
 {
@@ -85,13 +85,13 @@ namespace MvcMovies
             app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseCookiePolicy();
+            app.UseAuthentication();
             app.UseMvc(routes =>
             {
                 routes.MapRoute(
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}");
             });
-            app.UseAuthentication();
         }
     }
 }

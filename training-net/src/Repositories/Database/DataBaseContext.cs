@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using MvcMovie.Models;
-using NetCoreBootstrap.Models.Database;
+using MvcMovie.Repositories.Database;
 #endregion
 
 namespace MvcMovie.Repositories.Database

@@ -9,10 +9,10 @@ using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
-using NetCoreBootstrap.Models.Database;
-using NetCoreBootstrap.Models.Views;
+using MvcMovie.Models;
+using MvcMovie.Models.Views;
 
-namespace NetCoreBootstrap.Controllers
+namespace MvcMovie.Controllers
 {
     [Route("[controller]")]
     public class AccountController : Controller
@@ -64,7 +64,6 @@ namespace NetCoreBootstrap.Controllers
         {
             await HttpContext.SignOutAsync(IdentityConstants.ExternalScheme);
             var viewModel = new LoginViewModel();
-            viewModel.LoginProviders = (await SignInManager.GetExternalAuthenticationSchemesAsync()).ToList();
             return View(viewModel);
         }
 
@@ -78,7 +77,6 @@ namespace NetCoreBootstrap.Controllers
                 if (result.Succeeded) return RedirectToAction("Index", "Movies");
                 ModelState.AddModelError(string.Empty, "Invalid login attempt.");
             }
-            loginViewModel.LoginProviders = (await SignInManager.GetExternalAuthenticationSchemesAsync()).ToList();
             return View(loginViewModel);
         }
 

@@ -6,9 +6,9 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using MvcMovie.Repositories.Database;
-using NetCoreBootstrap.Models.Database;
+using MvcMovie.Models;
 
-namespace NetCoreBootstrap.Repositories
+namespace Repositories
 {
     public class UserRepository
     {

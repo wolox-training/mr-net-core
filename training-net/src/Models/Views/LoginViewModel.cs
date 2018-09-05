@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using Microsoft.AspNetCore.Authentication;
 
-namespace NetCoreBootstrap.Models.Views
+namespace MvcMovie.Models.Views
 {
     public class LoginViewModel
     {

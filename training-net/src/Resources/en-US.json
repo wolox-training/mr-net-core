@@ -9,5 +9,7 @@
     "Delete": "Delete",
     "Back": "Back to List",
     "Movie": "Movie",
-    "Confirmation": "Delete this movie?"
+    "Confirmation": "Delete this movie?",
+    "Hello": "Hello",
+    "Register": "User registration"
 }

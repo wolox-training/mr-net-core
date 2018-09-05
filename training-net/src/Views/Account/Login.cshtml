@@ -1,6 +1,6 @@
 @using Microsoft.AspNetCore.Identity;
-@using NetCoreBootstrap.Models.Views
-@using NetCoreBootstrap.Models.Database
+@using MvcMovie.Models.Views
+@using MvcMovie.Models
 @model LoginViewModel
 @using Microsoft.AspNetCore.Identity
 @inject SignInManager<User> SignInManager
@@ -26,13 +26,4 @@
     <div>
         <input type="submit" value="Login"/>
     </div>
-}
-@{
-    @using (Html.BeginForm("ExternalLogin", "Account", FormMethod.Post))
-    {
-        foreach (var provider in Model.LoginProviders)
-        {
-            <button type="submit" class="btn btn-default" name="provider" value="@provider.Name" title="Log in using your @provider.DisplayName account">@provider.Name</button>
-        }
-    }
 }

@@ -148,7 +148,7 @@ namespace src.Migrations
                     b.ToTable("Movies");
                 });
 
-            modelBuilder.Entity("NetCoreBootstrap.Models.Database.User", b =>
+            modelBuilder.Entity("MvcMovie.Models", b =>
                 {
                     b.Property<string>("Id")
                         .ValueGeneratedOnAdd();
@@ -202,7 +202,7 @@ namespace src.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
                 {
-                    b.HasOne("NetCoreBootstrap.Models.Database.User")
+                    b.HasOne("MvcMovie.Models")
                         .WithMany("Roles")
                         .HasForeignKey("UserId");
                 });
@@ -217,7 +217,7 @@ namespace src.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
                 {
-                    b.HasOne("NetCoreBootstrap.Models.Database.User")
+                    b.HasOne("MvcMovie.Models")
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade);
@@ -225,7 +225,7 @@ namespace src.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
                 {
-                    b.HasOne("NetCoreBootstrap.Models.Database.User")
+                    b.HasOne("MvcMovie.Models")
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade);
@@ -238,7 +238,7 @@ namespace src.Migrations
                         .HasForeignKey("RoleId")
                         .OnDelete(DeleteBehavior.Cascade);
 
-                    b.HasOne("NetCoreBootstrap.Models.Database.User")
+                    b.HasOne("MvcMovie.Models")
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade);
@@ -246,7 +246,7 @@ namespace src.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
                 {
-                    b.HasOne("NetCoreBootstrap.Models.Database.User")
+                    b.HasOne("MvcMovie.Models")
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade);
