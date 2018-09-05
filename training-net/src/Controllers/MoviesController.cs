@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Localization;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using MvcMovie.Models;
 using MvcMovies.Models.Views;
@@ -24,8 +25,32 @@ namespace MvcMovie.Controllers
             this._unitOfWork = unitOfWork;
         }
 
-        public IActionResult Index() => 
-        View(UnitOfWork.MovieRepository.GetAll().Select(movie =>  new MovieViewModel { ID = movie.ID, Title = movie.Title, ReleaseDate = movie.ReleaseDate, Genre = movie.Genre, Price = movie.Price }).ToList());
+        [HttpGet]
+        // public IActionResult Index() => 
+        // View(UnitOfWork.MovieRepository.GetAll().Select(movie =>  new MovieViewModel { ID = movie.ID, Title = movie.Title, ReleaseDate = movie.ReleaseDate, Genre = movie.Genre, Price = movie.Price }).ToList());
+
+        public IActionResult Index(string movieGenre, string searchString)
+        {
+            var movies = UnitOfWork.MovieRepository.GetAll().Select(movie =>  new MovieViewModel { ID = movie.ID, Title = movie.Title, ReleaseDate = movie.ReleaseDate, Genre = movie.Genre, Price = movie.Price }).ToList();
+           //IQueryable<string> genreQuery = UnitOfWork.MovieRepository.GetAll().OrderBy(movie.genres)
+            if (!string.IsNullOrEmpty(searchString))
+            {
+                movies = movies.Where(movie => movie.Title.Contains(searchString)).ToList();
+            }
+            if (!string.IsNullOrEmpty(movieGenre))
+            {
+                movies = movies.Where(movie => movie.Genre.Contains(movieGenre)).ToList();
+            }
+            // var movieGenreVM = new MovieGenreViewModel();
+            // movieGenreVM.genres = new SelectListItem(genreQuery.Distinct().ToListAsync());
+            // movieGenreVM.movies =  movies.ToList();
+            return View(movies);
+        }
+        [HttpPost]
+        public string Index(string searchString, bool notUsed)
+        {
+            return "From [HttpPost]Index: filter on " + searchString;
+        }
 
         [HttpGet("Create")]
         public IActionResult Create()

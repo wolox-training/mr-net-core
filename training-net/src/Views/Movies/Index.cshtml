@@ -58,5 +58,11 @@
             </td>
         </tr>
 }
+<form asp-controller="Movies" asp-action="Index" method="GET">
+    <p>
+        Title: <input type="text" name="SearchString">
+        <input type="submit" value="Filter" />
+    </p>
+</form>
     </tbody>
 </table>
