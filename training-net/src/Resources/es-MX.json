@@ -3,5 +3,11 @@
     "ContactPage": "Página de contacto",
     "HomePage": "Página de inicio",
     "PageTitle": "Mi lista de películas",
-    "Create": "Crear nueva"
+    "Create": "Crear nueva",
+    "Edit": "Editar",
+    "Details": "Detalles",
+    "Delete": "Borrar",
+    "Back": "Volver a la Lista",
+    "Movie": "Película",
+    "Confirmation": "Borrar esta película?"
 }

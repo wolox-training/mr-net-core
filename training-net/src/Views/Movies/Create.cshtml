@@ -1,14 +1,20 @@
 @model MvcMovies.Models.Views.MovieViewModel
+@using Microsoft.AspNetCore.Mvc.Localization
+@using System.Globalization
+@inject IViewLocalizer Localizer
 
 @{
-    ViewData["Title"] = "Create";
+    ViewData["Title"] = Localizer["Create"];
+    ViewData["Create"] = Localizer["Create"];
+    ViewData["Back"] = Localizer["Back"];
+    ViewData["Movie"] = Localizer["Movie"];
 }
 
-<h2>Create</h2>
+<h2>@ViewData["Create"]</h2>
 
 <form asp-action="Create" method="POST">
     <div class="form-horizontal">
-        <h4>Movie</h4>
+        <h4>@ViewData["Movie"]</h4>
         <hr />
         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
     <input type="hidden" asp-for="ID" />
@@ -47,9 +53,8 @@
         </div>
     </div>
 </form>
-
 <div>
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="Index">@ViewData["Back"]</a>
 </div>
 
 @section Scripts {

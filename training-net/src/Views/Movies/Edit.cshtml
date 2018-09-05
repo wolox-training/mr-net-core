@@ -1,14 +1,19 @@
 @model MvcMovies.Models.Views.MovieViewModel
+@using Microsoft.AspNetCore.Mvc.Localization
+@using System.Globalization
+@inject IViewLocalizer Localizer
 
 @{
-    ViewData["Title"] = "Edit";
+    ViewData["Title"] = Localizer["Edit"];
+    ViewData["Edit"] = Localizer["Edit"];
+    ViewData["Movie"] = Localizer["Movie"];
 }
 
-<h2>Edit</h2>
+<h2>@ViewData["Edit"]</h2>
 
 <form asp-action="Edit" method="POST">
     <div class="form-horizontal">
-        <h4>Movie</h4>
+        <h4>@ViewData["Movie"]</h4>
         <hr />
         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
     <input type="hidden" asp-for="ID" />
