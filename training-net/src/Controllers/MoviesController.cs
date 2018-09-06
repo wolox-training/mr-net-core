@@ -7,7 +7,8 @@ using Microsoft.AspNetCore.Mvc.Localization;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using MvcMovie.Models;
-using MvcMovies.Models.Views;
+using MvcMovie.Models.View;
+using MvcMovie.Models.Views;
 using Repositories.Interfaces;
 
 namespace MvcMovie.Controllers
@@ -26,13 +27,10 @@ namespace MvcMovie.Controllers
         }
 
         [HttpGet]
-        // public IActionResult Index() => 
-        // View(UnitOfWork.MovieRepository.GetAll().Select(movie =>  new MovieViewModel { ID = movie.ID, Title = movie.Title, ReleaseDate = movie.ReleaseDate, Genre = movie.Genre, Price = movie.Price }).ToList());
-
         public IActionResult Index(string movieGenre, string searchString)
         {
-            var movies = UnitOfWork.MovieRepository.GetAll().Select(movie =>  new MovieViewModel { ID = movie.ID, Title = movie.Title, ReleaseDate = movie.ReleaseDate, Genre = movie.Genre, Price = movie.Price }).ToList();
-           //IQueryable<string> genreQuery = UnitOfWork.MovieRepository.GetAll().OrderBy(movie.genres)
+            var movies = UnitOfWork.MovieRepository.GetAll().Select(movie =>  new Movie { ID = movie.ID, Title = movie.Title, ReleaseDate = movie.ReleaseDate, Genre = movie.Genre, Price = movie.Price }).ToList();
+            var moviesGenres = (from movie in UnitOfWork.MovieRepository.GetAll() orderby movie.Genre select movie.Genre).ToList();
             if (!string.IsNullOrEmpty(searchString))
             {
                 movies = movies.Where(movie => movie.Title.Contains(searchString)).ToList();
@@ -41,10 +39,10 @@ namespace MvcMovie.Controllers
             {
                 movies = movies.Where(movie => movie.Genre.Contains(movieGenre)).ToList();
             }
-            // var movieGenreVM = new MovieGenreViewModel();
-            // movieGenreVM.genres = new SelectListItem(genreQuery.Distinct().ToListAsync());
-            // movieGenreVM.movies =  movies.ToList();
-            return View(movies);
+            var movieGenreVM = new MovieGenreViewModel();
+            movieGenreVM.genres = moviesGenres.Select(genre => new SelectListItem(genre, genre)).ToList();
+            movieGenreVM.movies = movies.ToList();
+            return View(movieGenreVM);
         }
         [HttpPost]
         public string Index(string searchString, bool notUsed)
@@ -67,6 +65,7 @@ namespace MvcMovie.Controllers
             return View();
         }
 
+        [HttpGet("Edit")]
         public IActionResult Edit(int id)
         {
             var movie = UnitOfWork.MovieRepository.Get(id);
@@ -77,7 +76,7 @@ namespace MvcMovie.Controllers
             return View(new MovieViewModel { ID = movie.ID, Title = movie.Title, ReleaseDate = movie.ReleaseDate, Genre = movie.Genre, Price = movie.Price });
         }
 
-        [HttpPost]
+        [HttpPost("Edit")]
         public IActionResult Edit(MovieViewModel mvm)
         {   
             try
