@@ -26,7 +26,6 @@ namespace Repositories
             get { return this._userManager; }
         }
 
-
         public DataBaseContext Context
         {
             get { return new DataBaseContext(this._options); }
