@@ -202,7 +202,5 @@ namespace MvcMovie.Controllers
             client.Send(mailMessage);
             return RedirectToAction("Index", "Movies");
         }
-
     }
 }
-
