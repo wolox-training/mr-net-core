@@ -3,3 +3,4 @@
 /src/bin/*
 /src/appsettings.Development.json
 /test/obj/*
+.vscode/*
