@@ -54,9 +54,12 @@ namespace MvcMovie.Controllers
         [HttpPost("Create")]
         public IActionResult Create(MovieViewModel mvm)
         {
+            if(ModelState.IsValid)
+            {
             var movie = new Movie { ID = mvm.ID, Title = mvm.Title, ReleaseDate = mvm.ReleaseDate, Genre = mvm.Genre, Price = mvm.Price };
             UnitOfWork.MovieRepository.Add(movie);
             UnitOfWork.Complete();
+            }
             return View();
         }
 
@@ -76,8 +79,11 @@ namespace MvcMovie.Controllers
         {   
             try
             {
-                UnitOfWork.MovieRepository.Update(new Movie { ID = mvm.ID, Title = mvm.Title, ReleaseDate = mvm.ReleaseDate, Genre = mvm.Genre, Price = mvm.Price });
-                UnitOfWork.Complete();     
+                if (ModelState.IsValid)
+                {
+                    UnitOfWork.MovieRepository.Update(new Movie { ID = mvm.ID, Title = mvm.Title, ReleaseDate = mvm.ReleaseDate, Genre = mvm.Genre, Price = mvm.Price });
+                    UnitOfWork.Complete();
+                }
             }
             catch(DbUpdateConcurrencyException)
             {
