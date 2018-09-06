@@ -76,6 +76,7 @@ namespace MvcMovies
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
+                
             }
             else
             {

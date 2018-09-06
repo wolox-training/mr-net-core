@@ -15,7 +15,7 @@ namespace MvcMovie.Models
         [DataType(DataType.Date)]
         public DateTime ReleaseDate { get; set; }
 
-        [RegularExpression(@"^[A-Z]+[a-zA-Z""'\s-]*$"), StringLength(30), Required]
+        [StringLength(30, MinimumLength = 5), Required]
         public string Genre { get; set; }
 
         [Column(TypeName = "decimal(18, 2)")]
