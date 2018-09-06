@@ -40,7 +40,7 @@ namespace MvcMovie.Controllers
                 movies = movies.Where(movie => movie.Genre.Contains(movieGenre)).ToList();
             }
             var movieGenreVM = new MovieGenreViewModel();
-            movieGenreVM.genres = moviesGenres.Select(genre => new SelectListItem(genre, genre)).ToList();
+            movieGenreVM.genres = moviesGenres.Distinct().Select(genre => new SelectListItem(genre, genre)).ToList();
             movieGenreVM.movies = movies.ToList();
             return View(movieGenreVM);
         }
