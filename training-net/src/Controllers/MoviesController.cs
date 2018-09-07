@@ -44,11 +44,6 @@ namespace MvcMovie.Controllers
             movieGenreVM.movies = movies.ToList();
             return View(movieGenreVM);
         }
-        [HttpPost]
-        public string Index(string searchString, bool notUsed)
-        {
-            return "From [HttpPost]Index: filter on " + searchString;
-        }
 
         [HttpGet("Create")]
         public IActionResult Create()
