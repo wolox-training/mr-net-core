@@ -2,7 +2,7 @@
 @using System.Globalization
 @using MvcMovies.PaginatedList
 @using MvcMovie.Models.Views
-@model MvcMovie.Models.View.MovieGenreViewModel
+@model PaginatedList<MvcMovie.Models.View.MovieGenreViewModel>
 
 @inject IViewLocalizer Localizer
 
@@ -27,7 +27,7 @@
 </p>
 <form asp-controller="Movies" asp-action="Index" method="GET">
     <p>
-        @Html.DropDownList("movieGenre",Model.genres, "Genre")
+        @Html.DropDownList("movieGenre",Model.First().genres, "Genre")
         @ViewData["MovieTitle"] <input type="text" name="SearchString">
         <input type="submit" value= @ViewData["Filter"] />
     </p>
@@ -45,7 +45,7 @@
                     <a asp-action="Index" asp-route-sortOrder="@ViewData["GenreSortParm"]" asp-route-page="@(Model.MovieList.PageIndex)">@Html.DisplayNameFor(model => model.movies[0].Genre)</a>
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.movies[0].Price)
+                    @Html.DisplayNameFor(model => model.First().movies[0].Price)
                 </th>
             <th></th>
         </tr>
