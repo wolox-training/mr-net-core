@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -22,5 +23,6 @@ namespace MvcMovie.Models
         [DataType(DataType.Currency), Range(1, 100)]   
         public decimal Price { get; set; }
         public string Rating { get; set; }
+        public ICollection<Comment> Comments { get; set; }
     }
 }
