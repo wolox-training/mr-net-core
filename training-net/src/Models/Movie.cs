@@ -1,5 +1,6 @@
 using System;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace MvcMovie.Models
 {
@@ -11,16 +12,15 @@ namespace MvcMovie.Models
         public string Title { get; set; }
 
         [Display(Name = "Release Date")]
-        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
+        [DataType(DataType.Date)]
         public DateTime ReleaseDate { get; set; }
 
         [RegularExpression(@"^[A-Z]+[a-zA-Z""'\s-]*$"), StringLength(30), Required]
         public string Genre { get; set; }
 
+        [Column(TypeName = "decimal(18, 2)")]
         [DataType(DataType.Currency), Range(1, 100)]   
         public decimal Price { get; set; }
-        
-        [RegularExpression(@"^[A-Z]+[a-zA-Z0-9""'\s-]*$"), StringLength(5)]
         public string Rating { get; set; }
     }
 }

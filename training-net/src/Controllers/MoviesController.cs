@@ -56,7 +56,7 @@ namespace MvcMovie.Controllers
         {
             if(ModelState.IsValid)
             {
-            var movie = new Movie { ID = mvm.ID, Title = mvm.Title, ReleaseDate = mvm.ReleaseDate, Genre = mvm.Genre, Price = mvm.Price };
+            var movie = new Movie { ID = mvm.ID ?? default(int), Title = mvm.Title, ReleaseDate = mvm.ReleaseDate, Genre = mvm.Genre, Price = mvm.Price };
             UnitOfWork.MovieRepository.Add(movie);
             UnitOfWork.Complete();
             }
@@ -81,7 +81,7 @@ namespace MvcMovie.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    UnitOfWork.MovieRepository.Update(new Movie { ID = mvm.ID, Title = mvm.Title, ReleaseDate = mvm.ReleaseDate, Genre = mvm.Genre, Price = mvm.Price });
+                    UnitOfWork.MovieRepository.Update(new Movie { ID = mvm.ID ?? default(int), Title = mvm.Title, ReleaseDate = mvm.ReleaseDate, Genre = mvm.Genre, Price = mvm.Price });
                     UnitOfWork.Complete();
                 }
             }
@@ -124,7 +124,7 @@ namespace MvcMovie.Controllers
         [HttpPost("DeleteConfirmation")]
         public IActionResult DeleteConfirmation(MovieViewModel mvm)
         {
-            UnitOfWork.MovieRepository.Remove(UnitOfWork.MovieRepository.Get(mvm.ID));
+            UnitOfWork.MovieRepository.Remove(UnitOfWork.MovieRepository.Get(mvm.ID ?? default(int)));
             UnitOfWork.Complete();
             return RedirectToAction("Index", "Movies");
         }
