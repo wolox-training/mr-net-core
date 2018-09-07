@@ -147,7 +147,25 @@ namespace MvcMovie.Controllers
             {
                 return NotFound();
             }
-            return View(new MovieViewModel { ID = movie.ID, Title = movie.Title, ReleaseDate = movie.ReleaseDate, Genre = movie.Genre, Price = movie.Price });
+            ICollection<CommentViewModel> comments = null;
+            if(movie.Comments != null){
+                foreach(var comment in movie.Comments)
+                {
+                    var comm = new CommentViewModel { ID = comment.ID, Text = comment.Text, Date = comment.Date, Rating = comment.Rating};
+                    comments.Add(comm);
+                }
+            }
+            return View(new MovieViewModel { ID = movie.ID, Title = movie.Title, ReleaseDate = movie.ReleaseDate, Genre = movie.Genre, Price = movie.Price, Comments = comments });
+        }
+
+        public IActionResult AddComment(MovieViewModel mvm)
+        {
+            var movie = UnitOfWork.MovieRepository.Get(mvm.ID ?? default(int));
+            var comment = new Comment { ID = mvm.Comments.Last().ID, Text = mvm.Comments.Last().Text, Date = mvm.Comments.Last().Date, Rating = mvm.Comments.Last().Rating};
+            movie.Comments.Add(comment);
+            UnitOfWork.MovieRepository.Update(movie);
+            UnitOfWork.Complete();
+            return RedirectToAction("Details","Movies");
         }
 
         [HttpGet("Delete")]
@@ -158,7 +176,7 @@ namespace MvcMovie.Controllers
             {
                 return NotFound();
             }
-            return View(new MovieViewModel { ID = movie.ID, Title = movie.Title, ReleaseDate = movie.ReleaseDate,Genre = movie.Genre, Price = movie.Price });  
+            return View(new MovieViewModel { ID = movie.ID, Title = movie.Title, ReleaseDate = movie.ReleaseDate,Genre = movie.Genre, Price = movie.Price});  
         }
 
         [HttpPost("DeleteConfirmation")]
