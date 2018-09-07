@@ -12,6 +12,7 @@ using Microsoft.EntityFrameworkCore;
 using MvcMovie.Models;
 using MvcMovie.Models.View;
 using MvcMovie.Models.Views;
+using MvcMovies.PaginatedList;
 using Repositories.Interfaces;
 
 namespace MvcMovie.Controllers
@@ -30,11 +31,20 @@ namespace MvcMovie.Controllers
         }
 
         [HttpGet]
-        public IActionResult Index(string movieGenre, string searchString, string sortOrder)
+        public IActionResult Index(string movieGenre, string searchString, string sortOrder, int? page)
         {
+            ViewData["CurrentSort"] = sortOrder;
             ViewData["TitleSortParm"] = String.IsNullOrEmpty(sortOrder) ? "title_desc" : "";
             ViewData["DateSortParm"] = sortOrder == "Date" ? "date_desc" : "Date";
             ViewData["GenreSortParm"] = sortOrder == "Genre" ? "genre_desc" : "Genre";
+            if (searchString != null)
+            {
+                page = 1;
+            }
+            else
+            {
+                searchString = movieGenre;
+            }
             var movies = UnitOfWork.MovieRepository.GetAll().Select(movie =>  new Movie { ID = movie.ID, Title = movie.Title, ReleaseDate = movie.ReleaseDate, Genre = movie.Genre, Price = movie.Price }).ToList();
             var moviesGenres = (from movie in UnitOfWork.MovieRepository.GetAll() orderby movie.Genre select movie.Genre).ToList();
             if (!string.IsNullOrEmpty(searchString))
@@ -69,7 +79,8 @@ namespace MvcMovie.Controllers
                     movieGenreVM.movies = movies.OrderBy(movie => movie.Title).ToList();
                     break;
             }
-            return View(movieGenreVM);
+             int pageSize = 3;
+            return View(PaginatedList<MovieGenreViewModel>.CreateAsync(movieGenreVM,page ?? 1, pageSize));
         }
 
         [HttpGet("Create")]
