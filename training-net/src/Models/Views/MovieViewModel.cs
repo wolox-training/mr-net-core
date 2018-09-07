@@ -2,7 +2,7 @@ using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace MvcMovies.Models.Views
+namespace MvcMovie.Models.Views
 {
 	public class MovieViewModel
 	{

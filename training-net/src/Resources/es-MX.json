@@ -11,5 +11,7 @@
     "Movie": "Película",
     "Confirmation": "Borrar esta película?",
     "Hello": "Hola",
-    "Register": "Registro de Usuario"
+    "Register": "Registro de Usuario",
+    "Filter": "Filtrar",
+    "MovieTitle": "Título"
 }

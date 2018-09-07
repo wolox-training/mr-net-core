@@ -11,5 +11,7 @@
     "Movie": "Movie",
     "Confirmation": "Delete this movie?",
     "Hello": "Hello",
-    "Register": "User registration"
+    "Register": "User registration",
+    "Filter": "Filter",
+    "MovieTitle": "Title"
 }

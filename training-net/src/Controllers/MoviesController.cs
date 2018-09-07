@@ -4,9 +4,11 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Localization;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using MvcMovie.Models;
-using MvcMovies.Models.Views;
+using MvcMovie.Models.View;
+using MvcMovie.Models.Views;
 using Repositories.Interfaces;
 
 namespace MvcMovie.Controllers
@@ -24,8 +26,24 @@ namespace MvcMovie.Controllers
             this._unitOfWork = unitOfWork;
         }
 
-        public IActionResult Index() => 
-        View(UnitOfWork.MovieRepository.GetAll().Select(movie =>  new MovieViewModel { ID = movie.ID, Title = movie.Title, ReleaseDate = movie.ReleaseDate, Genre = movie.Genre, Price = movie.Price }).ToList());
+        [HttpGet]
+        public IActionResult Index(string movieGenre, string searchString)
+        {
+            var movies = UnitOfWork.MovieRepository.GetAll().Select(movie =>  new Movie { ID = movie.ID, Title = movie.Title, ReleaseDate = movie.ReleaseDate, Genre = movie.Genre, Price = movie.Price }).ToList();
+            var moviesGenres = (from movie in UnitOfWork.MovieRepository.GetAll() orderby movie.Genre select movie.Genre).ToList();
+            if (!string.IsNullOrEmpty(searchString))
+            {
+                movies = movies.Where(movie => movie.Title.Contains(searchString)).ToList();
+            }
+            if (!string.IsNullOrEmpty(movieGenre))
+            {
+                movies = movies.Where(movie => movie.Genre.Contains(movieGenre)).ToList();
+            }
+            var movieGenreVM = new MovieGenreViewModel();
+            movieGenreVM.genres = moviesGenres.Distinct().Select(genre => new SelectListItem(genre, genre)).ToList();
+            movieGenreVM.movies = movies.ToList();
+            return View(movieGenreVM);
+        }
 
         [HttpGet("Create")]
         public IActionResult Create()
@@ -42,6 +60,7 @@ namespace MvcMovie.Controllers
             return View();
         }
 
+        [HttpGet("Edit")]
         public IActionResult Edit(int id)
         {
             var movie = UnitOfWork.MovieRepository.Get(id);
@@ -52,7 +71,7 @@ namespace MvcMovie.Controllers
             return View(new MovieViewModel { ID = movie.ID, Title = movie.Title, ReleaseDate = movie.ReleaseDate, Genre = movie.Genre, Price = movie.Price });
         }
 
-        [HttpPost]
+        [HttpPost("Edit")]
         public IActionResult Edit(MovieViewModel mvm)
         {   
             try
