@@ -79,7 +79,7 @@ namespace MvcMovie.Controllers
                     movieGenreVM.movies = movies.OrderBy(movie => movie.Title).ToList();
                     break;
             }
-             int pageSize = 3;
+            int pageSize = 3;
             return View(PaginatedList<MovieGenreViewModel>.CreateAsync(movieGenreVM,page ?? 1, pageSize));
         }
 
@@ -200,6 +200,6 @@ namespace MvcMovie.Controllers
             client.Send(mailMessage);
             return RedirectToAction("Index", "Movies");
         }
-        
+
     }
 }
