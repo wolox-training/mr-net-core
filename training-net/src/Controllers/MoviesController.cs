@@ -153,13 +153,13 @@ namespace MvcMovie.Controllers
         [HttpPost("SendMail")]
         public IActionResult SendMail(MovieViewModel mvm)
         {
-            var client = new SmtpClient("smtp.mailtrap.io", 2525);
+            var client = new SmtpClient("smtp.gmail.com", 587);
             client.UseDefaultCredentials = false;
-            client.Credentials = new NetworkCredential("12b024d9d9d9ac", "bfcaf23d60563e");
+            client.Credentials = new NetworkCredential("testdontnet@gmail.com", "Dotnet1133");
             client.EnableSsl = true;
             var mailMessage = new MailMessage();
-            mailMessage.From = new MailAddress("whoever@me.com");
-            mailMessage.To.Add("receiver@me.com");
+            mailMessage.From = new MailAddress("testdontnet@gmail.com");
+            mailMessage.To.Add("testdontnet@gmail.com");
             mailMessage.Body = string.Format("Title: {0} \n Release Date: {1} \n Genre: {2} \n Price {3}".Replace("\n",Environment.NewLine), mvm.Title, mvm.ReleaseDate.ToString(), mvm.Genre, mvm.Price.ToString());
             mailMessage.Subject = "subject";
             client.Send(mailMessage);
