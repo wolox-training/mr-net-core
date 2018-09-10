@@ -148,15 +148,15 @@ namespace MvcMovie.Controllers
                 return NotFound();
             }
             ICollection<CommentViewModel> comments = null;
-            // if(movie.Comments != null){
-            //     foreach(var comment in movie.Comments)
-            //     {
-            //         var comm = new CommentViewModel { ID = comment.ID, Text = comment.Text, Date = comment.Date, Rating = comment.Rating};
-            //         comments.Add(comm);
-            //     }
-            // }
+            if(movie.Comments != null){
+                foreach(var comment in movie.Comments)
+                {
+                    var comm = new CommentViewModel { ID = comment.ID, Text = comment.Text, Date = comment.Date, Rating = comment.Rating};
+                    comments.Add(comm);
+                }
+            }
    
-            return View(new MovieViewModel { ID = movie.ID, Title = movie.Title, ReleaseDate = movie.ReleaseDate, Genre = movie.Genre, Price = movie.Price, Comments = comments });
+           return View(new MovieViewModel { ID = movie.ID, Title = movie.Title, ReleaseDate = movie.ReleaseDate, Genre = movie.Genre, Price = movie.Price, Comments = comments });
         }
 
         [HttpPost]
