@@ -124,9 +124,16 @@ namespace MvcMovie.Controllers
         [HttpPost("DeleteConfirmation")]
         public IActionResult DeleteConfirmation(MovieViewModel mvm)
         {
-            UnitOfWork.MovieRepository.Remove(UnitOfWork.MovieRepository.Get(mvm.ID ?? default(int)));
-            UnitOfWork.Complete();
-            return RedirectToAction("Index", "Movies");
+            try
+            {
+                UnitOfWork.MovieRepository.Remove(UnitOfWork.MovieRepository.Get((int)mvm.ID));
+                UnitOfWork.Complete();
+                return RedirectToAction("Index", "Movies");
+            }
+            catch(DbUpdateConcurrencyException)
+            {
+                return NotFound();
+            }
         }
     }
 }
