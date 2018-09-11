@@ -6,7 +6,7 @@ namespace MvcMovie.Models.Views
 {
 	public class MovieViewModel
 	{
-		public int? ID { get; set; }
+		public int ID { get; set; }
 
         [StringLength(60, MinimumLength = 2), Required]
         public string Title { get; set; }

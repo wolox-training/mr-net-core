@@ -53,14 +53,14 @@ namespace MvcMovie.Controllers
 
         [HttpPost("Create")]
         public IActionResult Create(MovieViewModel mvm)
-        {
+        {   
             if(ModelState.IsValid)
             {
-            var movie = new Movie { ID = mvm.ID ?? default(int), Title = mvm.Title, ReleaseDate = mvm.ReleaseDate, Genre = mvm.Genre, Price = mvm.Price };
-            UnitOfWork.MovieRepository.Add(movie);
-            UnitOfWork.Complete();
+                var movie = new Movie { Title = mvm.Title, ReleaseDate = mvm.ReleaseDate, Genre = mvm.Genre, Price = mvm.Price };
+                UnitOfWork.MovieRepository.Add(movie);
+                UnitOfWork.Complete();
             }
-            return View();
+            return RedirectToAction("Index","Movies");
         }
 
         [HttpGet("Edit")]
@@ -81,7 +81,7 @@ namespace MvcMovie.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    UnitOfWork.MovieRepository.Update(new Movie { ID = mvm.ID ?? default(int), Title = mvm.Title, ReleaseDate = mvm.ReleaseDate, Genre = mvm.Genre, Price = mvm.Price });
+                    UnitOfWork.MovieRepository.Update(new Movie { ID = mvm.ID, Title = mvm.Title, ReleaseDate = mvm.ReleaseDate, Genre = mvm.Genre, Price = mvm.Price });
                     UnitOfWork.Complete();
                 }
             }
@@ -126,7 +126,7 @@ namespace MvcMovie.Controllers
         {
             try
             {
-                UnitOfWork.MovieRepository.Remove(UnitOfWork.MovieRepository.Get((int)mvm.ID));
+                UnitOfWork.MovieRepository.Remove(UnitOfWork.MovieRepository.Get(mvm.ID));
                 UnitOfWork.Complete();
                 return RedirectToAction("Index", "Movies");
             }
