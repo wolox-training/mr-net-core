@@ -34,13 +34,13 @@
     <thead>
         <tr>
                 <th>
-                    <a asp-action="Index" asp-route-sortOrder="@ViewData["TitleSortParm"]">@Html.DisplayNameFor(model => model.movies[0].Title)</a>
+                    <a asp-action="Index" asp-route-sortOrder="@ViewData["TitleSortParm"]" asp-route-page="@(Model.MovieList.PageIndex)">@Html.DisplayNameFor(model => model.movies[0].Title)</a>
                 </th>
                 <th>
-                    <a asp-action="Index" asp-route-sortOrder="@ViewData["DateSortParm"]">@Html.DisplayNameFor(model => model.movies[0].ReleaseDate)</a>
+                    <a asp-action="Index" asp-route-sortOrder="@ViewData["DateSortParm"]" asp-route-page="@(Model.MovieList.PageIndex)">@Html.DisplayNameFor(model => model.movies[0].ReleaseDate)</a>
                 </th>
                 <th>
-                    <a asp-action="Index" asp-route-sortOrder="@ViewData["GenreSortParm"]">@Html.DisplayNameFor(model => model.movies[0].Genre)</a>
+                    <a asp-action="Index" asp-route-sortOrder="@ViewData["GenreSortParm"]" asp-route-page="@(Model.MovieList.PageIndex)">@Html.DisplayNameFor(model => model.movies[0].Genre)</a>
                 </th>
                 <th>
                     @Html.DisplayNameFor(model => model.movies[0].Price)
@@ -78,15 +78,15 @@
 
 <a asp-action="Index"
    asp-route-sortOrder="@ViewData["CurrentSort"]"
+   asp-route-movieGenre="@ViewData["CurrentFilter"]"
    asp-route-page="@(Model.MovieList.PageIndex - 1)"
-   asp-route-currentFilter="@ViewData["CurrentFilter"]"
    class="btn btn-default @prevDisabled">
     Previous
 </a>
 <a asp-action="Index"
    asp-route-sortOrder="@ViewData["CurrentSort"]"
+   asp-route-movieGenre="@ViewData["CurrentFilter"]"
    asp-route-page="@(Model.MovieList.PageIndex + 1)"
-   asp-route-currentFilter="@ViewData["CurrentFilter"]"
    class="btn btn-default @nextDisabled">
     Next
 </a>
