@@ -158,7 +158,7 @@ namespace MvcMovie.Controllers
             var comment = new Comment { ID = mvm.NewComment.ID, Text = mvm.NewComment.Text, Date =DateTime.Today, Rating = mvm.NewComment.Rating, MovieID = movie.ID};
             UnitOfWork.CommentRepository.Add(comment);
             UnitOfWork.Complete();
-            return RedirectToAction("Details","Movies", new { id = mvm.ID });
+            return RedirectToAction("Details", "Movies", new { id = mvm.ID });
         }
 
         [HttpGet("Delete")]
