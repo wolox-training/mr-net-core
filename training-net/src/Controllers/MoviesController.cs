@@ -51,22 +51,22 @@ namespace MvcMovie.Controllers
             switch(sortOrder)
             {
                 case "title_desc":
-                    movieGenreVM.movies = movies.OrderByDescending(s => s.Title).ToList();
+                    movieGenreVM.movies = movies.OrderByDescending(movie => movie.Title).ToList();
                     break;
                 case "Date":
-                    movieGenreVM.movies = movies.OrderBy(s => s.ReleaseDate).ToList();
+                    movieGenreVM.movies = movies.OrderBy(movie => movie.ReleaseDate).ToList();
                     break;
                 case "date_desc":
-                    movieGenreVM.movies = movies.OrderByDescending(s => s.ReleaseDate).ToList();
+                    movieGenreVM.movies = movies.OrderByDescending(movie => movie.ReleaseDate).ToList();
                     break;
                 case "Genre":
-                    movieGenreVM.movies = movies.OrderBy(s => s.Genre).ToList();
+                    movieGenreVM.movies = movies.OrderBy(movie => movie.Genre).ToList();
                     break;
                 case "genre_desc":
-                    movieGenreVM.movies = movies.OrderByDescending(s => s.Genre).ToList();
+                    movieGenreVM.movies = movies.OrderByDescending(movie => movie.Genre).ToList();
                     break;
                 default:
-                    movieGenreVM.movies = movies.OrderBy(s => s.Title).ToList();
+                    movieGenreVM.movies = movies.OrderBy(movie => movie.Title).ToList();
                     break;
             }
             return View(movieGenreVM);
