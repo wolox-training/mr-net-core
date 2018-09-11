@@ -13,7 +13,8 @@ namespace MvcMovie.Models.Views
         [Display(Name = "Release Date")]
         [DataType(DataType.Date)]
         public DateTime Date { get; set; }
-        
+
+        [RegularExpression(@"^[*]{1,5}$"), StringLength(5, MinimumLength = 1), Required]
         public string Rating { get; set; }
 
         public int MovieID { get; set; }

@@ -96,7 +96,11 @@ namespace MvcMovie.Controllers
         {   
             if(ModelState.IsValid)
             {
+<<<<<<< ed0d9b002e0332d820ab741e2f21722abd7f60bd
                 var movie = new Movie { Title = mvm.Title, ReleaseDate = mvm.ReleaseDate, Genre = mvm.Genre, Price = mvm.Price };
+=======
+                var movie = new Movie { ID = mvm.ID ?? default(int), Title = mvm.Title, ReleaseDate = mvm.ReleaseDate, Genre = mvm.Genre, Price = mvm.Price };
+>>>>>>> comment-views 2
                 UnitOfWork.MovieRepository.Add(movie);
                 UnitOfWork.Complete();
             }
@@ -147,23 +151,16 @@ namespace MvcMovie.Controllers
             {
                 return NotFound();
             }
-            ICollection<CommentViewModel> comments = null;
-            if(movie.Comments != null){
-                foreach(var comment in movie.Comments)
-                {
-                    var comm = new CommentViewModel { ID = comment.ID, Text = comment.Text, Date = comment.Date, Rating = comment.Rating};
-                    comments.Add(comm);
-                }
-            }
-   
-           return View(new MovieViewModel { ID = movie.ID, Title = movie.Title, ReleaseDate = movie.ReleaseDate, Genre = movie.Genre, Price = movie.Price, Comments = comments });
+            //var comments = UnitOfWork.CommentRepository.GetAll().Select(comment =>  new CommentViewModel { ID = movie.ID, Text = comment.Text, Date = comment.Date, Rating = comment.Rating, MovieID = movie.ID });
+            var comments = UnitOfWork.CommentRepository.GetAll().Select(comment =>  new CommentViewModel { ID = movie.ID, Text = comment.Text, Date = comment.Date, Rating = comment.Rating, MovieID = movie.ID }).Where(comment => comment.MovieID = movie.ID);
+            return View(new MovieViewModel { ID = movie.ID, Title = movie.Title, ReleaseDate = movie.ReleaseDate, Genre = movie.Genre, Price = movie.Price, Comments = comments.ToList() });
         }
 
         [HttpPost]
         public IActionResult AddComment(MovieViewModel mvm)
         {
             var movie = UnitOfWork.MovieRepository.Get(mvm.ID ?? default(int));
-            var comment = new Comment { ID = mvm.NewComment.ID, Text = mvm.NewComment.Text, Date =mvm.ReleaseDate, Rating = mvm.NewComment.Rating, Movie = movie};
+            var comment = new Comment { ID = mvm.NewComment.ID, Text = mvm.NewComment.Text, Date =DateTime.Today, Rating = mvm.NewComment.Rating, Movie = movie};
             UnitOfWork.CommentRepository.Add(comment);
             UnitOfWork.Complete();
             return RedirectToAction("Details","Movies", new { id = mvm.ID });
@@ -177,7 +174,7 @@ namespace MvcMovie.Controllers
             {
                 return NotFound();
             }
-            return View(new MovieViewModel { ID = movie.ID, Title = movie.Title, ReleaseDate = movie.ReleaseDate,Genre = movie.Genre, Price = movie.Price});  
+            return View(new MovieViewModel { ID = (int)movie.ID, Title = movie.Title, ReleaseDate = movie.ReleaseDate,Genre = movie.Genre, Price = movie.Price});  
         }
 
         [HttpPost("DeleteConfirmation")]
