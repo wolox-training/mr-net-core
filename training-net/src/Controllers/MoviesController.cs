@@ -45,7 +45,7 @@ namespace MvcMovie.Controllers
             {
                 searchString = movieGenre;
             }
-            var movies = UnitOfWork.MovieRepository.GetAll().Select(movie =>  new Movie { ID = movie.ID, Title = movie.Title, ReleaseDate = movie.ReleaseDate, Genre = movie.Genre, Price = movie.Price }).ToList();
+            var movies = UnitOfWork.MovieRepository.GetAll().Select(movie =>  new MovieViewModel { ID = movie.ID, Title = movie.Title, ReleaseDate = movie.ReleaseDate, Genre = movie.Genre, Price = movie.Price }).ToList();
             var moviesGenres = (from movie in UnitOfWork.MovieRepository.GetAll() orderby movie.Genre select movie.Genre).ToList();
             if (!string.IsNullOrEmpty(searchString))
             {
@@ -79,8 +79,9 @@ namespace MvcMovie.Controllers
                     movieGenreVM.movies = movies.OrderBy(movie => movie.Title).ToList();
                     break;
             }
-            int pageSize = 3;
-            return View(PaginatedList<MovieGenreViewModel>.CreateAsync(movieGenreVM,page ?? 1, pageSize));
+            int pageSize = 6;
+            movieGenreVM.MovieList = PaginatedList<MovieViewModel>.Create(movies.ToList(), page ?? 1, pageSize);
+            return View(movieGenreVM);
         }
 
         [HttpGet("Create")]
