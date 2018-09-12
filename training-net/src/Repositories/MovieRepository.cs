@@ -12,5 +12,12 @@ namespace Repositories
         }
 
         public DbContext DbContext{ get { return Context as DbContext; } }
+
+        public Movie GetMovieWithComments(int id)
+        {
+             var movie = Context.Set<Movie>().Find(id);
+             Context.Entry(movie).Collection(m => m.Comments).Load();
+             return movie;
+        }
     }
 }

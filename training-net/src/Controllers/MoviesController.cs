@@ -142,20 +142,26 @@ namespace MvcMovie.Controllers
         [HttpGet("Details")]
         public IActionResult Details(int id)
         {   
-            var movie = UnitOfWork.MovieRepository.Get(id);
+            var movie = UnitOfWork.MovieRepository.GetMovieWithComments(id);
             if (movie == null)
             {
                 return NotFound();
             }
-            var comments = UnitOfWork.CommentRepository.GetAll().Where(comment => comment.MovieID == movie.ID).Select(comment =>  new CommentViewModel { ID = movie.ID, Text = comment.Text, Date = comment.Date, Rating = comment.Rating, MovieID = movie.ID });
-            return View(new MovieViewModel { ID = movie.ID, Title = movie.Title, ReleaseDate = movie.ReleaseDate, Genre = movie.Genre, Price = movie.Price, Comments = comments.ToList() });
+            //var comments = UnitOfWork.CommentRepository.GetAll().Where(comment => comment.MovieID == movie.ID).Select(comment =>  new CommentViewModel { ID = movie.ID, Text = comment.Text, Date = comment.Date, Rating = comment.Rating, MovieID = movie.ID });
+             var comments = new List<CommentViewModel>();
+             foreach(var comment in movie.Comments)
+             {
+                 var com = new CommentViewModel { ID = comment.ID, Date = comment.Date, Text = comment.Text, Rating = comment.Rating };
+                 comments.Add(com);
+             }
+            return View(new MovieViewModel { ID = movie.ID, Title = movie.Title, ReleaseDate = movie.ReleaseDate, Genre = movie.Genre, Price = movie.Price, Comments = comments });
         }
 
         [HttpPost]
         public IActionResult AddComment(MovieViewModel mvm)
         {
             var movie = UnitOfWork.MovieRepository.Get(mvm.ID);
-            var comment = new Comment { ID = mvm.NewComment.ID, Text = mvm.NewComment.Text, Date =DateTime.Today, Rating = mvm.NewComment.Rating, MovieID = movie.ID};
+            var comment = new Comment { ID = mvm.NewComment.ID, Text = mvm.NewComment.Text, Date =DateTime.Today, Rating = mvm.NewComment.Rating, Movie = movie};
             UnitOfWork.CommentRepository.Add(comment);
             UnitOfWork.Complete();
             return RedirectToAction("Details", "Movies", new { id = mvm.ID });
