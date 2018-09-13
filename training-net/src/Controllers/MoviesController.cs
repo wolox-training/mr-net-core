@@ -147,7 +147,7 @@ namespace MvcMovie.Controllers
             {
                 return NotFound();
             }
-            return View(new MovieViewModel { ID = movie.ID, Title = movie.Title, ReleaseDate = movie.ReleaseDate,Genre = movie.Genre, Price = movie.Price });  
+            return View(new MovieViewModel { ID = movie.ID, Title = movie.Title, ReleaseDate = movie.ReleaseDate, Genre = movie.Genre, Price = movie.Price });  
         }
 
         [HttpPost("SendMail")]
