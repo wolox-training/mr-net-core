@@ -13,7 +13,9 @@ namespace MvcMovie.Models
         [Display(Name = "Release Date")]
         [DataType(DataType.Date)]
         public DateTime Date { get; set; }
+
         public string Rating { get; set; }
+        
         public Movie Movie { get; set; }
     }
 }
