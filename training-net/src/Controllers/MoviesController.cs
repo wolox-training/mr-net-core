@@ -158,13 +158,30 @@ namespace MvcMovie.Controllers
         }
 
         [HttpPost]
-        public IActionResult AddComment(MovieViewModel mvm)
+        public JsonResult AddComment(MovieViewModel mvm)
         {
             var movie = UnitOfWork.MovieRepository.Get(mvm.ID);
             var comment = new Comment { ID = mvm.NewComment.ID, Text = mvm.NewComment.Text, Date =DateTime.Today, Rating = mvm.NewComment.Rating, Movie = movie};
             UnitOfWork.CommentRepository.Add(comment);
             UnitOfWork.Complete();
-            return RedirectToAction("Details", "Movies", new { id = mvm.ID });
+            List<string> lstString = new List<string>
+            {
+                comment.Text,
+                comment.Rating,
+                comment.Date.ToString()
+            };
+            return new JsonResult(lstString);
+        }
+
+        public JsonResult AddNewComment()
+        {
+            List<string> lstString = new List<string>
+            {
+                "Val 1",
+                "Val 2",
+                "Val 3"
+            };
+            return new JsonResult(lstString);
         }
 
         [HttpGet("Delete")]
