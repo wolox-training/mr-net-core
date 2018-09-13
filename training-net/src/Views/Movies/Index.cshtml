@@ -1,5 +1,6 @@
 @using Microsoft.AspNetCore.Mvc.Localization
 @using System.Globalization
+@using MvcMovies.PaginatedList
 @using MvcMovie.Models.Views
 @model MvcMovie.Models.View.MovieGenreViewModel
 
@@ -14,6 +15,8 @@
     ViewData["Delete"] = Localizer["Delete"];
     ViewData["MovieTitle"] = Localizer["MovieTitle"];
     ViewData["Filter"] = Localizer["Filter"];
+    ViewData["Next"] = Localizer["Next"];
+    ViewData["Previous"] = Localizer["Previous"];
 }
 
 
@@ -33,13 +36,13 @@
     <thead>
         <tr>
                 <th>
-                    <a asp-action="Index" asp-route-sortOrder="@ViewData["TitleSortParm"]">@Html.DisplayNameFor(model => model.movies[0].Title)</a>
+                    <a asp-action="Index" asp-route-sortOrder="@ViewData["TitleSortParm"]" asp-route-page="@(Model.MovieList.PageIndex)">@Html.DisplayNameFor(model => model.movies[0].Title)</a>
                 </th>
                 <th>
-                    <a asp-action="Index" asp-route-sortOrder="@ViewData["DateSortParm"]">@Html.DisplayNameFor(model => model.movies[0].ReleaseDate)</a>
+                    <a asp-action="Index" asp-route-sortOrder="@ViewData["DateSortParm"]" asp-route-page="@(Model.MovieList.PageIndex)">@Html.DisplayNameFor(model => model.movies[0].ReleaseDate)</a>
                 </th>
                 <th>
-                    <a asp-action="Index" asp-route-sortOrder="@ViewData["GenreSortParm"]">@Html.DisplayNameFor(model => model.movies[0].Genre)</a>
+                    <a asp-action="Index" asp-route-sortOrder="@ViewData["GenreSortParm"]" asp-route-page="@(Model.MovieList.PageIndex)">@Html.DisplayNameFor(model => model.movies[0].Genre)</a>
                 </th>
                 <th>
                     @Html.DisplayNameFor(model => model.movies[0].Price)
@@ -48,7 +51,7 @@
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model.movies) {
+@foreach (var item in Model.MovieList) {
         <tr>
             <td>
                 @Html.DisplayFor(modelItem => item.Title)
@@ -70,5 +73,24 @@
             </td>
         </tr>
 }
+@{
+    var prevDisabled = !Model.MovieList.HasPreviousPage ? "disabled" : "";
+    var nextDisabled = !Model.MovieList.HasNextPage ? "disabled" : "";
+}
+
+<a asp-action="Index"
+   asp-route-sortOrder="@ViewData["CurrentSort"]"
+   asp-route-movieGenre="@ViewData["CurrentFilter"]"
+   asp-route-page="@(Model.MovieList.PageIndex - 1)"
+   class="btn btn-default @prevDisabled">
+    @ViewData["Previous"]
+</a>
+<a asp-action="Index"
+   asp-route-sortOrder="@ViewData["CurrentSort"]"
+   asp-route-movieGenre="@ViewData["CurrentFilter"]"
+   asp-route-page="@(Model.MovieList.PageIndex + 1)"
+   class="btn btn-default @nextDisabled">
+    @ViewData["Next"]
+</a>
     </tbody>
 </table>

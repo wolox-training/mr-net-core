@@ -12,6 +12,7 @@ using Microsoft.EntityFrameworkCore;
 using MvcMovie.Models;
 using MvcMovie.Models.View;
 using MvcMovie.Models.Views;
+using MvcMovies.PaginatedList;
 using Repositories.Interfaces;
 
 namespace MvcMovie.Controllers
@@ -30,12 +31,24 @@ namespace MvcMovie.Controllers
         }
 
         [HttpGet]
-        public IActionResult Index(string movieGenre, string searchString, string sortOrder)
+        public IActionResult Index(string movieGenre, string searchString, string sortOrder, int? page)
         {
+            ViewData["CurrentSort"] = sortOrder;
+            ViewData["CurrentFilter"] = movieGenre;
+            ViewData["FilterParm"] = String.IsNullOrEmpty(movieGenre) ? "":"";
             ViewData["TitleSortParm"] = String.IsNullOrEmpty(sortOrder) ? "title_desc" : "";
             ViewData["DateSortParm"] = sortOrder == "Date" ? "date_desc" : "Date";
             ViewData["GenreSortParm"] = sortOrder == "Genre" ? "genre_desc" : "Genre";
-            var movies = UnitOfWork.MovieRepository.GetAll().Select(movie =>  new Movie { ID = movie.ID, Title = movie.Title, ReleaseDate = movie.ReleaseDate, Genre = movie.Genre, Price = movie.Price }).ToList();
+            if (searchString != null)
+            {
+                page = 1;
+            }
+            else
+            {
+                searchString = movieGenre;
+            }
+            int pageSize = 6;
+            var movies = UnitOfWork.MovieRepository.GetAll().Select(movie =>  new MovieViewModel { ID = movie.ID, Title = movie.Title, ReleaseDate = movie.ReleaseDate, Genre = movie.Genre, Price = movie.Price }).ToList();
             var moviesGenres = (from movie in UnitOfWork.MovieRepository.GetAll() orderby movie.Genre select movie.Genre).ToList();
             if (!string.IsNullOrEmpty(searchString))
             {
@@ -51,22 +64,22 @@ namespace MvcMovie.Controllers
             switch(sortOrder)
             {
                 case "title_desc":
-                    movieGenreVM.movies = movies.OrderByDescending(movie => movie.Title).ToList();
+                    movieGenreVM.MovieList = PaginatedList<MovieViewModel>.Create(movies.OrderByDescending(movie => movie.Title).ToList(), page ?? 1, pageSize);
                     break;
                 case "Date":
-                    movieGenreVM.movies = movies.OrderBy(movie => movie.ReleaseDate).ToList();
+                    movieGenreVM.MovieList = PaginatedList<MovieViewModel>.Create(movies.OrderBy(movie => movie.ReleaseDate).ToList(), page ?? 1, pageSize);
                     break;
                 case "date_desc":
-                    movieGenreVM.movies = movies.OrderByDescending(movie => movie.ReleaseDate).ToList();
+                    movieGenreVM.MovieList = PaginatedList<MovieViewModel>.Create(movies.OrderByDescending(movie => movie.ReleaseDate).ToList(), page ?? 1, pageSize);
                     break;
                 case "Genre":
-                    movieGenreVM.movies = movies.OrderBy(movie => movie.Genre).ToList();
+                    movieGenreVM.MovieList = PaginatedList<MovieViewModel>.Create(movies.OrderBy(movie => movie.Genre).ToList(), page ?? 1, pageSize);
                     break;
                 case "genre_desc":
-                    movieGenreVM.movies = movies.OrderByDescending(movie => movie.Genre).ToList();
+                    movieGenreVM.MovieList = PaginatedList<MovieViewModel>.Create(movies.OrderByDescending(movie => movie.Genre).ToList(), page ?? 1, pageSize);
                     break;
                 default:
-                    movieGenreVM.movies = movies.OrderBy(movie => movie.Title).ToList();
+                    movieGenreVM.MovieList = PaginatedList<MovieViewModel>.Create(movies.OrderBy(movie => movie.Title).ToList(), page ?? 1, pageSize);
                     break;
             }
             return View(movieGenreVM);
@@ -189,5 +202,6 @@ namespace MvcMovie.Controllers
             client.Send(mailMessage);
             return RedirectToAction("Index", "Movies");
         }
+
     }
 }

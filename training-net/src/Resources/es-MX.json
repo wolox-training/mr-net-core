@@ -13,5 +13,7 @@
     "Hello": "Hola",
     "Register": "Registro de Usuario",
     "Filter": "Filtrar",
-    "MovieTitle": "Título"
+    "MovieTitle": "Título",
+    "Next": "Siguiente",
+    "Previous": "Anterior"
 }
