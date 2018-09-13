@@ -82,7 +82,6 @@ namespace MvcMovie.Controllers
                     movieGenreVM.MovieList = PaginatedList<MovieViewModel>.Create(movies.OrderBy(movie => movie.Title).ToList(), page ?? 1, pageSize);
                     break;
             }
-
             return View(movieGenreVM);
         }
 
