@@ -8,6 +8,5 @@ namespace Repositories.Interfaces
 {
     public interface ICommentRepository : IRepository<Comment>
     {
-       // IEnumerable<Comment> GetMovieComments(int id);
     }
 }

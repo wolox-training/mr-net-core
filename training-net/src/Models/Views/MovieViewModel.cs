@@ -24,6 +24,6 @@ namespace MvcMovie.Models.Views
         public decimal Price { get; set; }
         public string Rating { get; set; }
         public ICollection<CommentViewModel> Comments { get; set; }
-        public CommentViewModel NewComment {get; set; }
+        public CommentViewModel NewComment { get; set; }
 	}
 }

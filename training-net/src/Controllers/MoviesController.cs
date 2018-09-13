@@ -147,13 +147,12 @@ namespace MvcMovie.Controllers
             {
                 return NotFound();
             }
-            //var comments = UnitOfWork.CommentRepository.GetAll().Where(comment => comment.MovieID == movie.ID).Select(comment =>  new CommentViewModel { ID = movie.ID, Text = comment.Text, Date = comment.Date, Rating = comment.Rating, MovieID = movie.ID });
-             var comments = new List<CommentViewModel>();
-             foreach(var comment in movie.Comments)
-             {
-                 var com = new CommentViewModel { ID = comment.ID, Date = comment.Date, Text = comment.Text, Rating = comment.Rating };
-                 comments.Add(com);
-             }
+            var comments = new List<CommentViewModel>();
+            foreach(var comment in movie.Comments)
+            {
+                var com = new CommentViewModel { ID = comment.ID, Date = comment.Date, Text = comment.Text, Rating = comment.Rating };
+                comments.Add(com);
+            }
             return View(new MovieViewModel { ID = movie.ID, Title = movie.Title, ReleaseDate = movie.ReleaseDate, Genre = movie.Genre, Price = movie.Price, Comments = comments });
         }
 
@@ -175,7 +174,7 @@ namespace MvcMovie.Controllers
             {
                 return NotFound();
             }
-            return View(new MovieViewModel { ID = (int)movie.ID, Title = movie.Title, ReleaseDate = movie.ReleaseDate,Genre = movie.Genre, Price = movie.Price});  
+            return View(new MovieViewModel { ID = movie.ID, Title = movie.Title, ReleaseDate = movie.ReleaseDate,Genre = movie.Genre, Price = movie.Price});  
         }
 
         [HttpPost("DeleteConfirmation")]
