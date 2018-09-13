@@ -1,5 +1,8 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
+using System.Net.Mail;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -134,6 +137,33 @@ namespace MvcMovie.Controllers
             {
                 return NotFound();
             }
+        }
+
+        [HttpGet("Mail")]
+        public IActionResult Mail(int id)
+        {
+            var movie = UnitOfWork.MovieRepository.Get(id);
+            if (movie == null)
+            {
+                return NotFound();
+            }
+            return View(new MovieViewModel { ID = movie.ID, Title = movie.Title, ReleaseDate = movie.ReleaseDate, Genre = movie.Genre, Price = movie.Price });  
+        }
+
+        [HttpPost("SendMail")]
+        public IActionResult SendMail(MovieViewModel mvm)
+        {
+            var client = new SmtpClient("smtp.gmail.com", 587);
+            client.UseDefaultCredentials = false;
+            client.Credentials = new NetworkCredential("testdontnet@gmail.com", "Dotnet1133");
+            client.EnableSsl = true;
+            var mailMessage = new MailMessage();
+            mailMessage.From = new MailAddress("testdontnet@gmail.com");
+            mailMessage.To.Add("testdontnet@gmail.com");
+            mailMessage.Body = string.Format("Title: {0} \n Release Date: {1} \n Genre: {2} \n Price {3}".Replace("\n",Environment.NewLine), mvm.Title, mvm.ReleaseDate.ToString(), mvm.Genre, mvm.Price.ToString());
+            mailMessage.Subject = "subject";
+            client.Send(mailMessage);
+            return RedirectToAction("Index", "Movies");
         }
     }
 }
