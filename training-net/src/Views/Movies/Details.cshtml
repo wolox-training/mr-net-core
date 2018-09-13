@@ -63,7 +63,8 @@
         <br />
     </tr>
 }
-<!-- @using (Html.BeginForm("AddComment", "Movies", FormMethod.Post)){
+
+ <!-- @using (Html.BeginForm("AddComment", "Movies", FormMethod.Post)){
     @Html.HiddenFor(model => model.ID)
     @Html.HiddenFor(model => model.ReleaseDate)
     <br />
@@ -76,55 +77,13 @@
     <br />
     <input type="submit" value="Add" class="btn btn-default" />
 } -->
+<div>
+    <input type= "text" id="Commtext" name="comentario" value="13r13r" />
+    <input type= "rating" id="rating" name="rate" value="**" />
 
+    <button id = "btnAddComment"  class="btn btn-light" />
+</div>
 <div>
     <a asp-action="Edit" asp-route-id="@Model.ID">@ViewData["Edit"]</a> |
     <a asp-action="Index">@ViewData["Back"]</a>
 </div>
-@section Scripts{
-    <!-- <script>
-    $(document).ready(function (e)){
-        function AddNewComment(){
-            $.ajax({
-                type: "POST",
-                url: "/Movies/AjaxAddComment",
-                data: '{ID: ' + $("@Model.ID") + ' }',
-                contentType: "application/json",
-                dataType: "json",
-                success: funtion (json) {
-                    $('#TestComment').val](json)
-                },
-                failure: funcion(response) {
-                    alert('error');
-                    $('#TestComment').val("Fallo")
-                },
-                error: function(response) {
-                    alert("error");
-                    $('#TestComment').val("Error");
-                }
-            });
-        }
-
-    }
-    </script> -->
-    <script>
-    $('#btnPost').on('click', function () {
-    $.ajax({
-        type: "POST",
-        url: "Movies/AddComment",
-        contentType: "application/json",
-        dataType: "json",
-        succes: funcion(response){
-            var dvItems = $("#dvItems");
-            dvItems.empty();
-            $.each(response, function(i, item){
-                var $tr = $('<li>').append(item).appendTo(dvItems);
-            });
-        },
-        failure: function(response){
-            alert(response);
-        }
-    });
-    }
-    </script>
-}

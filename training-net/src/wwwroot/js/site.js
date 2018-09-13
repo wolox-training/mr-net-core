@@ -2,3 +2,19 @@
 // for details on configuring this project to bundle and minify static web assets.
 
 // Write your JavaScript code.
+$('#btnAddComment').click(function(){
+
+    $.ajax({
+        type: 'POST',
+        url: 'Movies/AddComment',
+        contentType: 'application/json',
+        dataType: 'json',
+        data: {text: $('#Commtext').val()},
+        success: function(response){
+            alert("success");
+        },
+        failure: function(response){
+            alert('failure');
+        }
+    });
+});
