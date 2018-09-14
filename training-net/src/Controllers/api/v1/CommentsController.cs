@@ -6,7 +6,7 @@ using Repositories.Interfaces;
 
 namespace MvcMovie.Controllers
 {
-    [Route("api/v1/Comments")]
+    [Route("api/v1/[controller]")]
     public class CommentsController : Controller
     {
         private readonly IUnitOfWork _unitOfWork;
@@ -16,11 +16,14 @@ namespace MvcMovie.Controllers
             this._unitOfWork = unitOfWork;
         }
 
-        [HttpPost]
-        public IActionResult AddComment(string text, string rating)
+        [HttpPost("AddComment")]        
+        public IActionResult AddComment(int id, string text, string rating)
         {
-            var Comment = new Comment { Text = text, Rating = rating };
-            return View();
+            var movie = UnitOfWork.MovieRepository.Get(id);
+            var comment = new Comment { Text = text, Date = DateTime.Today, Rating = rating, Movie = movie };
+            UnitOfWork.CommentRepository.Add(comment);
+            UnitOfWork.Complete();
+            return Json(new { Message = "New comment added", Date = DateTime.Now.ToString("MM/dd/yyyy")});
         }
     }
 }

@@ -1,20 +1,22 @@
-﻿// Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
-// for details on configuring this project to bundle and minify static web assets.
-
-// Write your JavaScript code.
-$('#btnAddComment').click(function(){
-
+﻿$('#btn-add-comment').click(function(){
+    var text = $('#comment-text').val();
+    var rating = $('#comment-rating').val();
     $.ajax({
         type: 'POST',
-        url: 'Comments/AddComment',
-        contentType: 'application/json',
-        dataType: 'json',
-        data: {text: $('#Commtext').val()},
+        url: '/api/v1/Comments/AddComment',
+        data: { id:$('#movie-id').val(),text: text, rating: rating },
         success: function(response){
-            alert("success");
+            alert(response.message);
+            $('#comments-box').append(
+                '<tr> <td> <label>Comment: </label>' +
+                    text+'</td></tr><tr><td><label>Date: </label>' +
+                    response.date+
+                '</td></tr><tr><td><label>Rate: </label>' +
+                    rating+'</td></tr>'
+            );
         },
         failure: function(response){
             alert('failure');
-        }
+        },
     });
 });
