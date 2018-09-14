@@ -6,7 +6,7 @@ $('#btnAddComment').click(function(){
 
     $.ajax({
         type: 'POST',
-        url: 'Movies/AddComment',
+        url: 'Comments/AddComment',
         contentType: 'application/json',
         dataType: 'json',
         data: {text: $('#Commtext').val()},
