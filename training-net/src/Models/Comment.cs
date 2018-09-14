@@ -15,6 +15,7 @@ namespace MvcMovie.Models
         public DateTime Date { get; set; }
 
         public string Rating { get; set; }  
+        
         public Movie Movie { get; set; }
     }
 }

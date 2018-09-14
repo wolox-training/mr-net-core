@@ -147,7 +147,6 @@ namespace MvcMovie.Controllers
             {
                 return NotFound();
             }
-<<<<<<< 1abf24c13fbc8d3ff37b47cdb9b7e7cafd28b5c3
             var comments = from mov in movie.Comments select new CommentViewModel
                     {
                         Text = mov.Text,
@@ -156,26 +155,8 @@ namespace MvcMovie.Controllers
                     };
 
             return View(new MovieViewModel { ID = movie.ID, Title = movie.Title, ReleaseDate = movie.ReleaseDate, Genre = movie.Genre, Price = movie.Price, Comments = comments.ToList()});
-=======
-            var comments = new List<CommentViewModel>();
-            foreach(var comment in movie.Comments)
-            {
-                var com = new CommentViewModel { ID = comment.ID, Date = comment.Date, Text = comment.Text, Rating = comment.Rating };
-                comments.Add(com);
-            }
-            return View(new MovieViewModel { ID = movie.ID, Title = movie.Title, ReleaseDate = movie.ReleaseDate, Genre = movie.Genre, Price = movie.Price, Comments = comments });
->>>>>>> ajax 3
         }
         
-        public IActionResult AddComment(MovieViewModel mvm, Comment objComment)
-        {
-            var movie = UnitOfWork.MovieRepository.Get(mvm.ID);
-            var comment = new Comment { ID = mvm.NewComment.ID, Text = mvm.NewComment.Text, Date =DateTime.Today, Rating = mvm.NewComment.Rating, Movie = movie};
-            UnitOfWork.CommentRepository.Add(comment);
-            UnitOfWork.Complete();
-            return RedirectToAction("Details", "Movies", new { id = mvm.ID });
-        }
-
         [HttpGet("Delete")]
         public IActionResult Delete(int id)
         {
