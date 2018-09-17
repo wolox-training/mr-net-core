@@ -35,7 +35,7 @@
         <dd>
             @Html.DisplayFor(model => model.Genre)
         </dd>
-        <dt>
+        <dt>    
             @Html.DisplayNameFor(model => model.Price)
         </dt>
         <dd>
@@ -43,6 +43,39 @@
         </dd>
     </dl>
 </div>
+@foreach (var item in Model.Comments) {
+    <tr>
+        <td>
+            <label>Comment: </label>
+            @Html.DisplayFor(modelItem => item.Text)
+        </td>
+        <br />
+        <td>
+            <label>Date: </label>
+            @Html.DisplayFor(modelItem => item.Date)
+        </td>
+        <br />
+        <td>
+            <label>Rate: </label>
+            @Html.DisplayFor(modelItem => item.Rating)
+        </td>
+        <br />
+        <br />
+    </tr>
+}
+@using (Html.BeginForm("AddComment", "Movies", FormMethod.Post)){
+    @Html.HiddenFor(model => model.ID)
+    @Html.HiddenFor(model => model.ReleaseDate)
+    <br />
+    <label>Comment:</label>
+    <br />
+    @Html.TextAreaFor(model => model.NewComment.Text, new { @class = "form-control" })  
+    <br />
+    <label>Rate the Movie</label>
+    @Html.TextBoxFor(model => model.NewComment.Rating, new { @class = "form-control"  })
+    <br />
+    <input type="submit" value="Add" class="btn btn-default" />
+}
 <div>
     <a asp-action="Edit" asp-route-id="@Model.ID">@ViewData["Edit"]</a> |
     <a asp-action="Index">@ViewData["Back"]</a>

@@ -141,13 +141,30 @@ namespace MvcMovie.Controllers
 
         [HttpGet("Details")]
         public IActionResult Details(int id)
-        {
-            var movie = UnitOfWork.MovieRepository.Get(id);
+        {   
+            var movie = UnitOfWork.MovieRepository.GetMovieWithComments(id);
             if (movie == null)
             {
                 return NotFound();
             }
-            return View(new MovieViewModel { ID = movie.ID, Title = movie.Title, ReleaseDate = movie.ReleaseDate, Genre = movie.Genre, Price = movie.Price });
+            var comments = from mov in movie.Comments select new CommentViewModel
+                    {
+                        Text = mov.Text,
+                        Rating = mov.Rating,
+                        Date = mov.Date
+                    };
+
+            return View(new MovieViewModel { ID = movie.ID, Title = movie.Title, ReleaseDate = movie.ReleaseDate, Genre = movie.Genre, Price = movie.Price, Comments = comments.ToList()});
+        }
+
+        [HttpPost]
+        public IActionResult AddComment(MovieViewModel mvm)
+        {
+            var movie = UnitOfWork.MovieRepository.Get(mvm.ID);
+            var comment = new Comment { ID = mvm.NewComment.ID, Text = mvm.NewComment.Text, Date =DateTime.Today, Rating = mvm.NewComment.Rating, Movie = movie};
+            UnitOfWork.CommentRepository.Add(comment);
+            UnitOfWork.Complete();
+            return RedirectToAction("Details", "Movies", new { id = mvm.ID });
         }
 
         [HttpGet("Delete")]
@@ -158,7 +175,7 @@ namespace MvcMovie.Controllers
             {
                 return NotFound();
             }
-            return View(new MovieViewModel { ID = movie.ID, Title = movie.Title, ReleaseDate = movie.ReleaseDate,Genre = movie.Genre, Price = movie.Price });  
+            return View(new MovieViewModel { ID = movie.ID, Title = movie.Title, ReleaseDate = movie.ReleaseDate,Genre = movie.Genre, Price = movie.Price});  
         }
 
         [HttpPost("DeleteConfirmation")]
@@ -202,7 +219,5 @@ namespace MvcMovie.Controllers
             client.Send(mailMessage);
             return RedirectToAction("Index", "Movies");
         }
-
     }
 }
-
