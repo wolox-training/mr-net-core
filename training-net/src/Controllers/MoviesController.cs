@@ -156,17 +156,7 @@ namespace MvcMovie.Controllers
 
             return View(new MovieViewModel { ID = movie.ID, Title = movie.Title, ReleaseDate = movie.ReleaseDate, Genre = movie.Genre, Price = movie.Price, Comments = comments.ToList()});
         }
-
-        [HttpPost]
-        public IActionResult AddComment(MovieViewModel mvm)
-        {
-            var movie = UnitOfWork.MovieRepository.Get(mvm.ID);
-            var comment = new Comment { ID = mvm.NewComment.ID, Text = mvm.NewComment.Text, Date =DateTime.Today, Rating = mvm.NewComment.Rating, Movie = movie};
-            UnitOfWork.CommentRepository.Add(comment);
-            UnitOfWork.Complete();
-            return RedirectToAction("Details", "Movies", new { id = mvm.ID });
-        }
-
+        
         [HttpGet("Delete")]
         public IActionResult Delete(int id)
         {
@@ -183,7 +173,7 @@ namespace MvcMovie.Controllers
         {
             try
             {
-                UnitOfWork.MovieRepository.Remove(UnitOfWork.MovieRepository.Get(mvm.ID));
+                UnitOfWork.MovieRepository.Remove(UnitOfWork.MovieRepository.GetMovieWithComments(mvm.ID));
                 UnitOfWork.Complete();
                 return RedirectToAction("Index", "Movies");
             }

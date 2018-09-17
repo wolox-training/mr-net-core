@@ -14,7 +14,7 @@ namespace MvcMovie.Models
         [DataType(DataType.Date)]
         public DateTime Date { get; set; }
 
-        public string Rating { get; set; }
+        public string Rating { get; set; }  
         
         public Movie Movie { get; set; }
     }

@@ -43,39 +43,42 @@
         </dd>
     </dl>
 </div>
-@foreach (var item in Model.Comments) {
-    <tr>
-        <td>
-            <label>Comment: </label>
-            @Html.DisplayFor(modelItem => item.Text)
-        </td>
-        <br />
-        <td>
-            <label>Date: </label>
-            @Html.DisplayFor(modelItem => item.Date)
-        </td>
-        <br />
-        <td>
-            <label>Rate: </label>
-            @Html.DisplayFor(modelItem => item.Rating)
-        </td>
-        <br />
-        <br />
-    </tr>
-}
-@using (Html.BeginForm("AddComment", "Movies", FormMethod.Post)){
-    @Html.HiddenFor(model => model.ID)
-    @Html.HiddenFor(model => model.ReleaseDate)
+<div >
+    <table id="comments-box">
+    @foreach (var item in Model.Comments) {
+        <tr>
+            <td>
+                <label>Comment: </label>
+                @Html.DisplayFor(modelItem => item.Text)
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <label>Date: </label>
+                @Html.DisplayFor(modelItem => item.Date)
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <label>Rate: </label>
+                @Html.DisplayFor(modelItem => item.Rating)
+            </td>
+        </tr>
+    }
+    </table>
+</div>
+<div>
+    <input type= "hidden" id="movie-id" name="movie-id" value="@Model.ID" >
+    <label>Comment: </label>
+    <input type= "text" id="comment-text" name="comment-text" value="" class="form-control"/>
     <br />
-    <label>Comment:</label>
+    <label>Rate: </label>
+    <input type= "text" id="comment-rating" name="comment-rate" value="" class="form-control"/>
     <br />
-    @Html.TextAreaFor(model => model.NewComment.Text, new { @class = "form-control" })  
+    <button id = "btn-add-comment"  class="btn btn-primary btn-sm" >Add Comment</button>
     <br />
-    <label>Rate the Movie</label>
-    @Html.TextBoxFor(model => model.NewComment.Rating, new { @class = "form-control"  })
     <br />
-    <input type="submit" value="Add" class="btn btn-default" />
-}
+</div>
 <div>
     <a asp-action="Edit" asp-route-id="@Model.ID">@ViewData["Edit"]</a> |
     <a asp-action="Index">@ViewData["Back"]</a>
