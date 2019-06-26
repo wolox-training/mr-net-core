@@ -1,0 +1,27 @@
+.book {
+  width: 1000px;
+  height: 176px;
+}
+
+.book_title {
+  font-size: $text-big;
+  font-weight: bold;
+  margin: 24px 3px 52px;
+}
+.book_title_value {
+  color: $grey;
+  font-size: $text-medium;
+  margin: 24px 3px;
+}
+
+.book_description {
+  font-size: $text-small;
+  margin: 36px 3px;
+  font-weight: bold;
+}
+
+.book_description_value {
+  font-size: $text-small;
+  margin: 36px 3px;
+  color: $grey;
+}
