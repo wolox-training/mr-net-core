@@ -8,6 +8,12 @@
 .book-description {
   font-size: $text-small;
   font-weight: bold;
+  margin: 24px 3px 34px 28px;
+}
+.book_title_value {
+  color: $grey;
+  font-size: $text-medium;
+  margin: 24px 3px 34px;
 }
 
 .book-description-box {
