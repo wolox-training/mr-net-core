@@ -4,12 +4,23 @@
   box-shadow: 4px 4px 10px 0 rgba(0, 0, 0, 0.5);
   display: flex;
   height: 416px;
+  height: 416px;
   padding: 24px;
   width: 1000px;
 }
 
 .book-cover {
   margin-right: 52px;
+
+  &::before {
+    position: absolute;
+    background: url('assets/badge.png') no-repeat;
+    content: '';
+    height: 120px;
+    width: 95px;
+    left: 222px;
+    top: 2px;
+  }
 }
 
 .book-description {
