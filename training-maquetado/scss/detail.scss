@@ -6,7 +6,17 @@
   height: 416px;
   max-width: 1000px;
   padding: 24px;
+<<<<<<< HEAD
   width: 100%;
+=======
+  width: 1000px;
+}
+
+.book-cover {
+  width: 261px;
+  height: 368px;
+  margin: 0 52px 0 0;
+>>>>>>> changed margin for padding
 }
 
 .book-cover {
@@ -14,6 +24,7 @@
 }
 
 .book-description {
+  height: 416px;
   font-size: $text-small;
   font-weight: bold;
 }
@@ -45,5 +56,8 @@
   color: $grey;
   font-size: $text-medium;
   font-weight: bold;
+<<<<<<< HEAD
   line-height: 28px;
+=======
+>>>>>>> changed margin for padding
 }
