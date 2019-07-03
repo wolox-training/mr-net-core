@@ -3,9 +3,17 @@
 .book {
   height: 416px;
   padding: 24px;
+  width: 1000px;
+}
+
+.book-cover {
+  width: 261px;
+  height: 368px;
+  margin: 0 52px 0 0;
 }
 
 .book-description {
+  height: 416px;
   font-size: $text-small;
   font-weight: bold;
 }
