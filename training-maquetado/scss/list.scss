@@ -1,11 +1,13 @@
+@import './variables/_sizes';
+
 .book-list {
   display: flex;
   flex-wrap: wrap;
 }
 
 .book-list-author {
-  color: $grey;
   font-size: $text-list-small;
+  color: $grey;
   line-height: 18px;
   margin-top: 8px;
 }
