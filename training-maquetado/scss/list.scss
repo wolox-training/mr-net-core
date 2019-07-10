@@ -4,8 +4,10 @@
 }
 
 .book-list-author {
+  color: $grey;
   font-size: $text-list-small;
   line-height: 18px;
+  margin-top: 8px;
 }
 
 .book-list-background {
@@ -20,11 +22,12 @@
 .book-list-item {
   box-shadow: 4px 4px 10px 0 rgba(0, 0, 0, 0.5);
   margin: 18px;
-  padding: 28px;
+  padding: 28px 28px 23px;
 }
 
 .book-list-title {
   font-size: $text-list-medium;
   font-weight: bold;
   line-height: 18px;
+  margin-top: 10px;
 }
