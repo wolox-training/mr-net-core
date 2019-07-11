@@ -5,10 +5,11 @@
   flex-wrap: wrap;
   max-width: 1366px;
   width: 100%;
+  padding-top: $navbar-height;
 }
 
 .book-list-author {
-  font-size: $text-xsmall;
+  font-size: $text-xxsmall;
   color: $grey;
   line-height: 18px;
   margin-top: 8px;
@@ -28,7 +29,7 @@
 }
 
 .book-list-title {
-  font-size: $text-small;
+  font-size: $text-xsmall;
   font-weight: bold;
   line-height: 18px;
   margin-top: 10px;
