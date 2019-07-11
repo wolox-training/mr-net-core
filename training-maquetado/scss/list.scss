@@ -1,9 +1,8 @@
 .book-list {
   display: flex;
   flex-wrap: wrap;
-  max-width: 1366px;
-  width: 100%;
-  padding-top: $navbar-height;
+  padding: $navbar-height 234px;
+  background-color: $wildsand;
 }
 
 .book-list-author {
@@ -21,6 +20,7 @@
   flex-direction: column;
   margin: 18px;
   padding: 28px 28px 23px;
+  background-color: $white;
 }
 
 .book-list-title {
