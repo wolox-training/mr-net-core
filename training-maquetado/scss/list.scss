@@ -1,5 +1,3 @@
-@import './variables/_sizes';
-
 .book-list {
   display: flex;
   flex-wrap: wrap;
@@ -9,15 +7,12 @@
 }
 
 .book-list-author {
-  font-size: $text-xxsmall;
-  color: $grey;
-  line-height: 18px;
   margin-top: 8px;
 }
 
 .book-list-cover {
   height: 200px;
-  width: 142px;
+  max-width: 142px;
 }
 
 .book-list-item {
@@ -29,8 +24,5 @@
 }
 
 .book-list-title {
-  font-size: $text-xsmall;
-  font-weight: bold;
-  line-height: 18px;
   margin-top: 10px;
 }

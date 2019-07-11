@@ -1,15 +1,15 @@
-@import './variables/_sizes';
-
 .book {
   box-shadow: 4px 4px 10px 0 $shadow;
   display: flex;
   height: 416px;
+  max-width: 1000px;
   padding: 24px;
-  width: 1000px;
+  width: 100%;
 }
 
 .book-cover {
   margin-right: 52px;
+  position: relative;
 
   &::before {
     position: absolute;
@@ -17,41 +17,19 @@
     content: '';
     height: 120px;
     width: 95px;
-    left: 222px;
-    top: 2px;
+    left: 200px;
+    top: -22px;
   }
-}
-
-.book-description {
-  font-size: $text-medium;
-  font-weight: bold;
 }
 
 .book-description-box {
   margin-top: 36px;
 }
 
-.book-description-value {
-  color: $grey;
-  font-size: $text-medium;
-}
-
-.book-title {
-  font-size: $text-xbig;
-  font-weight: bold;
-  line-height: 38px;
-}
-
 .book-title-box {
   border-bottom: 4px solid $green;
   margin-bottom: 52px;
   padding-bottom: 8px;
-  width: 640px;
-}
-
-.book-title-value {
-  color: $grey;
-  font-size: $text-big;
-  font-weight: bold;
-  line-height: 28px;
+  max-width: 640px;
+  width: fit-content;
 }
