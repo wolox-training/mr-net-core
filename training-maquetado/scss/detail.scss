@@ -23,7 +23,7 @@
 }
 
 .book-description {
-  font-size: $text-description-small;
+  font-size: $text-medium;
   font-weight: bold;
 }
 
@@ -33,11 +33,11 @@
 
 .book-description-value {
   color: $grey;
-  font-size: $text-description-small;
+  font-size: $text-medium;
 }
 
 .book-title {
-  font-size: $text-description-big;
+  font-size: $text-xbig;
   font-weight: bold;
   line-height: 38px;
 }
@@ -51,7 +51,7 @@
 
 .book-title-value {
   color: $grey;
-  font-size: $text-description-medium;
+  font-size: $text-big;
   font-weight: bold;
   line-height: 28px;
 }
