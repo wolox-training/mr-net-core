@@ -1,8 +1,8 @@
 .book-list {
+  background-color: $wildsand;
   display: flex;
   flex-wrap: wrap;
-  padding: $navbar-height 234px;
-  background-color: $wildsand;
+  padding: $navbar-height + 36px 234px;
 }
 
 .book-list-author {
@@ -15,12 +15,12 @@
 }
 
 .book-list-item {
+  background-color: $white;
   box-shadow: 4px 4px 10px 0 $shadow;
   display: flex;
   flex-direction: column;
   margin: 18px;
   padding: 28px 28px 23px;
-  background-color: $white;
 }
 
 .book-list-title {
