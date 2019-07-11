@@ -1,8 +1,13 @@
 @import './variables/_sizes';
 
 .book {
+  display: flex;
   height: 416px;
   padding: 24px;
+}
+
+.book-cover {
+  margin-right: 52px;
 }
 
 .book-description {
@@ -31,4 +36,5 @@
 .book-title-value {
   color: $grey;
   font-size: $text-medium;
+  font-weight: bold;
 }
