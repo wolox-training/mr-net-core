@@ -7,22 +7,16 @@
   
   .navbar-logout-button {
     align-self: center;
-    font-size: $text-small;
-    line-height: 21px;
   }
   
   .navbar {
-    border-top: 6px solid $cerulean;
     background-color: $white;
+    border-top: 6px solid $cerulean;
+    box-shadow: 0 4px 10px 0 $shadow;
     display: flex;
-    height: 70px;
+    height: $navbar-height;
     justify-content: space-around;
-    // padding: 0 20px 0 20px;
     position: fixed;
-    // top: 0;
-    // left: 0;
     width: 100%;
-    // z-index: 2;
-    box-shadow: 0 4px 10px 0 rgba(0,0,0,0.5);
   }
   
