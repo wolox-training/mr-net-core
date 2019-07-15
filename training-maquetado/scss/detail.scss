@@ -38,10 +38,19 @@
 }
 
 .book-title-box {
-  border-bottom: 4px solid $green;
   margin-bottom: 52px;
-  padding-bottom: 8px;
+  position: relative;
   width: 100%;
+
+  &::before{
+    background-color: $green;
+    bottom: -15px;
+    content: '';
+    height: 4px;
+    left: -2px;
+    position: absolute;
+    width: 100%;
+  }
 }
 
 .book-title-value {
