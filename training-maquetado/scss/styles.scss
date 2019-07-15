@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css?family=Roboto");
+@import url('https://fonts.googleapis.com/css?family=Roboto');
 @import './variables/sizes';
 
 * {
@@ -36,4 +36,21 @@
 .text-xsmall {
   line-height: 18px;
   font-size: $text-xsmall;
+}
+
+@media only screen and (max-width: $desktop-min-width) {
+  .text-xbig {
+    line-height: 38px;
+    font-size: $text-big;
+  }
+
+  .text-big {
+    line-height: 19px;
+    font-size: $text-xsmall;
+  }
+
+  .text-medium {
+    line-height: 24px;
+    font-size: $text-xxsmall;
+  }
 }
