@@ -13,6 +13,10 @@
   margin-right: 52px;
 }
 
+.book-details-box {
+  width: 100%;
+}
+
 .book-description {
   font-size: $text-small;
   font-weight: bold;
@@ -37,8 +41,7 @@
   border-bottom: 4px solid $green;
   margin-bottom: 52px;
   padding-bottom: 8px;
-  max-width: 640px;
-  width: fit-content;
+  width: 100%;
 }
 
 .book-title-value {
