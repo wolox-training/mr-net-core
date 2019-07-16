@@ -14,16 +14,19 @@
 .book {
   background-color: $white;
   box-shadow: 4px 4px 10px 0 $shadow;
-  display: flex;
-  height: 416px;
-  margin: 108px 0 0 80px;
-  max-width: 1000px;
-  padding: 24px;
+  display: grid;
+  grid-template-columns: 262px;
+  grid-template-rows: 114px 368px;
+  height: 570px;
+  margin-top: 33px;
+  max-width: 854px;
+  padding: 32px 32px 56px 32px;
   width: 100%;
 }
 
 .book-cover {
-  margin-right: 52px;
+  grid-column: 1 / 1;
+  grid-row: 2 / 2;
   position: relative;
 
   &::before {
@@ -38,7 +41,14 @@
 }
 
 .book-description-box {
-  margin-top: 36px;
+  margin-bottom: 36px;
+}
+
+.book-details-box {
+  align-self: center;
+  grid-column: 2 / 2;
+  grid-row: 2 / 2;
+  margin-left: 52px;
 }
 
 .book-details-background {
@@ -54,9 +64,11 @@
 }
 
 .book-title-box {
-  margin-bottom: 52px;
-  position: relative;
-  width: 100%;
+  align-items: center;
+  display: flex;
+  flex-flow: column;
+  grid-column: 1 / span 2;
+  grid-row: 1 / 1;
 
   &::before {
     background-color: $green;
@@ -77,6 +89,14 @@
     width: 100%;
     margin: 0 0 20px 0;
     padding-top: 38px;
+  }
+
+  .book-description-box {
+    margin-top: 18px;
+  }
+
+  .book-title-box {
+    margin-bottom: 28px;
   }
 
   .book-cover {
