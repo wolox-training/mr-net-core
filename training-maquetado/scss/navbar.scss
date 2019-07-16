@@ -1,21 +1,18 @@
-@import './variables/sizes';  
+@import './variables/sizes';
 
 .navbar-logo {
-    align-self: center;
-    height: $navbar-height;
-  }
-  
-  .navbar-logout-button {
-    align-self: center;
-  }
-  
-  .navbar {
-    background-color: $white;
-    border-top: 6px solid $cerulean;
-    box-shadow: 0 4px 10px 0 $shadow;
-    display: flex;
-    height: $navbar-height;
-    justify-content: space-around;
-    position: fixed;
-    width: 100%;
-  }
+  height: $navbar-height;
+}
+
+.navbar {
+  background-color: $white;
+  border-top: 6px solid $cerulean;
+  box-shadow: 0 4px 10px 0 $shadow;
+  display: flex;
+  height: $navbar-height;
+  justify-content: space-around;
+  align-items: center;
+  position: fixed;
+  width: 100%;
+  z-index: 1;
+}

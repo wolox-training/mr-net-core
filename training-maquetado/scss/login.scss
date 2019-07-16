@@ -21,8 +21,9 @@
 .login-button {
   background-color: $green;
   border-radius: 5px;
-  color: $white;
+  display: flex;
   height: 32px;
+  justify-content: center;
   margin-top: 24px;
   max-width: 252px;
   width: 100%;

@@ -1,4 +1,4 @@
-.background {
+.book-details-background {
   background-color: $wildsand;
   height: 768px;
   max-width: 1366px;
@@ -14,8 +14,8 @@
   position: relative;
 
   &::before {
-    background: url('assets/back-arrow.png');
-    content: '';
+    background: url("assets/back-arrow.png");
+    content: "";
     height: 20px;
     left: -32px;
     position: absolute;
@@ -40,8 +40,8 @@
 
   &::before {
     position: absolute;
-    background: url('assets/badge.png') no-repeat;
-    content: '';
+    background: url("assets/badge.png") no-repeat;
+    content: "";
     height: 120px;
     width: 95px;
     left: 200px;
@@ -49,16 +49,28 @@
   }
 }
 
+.book-details-box {
+  width: 100%;
+}
+
 .book-description-box {
   margin-top: 36px;
 }
 
 .book-title-box {
-  border-bottom: 4px solid $green;
   margin-bottom: 52px;
-  padding-bottom: 0px;
-  max-width: 640px;
+  position: relative;
   width: 100%;
+
+  &::before {
+    background-color: $green;
+    bottom: -15px;
+    content: "";
+    height: 4px;
+    left: -2px;
+    position: absolute;
+    width: 100%;
+  }
 }
 
 @media only screen and (max-width: $desktop-min-width) {
@@ -78,7 +90,7 @@
     padding-top: 38px;
   }
 
-  .book-details-box{
+  .book-details-box {
     width: 100%;
   }
 

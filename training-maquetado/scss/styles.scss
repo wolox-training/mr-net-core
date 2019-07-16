@@ -5,6 +5,10 @@
   font-family: 'Roboto';
 }
 
+.body-container {
+  padding-top: $navbar-height;
+}
+
 .bold {
   font-weight: bold;
 }
@@ -36,6 +40,10 @@
 .text-xsmall {
   line-height: 18px;
   font-size: $text-xsmall;
+}
+
+.white {
+  color: $white;
 }
 
 @media only screen and (max-width: $desktop-min-width) {
