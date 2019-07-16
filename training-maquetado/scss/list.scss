@@ -1,0 +1,27 @@
+.book-list {
+  display: flex;
+  flex-wrap: wrap;
+  max-width: 1366px;
+  width: 100%;
+}
+
+.book-list-author {
+  margin-top: 8px;
+}
+
+.book-list-cover {
+  height: 200px;
+  max-width: 142px;
+}
+
+.book-list-item {
+  box-shadow: 4px 4px 10px 0 $shadow;
+  display: flex;
+  flex-direction: column;
+  margin: 18px;
+  padding: 28px 28px 23px;
+}
+
+.book-list-title {
+  margin-top: 10px;
+}

@@ -1,5 +1,39 @@
-@import url('https://fonts.googleapis.com/css?family=Roboto');
+@import url("https://fonts.googleapis.com/css?family=Roboto");
+@import './variables/sizes';
 
 * {
   font-family: 'Roboto';
+}
+
+.bold {
+  font-weight: bold;
+}
+
+.grey {
+  color: $grey;
+}
+
+.text-big {
+  line-height: 28px;
+  font-size: $text-big;
+}
+
+.text-medium {
+  line-height: 20px;
+  font-size: $text-medium;
+}
+
+.text-small {
+  line-height: 18px;
+  font-size: $text-small;
+}
+
+.text-xbig {
+  font-size: $text-xbig;
+  line-height: 38px;
+}
+
+.text-xsmall {
+  line-height: 18px;
+  font-size: $text-xsmall;
 }
