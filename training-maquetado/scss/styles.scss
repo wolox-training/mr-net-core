@@ -1,8 +1,12 @@
-@import url("https://fonts.googleapis.com/css?family=Roboto");
+@import url('https://fonts.googleapis.com/css?family=Roboto');
 @import './variables/sizes';
 
 * {
   font-family: 'Roboto';
+}
+
+.body-container {
+  padding-top: $navbar-height;
 }
 
 .bold {
