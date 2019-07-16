@@ -1,3 +1,11 @@
+.book-details-background {
+  background-color: $wildsand;
+  height: 768px;
+  max-width: 1366px;
+  padding: 46px 0 0 80px;
+  width: 100%;
+}
+
 .book {
   box-shadow: 4px 4px 10px 0 $shadow;
   display: flex;
@@ -22,14 +30,26 @@
   }
 }
 
+.book-details-box {
+  width: 100%;
+}
+
 .book-description-box {
   margin-top: 36px;
 }
 
 .book-title-box {
-  border-bottom: 4px solid $green;
   margin-bottom: 52px;
-  padding-bottom: 8px;
-  max-width: 640px;
-  width: fit-content;
+  position: relative;
+  width: 100%;
+
+  &::before {
+    background-color: $green;
+    bottom: -15px;
+    content: '';
+    height: 4px;
+    left: -2px;
+    position: absolute;
+    width: 100%;
+  }
 }
