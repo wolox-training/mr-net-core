@@ -11,6 +11,17 @@
 
 .book-cover {
   margin-right: 52px;
+  position: relative;
+
+  &::before {
+    position: absolute;
+    background: url('assets/badge.png') no-repeat;
+    content: '';
+    height: 120px;
+    width: 95px;
+    left: 200px;
+    top: -22px;
+  }
 }
 
 .book-details-box {
