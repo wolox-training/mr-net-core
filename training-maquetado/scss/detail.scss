@@ -1,4 +1,13 @@
+.book-details-background {
+  background-color: $wildsand;
+  height: 768px;
+  max-width: 1366px;
+  padding: 46px 0 0 80px;
+  width: 100%;
+}
+
 .book {
+  background-color: $white;
   box-shadow: 4px 4px 10px 0 $shadow;
   display: flex;
   height: 416px;
@@ -35,7 +44,7 @@
   position: relative;
   width: 100%;
 
-  &::before{
+  &::before {
     background-color: $green;
     bottom: -15px;
     content: '';
