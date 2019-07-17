@@ -6,11 +6,25 @@
   width: 100%;
 }
 
+.back-button {
+  position: relative;
+
+  &::before {
+    background: url('assets/back-arrow.png');
+    content: '';
+    height: 20px;
+    left: -32px;
+    position: absolute;
+    width: 20px;
+  }
+}
+
 .book {
   background-color: $white;
   box-shadow: 4px 4px 10px 0 $shadow;
   display: flex;
   height: 416px;
+  margin: 108px 0 0 80px;
   max-width: 1000px;
   padding: 24px;
   width: 100%;
