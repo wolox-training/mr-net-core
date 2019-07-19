@@ -117,7 +117,7 @@
   }
 }
 
-@media only screen and (max-device-width: 376px) {
+@media only screen and (max-width: $tablet-min-width) {
   .book {
     grid-template-columns: 1fr;
     grid-template-rows: 1fr 1fr 1fr 2fr;
