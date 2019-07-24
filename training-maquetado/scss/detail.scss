@@ -81,11 +81,10 @@
 
   .book-cover {
     align-self: center;
-    margin: 0;
-    margin-bottom: 21px;
+    margin: 0 0 21px 0;
 
     &::before {
-      background-size: calc(95px + -30%) calc(120px + -30%);
+      background-size: calc(95px - 30%);
       left: 165px;
     }
   }
