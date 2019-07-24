@@ -28,10 +28,10 @@
 
   &::before {
     position: absolute;
-    background: url('assets/badge.png') no-repeat;
+    background: url('assets/badge.png') no-repeat cover;
     content: '';
-    height: 120px;
-    width: 95px;
+    height: $badge-height;
+    width: $badge-width;
     left: 200px;
     top: -22px;
   }
@@ -84,7 +84,7 @@
     margin: 0 0 21px 0;
 
     &::before {
-      background-size: calc(95px - 30%);
+      height: calc(#{$badge-height} - 30%);
       left: 165px;
     }
   }
