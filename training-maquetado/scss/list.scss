@@ -21,6 +21,11 @@
   flex-direction: column;
   margin: 18px;
   padding: 28px 28px 23px;
+  transition: transform 0.3s linear;
+
+  &:hover {
+    transform: scale(1.1, 1.1);
+  }
 }
 
 .book-list-title {
