@@ -107,7 +107,7 @@
     align-items: center;
     display: flex;
     flex-direction: column;
-    grid-column: 2 / 2;
+    grid-column: 2;
     justify-self: center;
     margin: 0;
 
@@ -155,14 +155,14 @@
 
   .book-details-box {
     align-self: end;
-    grid-column: 1/1;
-    grid-row: 4/4;
+    grid-column: 1;
+    grid-row: 4;
     margin: 0;
   }
 
   .book-genre {
-    grid-column: 1/1;
-    grid-row: 3/3;
+    grid-column: 1;
+    grid-row: 3;
     padding: 0;
     position: relative;
     text-align: center;
@@ -180,6 +180,6 @@
   }
 
   .book-title {
-    grid-column: 1/1;
+    grid-column: 1;
   }
 }
