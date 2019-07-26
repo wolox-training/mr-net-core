@@ -32,13 +32,14 @@
   position: relative;
 
   &::before {
-    background: url('assets/badge.png') no-repeat;
+    position: absolute;
+    background: url('assets/badge.png') no-repeat cover;
     content: '';
-    height: 120px;
+    height: $badge-height;
     left: 200px;
     position: absolute;
     top: -22px;
-    width: 95px;
+    width: $badge-width;
   }
 }
 
@@ -132,7 +133,7 @@
     justify-self: center;
 
     &::before {
-      background-size: calc(95px + -30%) calc(120px + -30%);
+      height: calc(#{$badge-height} - 30%);
       left: 165px;
     }
   }
