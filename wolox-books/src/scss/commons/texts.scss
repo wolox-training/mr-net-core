@@ -1,0 +1,70 @@
+.bold {
+  font-weight: bold;
+}
+
+.grey {
+  color: $grey;
+}
+
+.text-big {
+  line-height: 28px;
+  font-size: $text-big;
+}
+
+.text-medium {
+  line-height: 20px;
+  font-size: $text-medium;
+}
+
+.text-small {
+  line-height: 18px;
+  font-size: $text-small;
+}
+
+.text-xbig {
+  font-size: $text-xbig;
+  line-height: 38px;
+}
+
+.text-xsmall {
+  line-height: 18px;
+  font-size: $text-xsmall;
+}
+
+.text-xxsmall {
+  line-height: 18px;
+  font-size: $text-xxsmall;
+}
+
+.text-xxxsmall {
+  line-height: 18px;
+  font-size: $text-xxxsmall;
+}
+
+.white {
+  color: $white;
+}
+
+@media only screen and (max-width: $desktop-min-width) {
+  .text-medium {
+    line-height: 24px;
+    font-size: $text-big;
+  }
+}
+
+@media only screen and (max-device-width: $tablet-min-width) {
+  .text-xbig {
+    line-height: 38px;
+    font-size: $text-big;
+  }
+
+  .text-big {
+    line-height: 19px;
+    font-size: $text-xsmall;
+  }
+
+  .text-medium {
+    line-height: 24px;
+    font-size: $text-xxsmall;
+  }
+}
