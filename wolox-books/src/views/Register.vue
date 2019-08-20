@@ -1,30 +1,30 @@
 <template lang="pug">
-    .register
-        .register-logo-container
-          img.register-logo(src="../assets/logo-wolox.png" alt="Wolox logo")
-          span.text-xxxsmall.bold
-            | B O O K S
-        .input-box
-            label.text-xxxsmall.bold.input-label
-                | First Name
-            input.main-input(v-model='firstName')
-        .input-box
-            label.text-xxxsmall.bold.input-label
-                | Last Name
-            input.main-input(v-model='lastName')
-        .input-box
-            label.text-xxxsmall.bold.input-label
-                | Email
-            input.main-input(type='mail' v-model='email')
-        .input-box
-            label.text-xxxsmall.bold.input-label
-                | Password
-            input.main-input(type='password' v-model='password')
-        .sign-up-container
-          button.main-button.text-xsmall(v-on:click="signIn")
-              | Sign up
-        button.secondary-button.text-xsmall.white
-            | Login
+  .register
+      .register-logo-container
+        img.register-logo(src="../assets/logo-wolox.png" alt="Wolox logo")
+        span.text-xxxsmall.bold
+          | B O O K S
+      .input-box
+          label.text-xxxsmall.bold.input-label
+              | First Name
+          input.main-input(v-model='firstName')
+      .input-box
+          label.text-xxxsmall.bold.input-label
+              | Last Name
+          input.main-input(v-model='lastName')
+      .input-box
+          label.text-xxxsmall.bold.input-label
+              | Email
+          input.main-input(type='mail' v-model='email')
+      .input-box
+          label.text-xxxsmall.bold.input-label
+              | Password
+          input.main-input(type='password' v-model='password')
+      .sign-up-container
+        button.main-button.text-xsmall(@click='signIn')
+            | Sign up
+      button.secondary-button.text-xsmall.white
+          | Login
 </template>
 
 <script>
@@ -59,7 +59,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import "../scss/variables/colors";
+@import '../scss/variables/colors';
 @import '../scss/commons/buttons';
 @import '../scss/commons/inputs';
 
@@ -102,7 +102,7 @@ export default {
 }
 
 .secondary-button {
-    margin-top: 18px;
+  margin-top: 18px;
 }
 
 .sign-up-container{
