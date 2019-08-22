@@ -6,41 +6,84 @@
           | B O O K S
       .input-box
           label.text-xxxsmall.bold.input-label
-              | First Name
+            | First Name
           input.main-input(v-model='firstName')
       .input-box
           label.text-xxxsmall.bold.input-label
-              | Last Name
+            | Last Name
           input.main-input(v-model='lastName')
       .input-box
           label.text-xxxsmall.bold.input-label
-              | Email
-          input.main-input(type='mail' v-model='email')
+            | Email
+          input.main-input(
+            type='mail'
+            v-model='email'
+          )
+          span.error(v-show='invalidEmail').text-xxxsmall
+            | Email is invalid
+          span.error(v-show='missingEmail').text-xxxsmall
+            | Email is required
       .input-box
           label.text-xxxsmall.bold.input-label
-              | Password
+            | Password
           input.main-input(type='password' v-model='password')
+          span.error(v-show='invalidPassword').text-xxxsmall
+            | Password is invalid
+          span.error(v-show='missingPassword').text-xxxsmall
+            | Password is required
       .sign-up-container
         button.main-button.text-xsmall(@click='signIn')
-            | Sign up
+          | Sign up
       button.secondary-button.text-xsmall.white
-          | Login
+        | Login
 </template>
 
 <script>
+import { required, helpers, minLength, email } from 'vuelidate/lib/validators'
+const passwordRegex = helpers.regex('passwordRegex', /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/)
+
 export default {
   data () {
     return {
       firstName: '',
       lastName: '',
       email: '',
-      password: ''
+      password: '',
+      showErrors: false
+    }
+  },
+  validations: {
+    email: {
+      required,
+      email
+    },
+    password: {
+      required,
+      minLength: minLength(6),
+      passwordRegex
+    }
+  },
+  computed: {
+    invalidEmail () {
+      return this.showErrors && !this.$v.email.email
+    },
+    invalidPassword () {
+      return this.showErrors && !this.$v.password.passwordRegex
+    },
+    missingEmail () {
+      return this.showErrors && !this.$v.email.required
+    },
+    missingPassword () {
+      return this.showErrors && !this.$v.password.required
     }
   },
   methods: {
     signIn () {
-      console.log(
-        `
+      if (this.$v.$invalid) {
+        this.showErrors = true
+      } else {
+        console.log(
+          `
         {
           "user": {
             "email": ${this.email},
@@ -51,8 +94,9 @@ export default {
             "locale": "en"
           }
         }
-          `
-      )
+        `
+        )
+      }
     }
   }
 }
@@ -63,6 +107,11 @@ export default {
 @import '../scss/commons/buttons';
 @import '../scss/commons/inputs';
 
+.error {
+  color: red;
+  margin-top: 5px;
+}
+
 .input-box {
   align-items: flex-start;
   display: flex;
@@ -72,7 +121,7 @@ export default {
   width: 110%;
 }
 
-.input-label{
+.input-label {
   margin-left: 5px;
 }
 
@@ -82,7 +131,6 @@ export default {
   border-top: 6px solid $cerulean;
   display: flex;
   flex-wrap: wrap;
-  height: 525px;
   justify-content: center;
   padding-bottom: 24px;
   width: 300px;
@@ -105,8 +153,8 @@ export default {
   margin-top: 18px;
 }
 
-.sign-up-container{
-  border-bottom: 2px solid $silver ;
+.sign-up-container {
+  border-bottom: 2px solid $silver;
   margin-top: 34px;
   max-width: 252px;
   padding: 15px 0;
