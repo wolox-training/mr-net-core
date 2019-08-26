@@ -37,6 +37,7 @@
 
 <script>
 import { required, helpers, minLength, email } from 'vuelidate/lib/validators'
+import { Register } from '../services/AuthService'
 
 const passwordRegex = helpers.regex('passwordRegex', /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/)
 
@@ -76,24 +77,20 @@ export default {
     }
   },
   methods: {
-    signIn () {
+    Submit () {
       if (this.$v.$invalid) {
         this.showErrors = true
       } else {
-        console.log(
-          `
-        {
-          "user": {
-            "email": ${this.email},
-            "password": ${this.password},
-            "password_confirmation": ${this.password},
-            "first_name": ${this.firstName},
-            "last_name": ${this.lastName},
-            "locale": "en"
+        Register({
+          user: {
+            email: this.email,
+            password: this.password,
+            password_confirmation: this.password,
+            first_name: this.firstName,
+            last_name: this.lastName,
+            locale: 'en'
           }
-        }
-        `
-        )
+        })
       }
     }
   }
