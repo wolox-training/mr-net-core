@@ -1,5 +1,6 @@
 <template lang="pug">
   .login
+    form
       .login-logo-container
         img.login-logo(src="../assets/logo-wolox.png" alt="Wolox logo")
         span.text-xxxsmall.bold
@@ -67,18 +68,18 @@ export default {
     }
   },
   methods: {
-    Submit () {
+    async Submit () {
       if (this.$v.$invalid) {
         this.showErrors = true
       } else {
-        var token =
-        Login({
-          session: {
-            email: this.email,
-            password: this.password
-          }
-        })
-        console.log(token)
+        const response = await Login({ session: {
+          email: this.email,
+          password: this.password
+        }
+        }).catch(e => e.response)
+        if (response.ok) {
+          console.log(response.data.access_token)
+        }
       }
     }
   }
