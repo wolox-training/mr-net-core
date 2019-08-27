@@ -29,7 +29,7 @@
           span.text-xxxsmall.error(v-show='missingPassword')
             | Password is required
       .sign-up-container
-        button.main-button.text-xsmall(@click='signIn' type='button')
+        button.main-button.text-xsmall(@click='submit' type='button')
           | Sign up
       button.secondary-button.text-xsmall.white(type='button')
         | Login
@@ -37,6 +37,7 @@
 
 <script>
 import { required, helpers, minLength, email } from 'vuelidate/lib/validators'
+
 import { Register } from '../services/AuthService'
 
 const passwordRegex = helpers.regex('passwordRegex', /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/)
@@ -77,7 +78,7 @@ export default {
     }
   },
   methods: {
-    Submit () {
+    submit () {
       if (this.$v.$invalid) {
         this.showErrors = true
       } else {
