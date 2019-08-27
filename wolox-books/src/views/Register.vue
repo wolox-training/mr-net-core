@@ -34,7 +34,7 @@
       .sign-up-container
         button.main-button.text-xsmall(@click='Submit')
           | Sign up
-      router-link.secondary-button.text-xsmall.white(to='`/login`')
+      router-link.secondary-button.text-xsmall.white(to='/login')
         | Login
 </template>
 
