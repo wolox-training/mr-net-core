@@ -5,7 +5,7 @@ Vue.use(Router)
 
 export const routes = {
   register: 'register',
-  login: 'login',
+  login: 'login'
 }
 
 export default new Router({
