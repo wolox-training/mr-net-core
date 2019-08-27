@@ -15,31 +15,29 @@
       .input-box
           label.text-xxxsmall.bold.input-label
             | Email
-          input.main-input(
-            type='mail'
-            v-model='email'
-          )
-          span.error(v-show='invalidEmail').text-xxxsmall
+          input.main-input(type='email' v-model='email')
+          span.text-xxxsmall.error(v-show='invalidEmail')
             | Email is invalid
-          span.error(v-show='missingEmail').text-xxxsmall
+          span.text-xxxsmall.error(v-show='missingEmail')
             | Email is required
       .input-box
           label.text-xxxsmall.bold.input-label
             | Password
           input.main-input(type='password' v-model='password')
-          span.error(v-show='invalidPassword').text-xxxsmall
+          span.text-xxxsmall.error(v-show='invalidPassword')
             | Password is invalid
-          span.error(v-show='missingPassword').text-xxxsmall
+          span.text-xxxsmall.error(v-show='missingPassword')
             | Password is required
       .sign-up-container
-        button.main-button.text-xsmall(@click='signIn')
+        button.main-button.text-xsmall(@click='signIn' type='button')
           | Sign up
-      button.secondary-button.text-xsmall.white
+      button.secondary-button.text-xsmall.white(type='button')
         | Login
 </template>
 
 <script>
 import { required, helpers, minLength, email } from 'vuelidate/lib/validators'
+
 const passwordRegex = helpers.regex('passwordRegex', /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/)
 
 export default {
