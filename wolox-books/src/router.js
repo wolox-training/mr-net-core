@@ -21,6 +21,11 @@ export default new Router({
       component: () => import(/* webpackChunkName: "login" */ './views/Login.vue')
     },
     {
+      path: '/feed',
+      name: 'feed',
+      component: () => import(/* webpackChunkName: "feed" */ './views/Feed.vue')
+    },
+    {
       path: '/',
       redirect: { name: routes.login }
     }

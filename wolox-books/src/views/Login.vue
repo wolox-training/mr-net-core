@@ -1,6 +1,6 @@
 <template lang="pug">
   .login
-    form
+    form(@submit='Submit')
       .login-logo-container
         img.login-logo(src="../assets/logo-wolox.png" alt="Wolox logo")
         span.text-xxxsmall.bold
@@ -23,7 +23,7 @@
           span.error(v-show='missingPassword').text-xxxsmall
             | Password is required
       .sign-up-container
-        button.main-button.text-xsmall(@click='Submit')
+        button.main-button.text-xsmall
           | Login
       router-link.secondary-button.text-xsmall.white(to='/register')
         | Sign Up
@@ -32,6 +32,7 @@
 <script>
 import { required, helpers, minLength, email } from 'vuelidate/lib/validators'
 import { Login } from '../services/AuthService'
+import LocalStorageService from '../services/LocalStorageService'
 
 const passwordRegex = helpers.regex('passwordRegex', /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/)
 
@@ -78,7 +79,8 @@ export default {
         }
         }).catch(e => e.response)
         if (response.ok) {
-          console.log(response.data.access_token)
+          LocalStorageService.setAuthToken(response.data.access_token)
+          this.$router.push('/feed')
         }
       }
     }
