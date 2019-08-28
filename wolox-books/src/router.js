@@ -5,7 +5,8 @@ Vue.use(Router)
 
 export const routes = {
   register: 'register',
-  login: 'login'
+  login: 'login',
+  feed: 'feed'
 }
 
 export default new Router({
@@ -22,7 +23,7 @@ export default new Router({
     },
     {
       path: '/feed',
-      name: 'feed',
+      name: routes.feed,
       component: () => import(/* webpackChunkName: "feed" */ './views/Feed.vue')
     },
     {
