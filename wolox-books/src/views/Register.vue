@@ -1,38 +1,38 @@
 <template lang="pug">
-  .register
-      .register-logo-container
-        img.register-logo(src="../assets/logo-wolox.png" alt="Wolox logo")
-        span.text-xxxsmall.bold
-          | B O O K S
-      .input-box
-          label.text-xxxsmall.bold.input-label
-            | First Name
-          input.main-input(v-model='firstName')
-      .input-box
-          label.text-xxxsmall.bold.input-label
-            | Last Name
-          input.main-input(v-model='lastName')
-      .input-box
-          label.text-xxxsmall.bold.input-label
-            | Email
-          input.main-input(type='email' v-model='email')
-          span.text-xxxsmall.error(v-show='invalidEmail')
-            | Email is invalid
-          span.text-xxxsmall.error(v-show='missingEmail')
-            | Email is required
-      .input-box
-          label.text-xxxsmall.bold.input-label
-            | Password
-          input.main-input(type='password' v-model='password')
-          span.text-xxxsmall.error(v-show='invalidPassword')
-            | Password is invalid
-          span.text-xxxsmall.error(v-show='missingPassword')
-            | Password is required
-      .sign-up-container
-        button.main-button.text-xsmall(@click='submit' type='button')
-          | Sign up
-      button.secondary-button.text-xsmall.white(type='button')
-        | Login
+.register
+  .register-logo-container
+    img.register-logo(src="../assets/logo-wolox.png" alt="Wolox logo")
+    span.text-xxxsmall.bold
+      | B O O K S
+  .input-box
+    label.text-xxxsmall.bold.input-label
+      | First Name
+    input.main-input(v-model='firstName')
+  .input-box
+    label.text-xxxsmall.bold.input-label
+      | Last Name
+    input.main-input(v-model='lastName')
+  .input-box
+    label.text-xxxsmall.bold.input-label
+      | Email
+    input.main-input(type='email' v-model='email')
+    span.text-xxxsmall.error(v-show='invalidEmail')
+      | Email is invalid
+    span.text-xxxsmall.error(v-show='missingEmail')
+      | Email is required
+  .input-box
+    label.text-xxxsmall.bold.input-label
+      | Password
+    input.main-input(type='password' v-model='password')
+    span.text-xxxsmall.error(v-show='invalidPassword')
+      | Password is invalid
+    span.text-xxxsmall.error(v-show='missingPassword')
+      | Password is required
+  .sign-up-container
+      button.main-button.text-xsmall(@click='submit' type='button')
+      | Sign up
+  button.secondary-button.text-xsmall.white(type='button')
+    | Login
 </template>
 
 <script>
@@ -82,6 +82,7 @@ export default {
       if (this.$v.$invalid) {
         this.showErrors = true
       } else {
+<<<<<<< HEAD
         Register({
           user: {
             email: this.email,
@@ -90,6 +91,18 @@ export default {
             first_name: this.firstName,
             last_name: this.lastName,
             locale: 'en'
+=======
+        console.log(
+          `
+        {
+          'user': {
+            'email': ${this.email},
+            'password': ${this.password},
+            'password_confirmation': ${this.password},
+            'first_name': ${this.firstName},
+            'last_name': ${this.lastName},
+            'locale': 'en'
+>>>>>>> validations
           }
         })
       }
