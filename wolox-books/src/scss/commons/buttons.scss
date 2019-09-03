@@ -1,0 +1,23 @@
+.main-button {
+    background-color: $green;
+    border: none;
+    border-radius: 5px;
+    box-sizing: border-box;
+    color: $white;
+    height: 40px;
+    max-width: 252px;
+    position: relative;
+    width: 100%;
+}
+
+.secondary-button {
+    background-color: $wildsand;
+    border: 2px solid $green;
+    border-radius: 5px;
+    color: $green;
+    display: flex;
+    height: 40px;
+    justify-content: center;
+    max-width: 252px;
+    width: 100%;
+}
