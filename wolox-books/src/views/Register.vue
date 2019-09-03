@@ -1,46 +1,87 @@
 <template lang="pug">
 .register
   .register-logo-container
-    img.register-logo(src='../assets/logo-wolox.png' alt='Wolox logo')
+    img.register-logo(src="../assets/logo-wolox.png" alt="Wolox logo")
     span.text-xxxsmall.bold
       | B O O K S
   .input-box
-      label.text-xxxsmall.bold.input-label
-        | First Name
-      input.main-input(v-model='firstName')
+    label.text-xxxsmall.bold.input-label
+      | First Name
+    input.main-input(v-model='firstName')
   .input-box
-      label.text-xxxsmall.bold.input-label
-        | Last Name
-      input.main-input(v-model='lastName')
+    label.text-xxxsmall.bold.input-label
+      | Last Name
+    input.main-input(v-model='lastName')
   .input-box
-      label.text-xxxsmall.bold.input-label
-        | Email
-      input.main-input(type='mail' v-model='email')
+    label.text-xxxsmall.bold.input-label
+      | Email
+    input.main-input(type='email' v-model='email')
+    span.text-xxxsmall.error(v-show='invalidEmail')
+      | Email is invalid
+    span.text-xxxsmall.error(v-show='missingEmail')
+      | Email is required
   .input-box
-      label.text-xxxsmall.bold.input-label
-        | Password
-      input.main-input(type='password' v-model='password')
+    label.text-xxxsmall.bold.input-label
+      | Password
+    input.main-input(type='password' v-model='password')
+    span.text-xxxsmall.error(v-show='invalidPassword')
+      | Password is invalid
+    span.text-xxxsmall.error(v-show='missingPassword')
+      | Password is required
   .sign-up-container
-    button.main-button.text-xsmall(@click='signIn')
+    button.main-button.text-xsmall(@click='signIn' type='button')
       | Sign up
-  button.secondary-button.text-xsmall.white
+  button.secondary-button.text-xsmall.white(type='button')
     | Login
 </template>
 
 <script>
+import { required, helpers, minLength, email } from 'vuelidate/lib/validators'
+
+const passwordRegex = helpers.regex('passwordRegex', /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/)
+
 export default {
   data () {
     return {
       firstName: '',
       lastName: '',
       email: '',
-      password: ''
+      password: '',
+      showErrors: false
+    }
+  },
+  validations: {
+    email: {
+      required,
+      email
+    },
+    password: {
+      required,
+      minLength: minLength(6),
+      passwordRegex
+    }
+  },
+  computed: {
+    invalidEmail () {
+      return this.showErrors && !this.$v.email.email
+    },
+    invalidPassword () {
+      return this.showErrors && !this.$v.password.passwordRegex
+    },
+    missingEmail () {
+      return this.showErrors && !this.$v.email.required
+    },
+    missingPassword () {
+      return this.showErrors && !this.$v.password.required
     }
   },
   methods: {
     signIn () {
-      console.log(
-        `
+      if (this.$v.$invalid) {
+        this.showErrors = true
+      } else {
+        console.log(
+          `
         {
           'user': {
             'email': ${this.email},
@@ -51,8 +92,9 @@ export default {
             'locale': 'en'
           }
         }
-          `
-      )
+        `
+        )
+      }
     }
   }
 }
@@ -63,6 +105,11 @@ export default {
 @import '../scss/commons/buttons';
 @import '../scss/commons/inputs';
 
+.error {
+  color: red;
+  margin-top: 5px;
+}
+
 .input-box {
   align-items: flex-start;
   display: flex;
@@ -72,7 +119,7 @@ export default {
   width: 110%;
 }
 
-.input-label{
+.input-label {
   margin-left: 5px;
 }
 
@@ -82,7 +129,6 @@ export default {
   border-top: 6px solid $cerulean;
   display: flex;
   flex-wrap: wrap;
-  height: 525px;
   justify-content: center;
   padding-bottom: 24px;
   width: 300px;
@@ -105,8 +151,8 @@ export default {
   margin-top: 18px;
 }
 
-.sign-up-container{
-  border-bottom: 2px solid $silver ;
+.sign-up-container {
+  border-bottom: 2px solid $silver;
   margin-top: 34px;
   max-width: 252px;
   padding: 15px 0;
