@@ -1,32 +1,32 @@
 <template lang="pug">
-  .login
-    form(@submit='Submit')
-      .login-logo-container
-        img.login-logo(src="../assets/logo-wolox.png" alt="Wolox logo")
-        span.text-xxxsmall.bold
-          | B O O K S
-      .input-box
-          label.text-xxxsmall.bold.input-label
-            | Email
-          input.main-input(
-            type='mail'
-            v-model='email'
-          )
-          span.error(v-show='invalidEmail').text-xxxsmall
-            | Email is invalid
-          span.error(v-show='missingEmail').text-xxxsmall
-            | Email is required
-      .input-box
-          label.text-xxxsmall.bold.input-label
-            | Password
-          input.main-input(type='password' v-model='password')
-          span.error(v-show='missingPassword').text-xxxsmall
-            | Password is required
-      .sign-up-container
-        button.main-button.text-xsmall
-          | Login
-      router-link.secondary-button.text-xsmall.white(to='/register')
-        | Sign Up
+.login
+  form(@submit='Submit')
+    .login-logo-container
+      img.login-logo(src="../assets/logo-wolox.png" alt="Wolox logo")
+      span.text-xxxsmall.bold
+        | B O O K S
+    .input-box
+        label.text-xxxsmall.bold.input-label
+          | Email
+        input.main-input(
+          type='mail'
+          v-model='email'
+        )
+        span.error(v-show='invalidEmail').text-xxxsmall
+          | Email is invalid
+        span.error(v-show='missingEmail').text-xxxsmall
+          | Email is required
+    .input-box
+        label.text-xxxsmall.bold.input-label
+          | Password
+        input.main-input(type='password' v-model='password')
+        span.error(v-show='missingPassword').text-xxxsmall
+          | Password is required
+    .sign-up-container
+      button.main-button.text-xsmall
+        | Login
+    router-link.secondary-button.text-xsmall.white(type='button'  to='/register')
+      | Sign Up
 </template>
 
 <script>
@@ -80,7 +80,7 @@ export default {
         }).catch(e => e.response)
         if (response.ok) {
           LocalStorageService.setAuthToken(response.data.access_token)
-          this.$router.push('/feed')
+          this.$router.push('/bookList')
         }
       }
     }
