@@ -1,39 +1,38 @@
 <template lang="pug">
-  .login
-    form
-      .login-logo-container
-        img.login-logo(src="../assets/logo-wolox.png" alt="Wolox logo")
-        span.text-xxxsmall.bold
-          | B O O K S
-      .input-box
-          label.text-xxxsmall.bold.input-label
-            | Email
-          input.main-input(
-            type='mail'
-            v-model='email'
-          )
-          span.error(v-show='invalidEmail').text-xxxsmall
-            | Email is invalid
-          span.error(v-show='missingEmail').text-xxxsmall
-            | Email is required
-      .input-box
-          label.text-xxxsmall.bold.input-label
-            | Password
-          input.main-input(type='password' v-model='password')
-          span.error(v-show='missingPassword').text-xxxsmall
-            | Password is required
-      .sign-up-container
-        button.main-button.text-xsmall(@click='Submit')
-          | Login
-      router-link.secondary-button.text-xsmall.white(to='/register')
-        | Sign Up
+.login
+  form
+    .login-logo-container
+      img.login-logo(src='../assets/logo-wolox.png' alt='Wolox logo')
+      span.text-xxxsmall.bold
+        | B O O K S
+    .input-box
+      label.text-xxxsmall.bold.input-label
+        | Email
+      input.main-input(type='mail' v-model='email')
+      span.error(v-show='invalidEmail').text-xxxsmall
+        | Email is invalid
+      span.error(v-show='missingEmail').text-xxxsmall
+        | Email is required
+    .input-box
+      label.text-xxxsmall.bold.input-label
+        | Password
+      input.main-input(type='password' v-model='password')
+      span.error(v-show='missingPassword').text-xxxsmall
+        | Password is required
+    .sign-up-container
+      button.main-button.text-xsmall(@click='submit')
+        | Login
+    router-link.secondary-button.text-xsmall.white(:to='routes.register')
+      | Sign Up
 </template>
 
 <script>
-import { required, helpers, minLength, email } from 'vuelidate/lib/validators'
-import { Login } from '../services/AuthService'
+import { required, minLength, email } from 'vuelidate/lib/validators'
 
-const passwordRegex = helpers.regex('passwordRegex', /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/)
+import { Login } from '../services/AuthService'
+import { routes } from '../router'
+
+import { passwordRegex } from '@/utils/regex'
 
 export default {
   data () {
@@ -42,7 +41,8 @@ export default {
       lastName: '',
       email: '',
       password: '',
-      showErrors: false
+      showErrors: false,
+      routes
     }
   },
   validations: {
@@ -68,7 +68,7 @@ export default {
     }
   },
   methods: {
-    async Submit () {
+    async submit () {
       if (this.$v.$invalid) {
         this.showErrors = true
       } else {

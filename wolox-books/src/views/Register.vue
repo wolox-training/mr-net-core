@@ -1,8 +1,7 @@
 <template lang="pug">
-
 .register
   .register-logo-container
-    img.register-logo(src="../assets/logo-wolox.png" alt="Wolox logo")
+    img.register-logo(src='../assets/logo-wolox.png' alt='Wolox logo')
     span.text-xxxsmall.bold
       | B O O K S
   .input-box
@@ -32,16 +31,17 @@
   .sign-up-container
       button.main-button.text-xsmall(@click='submit' type='button')
       | Sign up
-   router-link.secondary-button.text-xsmall.white(:to='router.login')
+  router-link.secondary-button.text-xsmall.white(:to='routes.login')
     | Login
 </template>
 
 <script>
-import { required, helpers, minLength, email } from 'vuelidate/lib/validators'
+import { required, minLength, email } from 'vuelidate/lib/validators'
 
 import { Register } from '../services/AuthService'
+import { routes } from '../router'
 
-const passwordRegex = helpers.regex('passwordRegex', /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/)
+import { passwordRegex } from '@/utils/regex'
 
 export default {
   data () {
@@ -50,7 +50,8 @@ export default {
       lastName: '',
       email: '',
       password: '',
-      showErrors: false
+      showErrors: false,
+      routes
     }
   },
   validations: {
@@ -115,7 +116,7 @@ export default {
   flex-direction: column;
   margin-top: 16px;
   max-width: 252px;
-  width: 110%;
+  width: 100%;
 }
 
 .input-label {
