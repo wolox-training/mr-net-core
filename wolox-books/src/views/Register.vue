@@ -1,45 +1,44 @@
 <template lang="pug">
-  .register
-      .register-logo-container
-        img.register-logo(src="../assets/logo-wolox.png" alt="Wolox logo")
-        span.text-xxxsmall.bold
-          | B O O K S
-      .input-box
-          label.text-xxxsmall.bold.input-label
-            | First Name
-          input.main-input(v-model='firstName')
-      .input-box
-          label.text-xxxsmall.bold.input-label
-            | Last Name
-          input.main-input(v-model='lastName')
-      .input-box
-          label.text-xxxsmall.bold.input-label
-            | Email
-          input.main-input(
-            type='mail'
-            v-model='email'
-          )
-          span.error(v-show='invalidEmail').text-xxxsmall
-            | Email is invalid
-          span.error(v-show='missingEmail').text-xxxsmall
-            | Email is required
-      .input-box
-          label.text-xxxsmall.bold.input-label
-            | Password
-          input.main-input(type='password' v-model='password')
-          span.error(v-show='invalidPassword').text-xxxsmall
-            | Password is invalid
-          span.error(v-show='missingPassword').text-xxxsmall
-            | Password is required
-      .sign-up-container
-        button.main-button.text-xsmall(@click='Submit')
-          | Sign up
-      router-link.secondary-button.text-xsmall.white(to='/login')
-        | Login
+
+.register
+  .register-logo-container
+    img.register-logo(src="../assets/logo-wolox.png" alt="Wolox logo")
+    span.text-xxxsmall.bold
+      | B O O K S
+  .input-box
+    label.text-xxxsmall.bold.input-label
+      | First Name
+    input.main-input(v-model='firstName')
+  .input-box
+    label.text-xxxsmall.bold.input-label
+      | Last Name
+    input.main-input(v-model='lastName')
+  .input-box
+    label.text-xxxsmall.bold.input-label
+      | Email
+    input.main-input(type='email' v-model='email')
+    span.text-xxxsmall.error(v-show='invalidEmail')
+      | Email is invalid
+    span.text-xxxsmall.error(v-show='missingEmail')
+      | Email is required
+  .input-box
+    label.text-xxxsmall.bold.input-label
+      | Password
+    input.main-input(type='password' v-model='password')
+    span.text-xxxsmall.error(v-show='invalidPassword')
+      | Password is invalid
+    span.text-xxxsmall.error(v-show='missingPassword')
+      | Password is required
+  .sign-up-container
+      button.main-button.text-xsmall(@click='submit' type='button')
+      | Sign up
+   router-link.secondary-button.text-xsmall.white(:to='router.login')
+    | Login
 </template>
 
 <script>
 import { required, helpers, minLength, email } from 'vuelidate/lib/validators'
+
 import { Register } from '../services/AuthService'
 
 const passwordRegex = helpers.regex('passwordRegex', /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/)
@@ -80,7 +79,7 @@ export default {
     }
   },
   methods: {
-    Submit () {
+    submit () {
       if (this.$v.$invalid) {
         this.showErrors = true
       } else {
