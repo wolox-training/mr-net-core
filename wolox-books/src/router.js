@@ -6,7 +6,8 @@ Vue.use(Router)
 export const routes = {
   register: 'register',
   login: 'login',
-  booklist: 'booklist'
+  booklist: 'booklist',
+  book: 'book'
 }
 
 export default new Router({
@@ -25,6 +26,11 @@ export default new Router({
       path: '/booklist',
       name: routes.booklist,
       component: () => import(/* webpackChunkName: "feed" */ './views/BookList.vue')
+    },
+    {
+      path: '/book',
+      name: routes.book,
+      component: () => import(/* webpackChunkName: "book" */ './views/Book.vue')
     },
     {
       path: '/',
