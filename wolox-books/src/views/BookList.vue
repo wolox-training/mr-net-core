@@ -3,7 +3,7 @@
   navbar
   .view
     ul.book-list
-      li.book-list-item(v-for="book in booksList" :key="book.id")
+      li.book-list-item(v-for="book in books" :key="book.id")
         img.book-list-cover(:src='book.image_url' alt='Wolox book cover')
         span.book-list-title.bold.text-small
           | {{book.title}}
@@ -12,23 +12,27 @@
 </template>
 
 <script>
+import { mapState, mapActions } from 'vuex'
+
 import Navbar from '@/components/Navbar'
-import { getBookList } from '../services/BooksService'
 import { setHeaders } from '../config/api'
 
 export default {
-  data () {
-    return {
-      booksList: []
-    }
-  },
+  computed: {
+    ...mapState([
+      'books'
+    ]) },
   components: {
     Navbar
   },
   async created () {
     setHeaders()
-    const response = await getBookList().catch(e => e.response)
-    if (response.ok) this.booksList = response.data
+    this.fetchBooks()
+  },
+  methods: {
+    ...mapActions([
+      'fetchBooks'
+    ])
   }
 }
 </script>

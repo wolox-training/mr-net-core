@@ -1,3 +1,3 @@
 import { api } from '../config/api'
 
-export const getBookList = () => api.get('/books')
+export const getBooks = () => api.get('/books')
