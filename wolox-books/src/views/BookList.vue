@@ -3,7 +3,7 @@
   navbar
   .view
     ul.book-list
-      li.book-list-item(v-for="book in books" :key="book.id")
+      router-link.book-list-item(v-for='book in books' :key='book.id' :to='`/book/${book.id}`')
         img.book-list-cover(:src='book.image_url' alt='Wolox book cover')
         span.book-list-title.bold.text-small
           | {{book.title}}
@@ -14,10 +14,17 @@
 <script>
 import { mapState, mapActions } from 'vuex'
 
+import { routes } from '../router'
+
 import Navbar from '@/components/Navbar'
 import { setHeaders } from '../config/api'
 
 export default {
+  data () {
+    return {
+      routes
+    }
+  },
   computed: {
     ...mapState([
       'books'

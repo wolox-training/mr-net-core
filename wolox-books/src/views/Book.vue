@@ -4,35 +4,54 @@
   .view
     .book
       .book-cover
-          img.book-cover-image(src='assets/logo-wolox.png' alt='Wolox book cover')
-      span.text-xbig.bold.book-title
-          | Título del libro
-      span.text-big.bold.grey.book-genre
-          | (género del libro)
-      .book-details-box
-          .book-description-box
-              span.text-medium.bold
-                | Book author:
-              span.text-medium.grey
-                | Nombre del autor del libro
-          .book-description-box
-              span.text-medium.bold
-                | Publisher:
-              span.text-medium.grey
-                | Nombre de la editorial
-          .book-description-box
-              span.text-medium.bold
-                | Year of publication:
-              span.text-medium.grey
-                | Año de publicación
+        img.book-cover-image(:src='book.image_url' alt='Wolox book cover')
+      .book-details-container
+        .book-title-container
+          span.text-xbig.bold
+              | {{book.title}}
+          span.text-big.bold.grey.genre
+              | {{book.genre}}
+        .book-description-container
+            span.text-medium.bold
+              | Book author:
+            span.text-medium.grey
+              | {{book.author}}
+        .book-description-container
+            span.text-medium.bold
+              | Publisher:
+            span.text-medium.grey
+              | {{book.publisher}}
+        .book-description-container
+            span.text-medium.bold
+              | Year of publication:
+            span.text-medium.grey
+              | {{book.year}}
 </template>
 
 <script>
+import { mapState, mapActions } from 'vuex'
+
+import { setHeaders } from '../config/api'
+
 import Navbar from '@/components/Navbar'
 
 export default {
+  computed: {
+    ...mapState([
+      'book'
+    ]) },
   components: {
     Navbar
+  },
+  async created () {
+    setHeaders()
+    const { id } = this.$route.params
+    this.fetchBook({ id })
+  },
+  methods: {
+    ...mapActions([
+      'fetchBook'
+    ])
   }
 }
 </script>
@@ -40,56 +59,44 @@ export default {
 <style lang="scss" scoped>
 @import '../scss/variables/colors';
 @import '../scss/variables/sizes';
-@import '../scss/commons/buttons';
-@import '../scss/commons/inputs';
 
 .book {
   background-color: $white;
   box-shadow: 4px 4px 10px 0 $shadow;
   display: flex;
   height: 416px;
-  margin: 108px 0 0 80px;
   max-width: 1000px;
   padding: 24px;
   width: 100%;
 }
 
 .book-cover {
-  grid-column: 1;
-  grid-row: 1;
+  margin-right: 52px;
+}
+
+.book-cover-image {
+  max-width: 250px;
+  height: 100%;
+}
+
+.boob-description-container {
+  display: flex;
+  margin-top: 36px;
+}
+
+.book-details-container {
+  width: 100%;
+}
+
+.book-title-container {
+  display: flex;
+  margin-bottom: 52px;
   position: relative;
-}
+  width: 100%;
 
-.book-description-box {
-  margin-bottom: 36px;
-}
-
-.view{
-  background-color: $wildsand;
-  padding:  $navbar-height 150px;
-}
-
-.book-details-box {
-  grid-column: 2 / span 3;
-  grid-row: 2;
-  margin-left: 52px;
-}
-
-.book-genre {
-  grid-column: 3;
-  grid-row: 1;
-  padding-top: 6px;
-}
-
-.book-title {
-  grid-column: 2 / span 3;
-  grid-row: 1;
-  margin-left: 52px;
-  position: relative;
-
-  &::before {
+  &::before{
     background-color: $green;
-    bottom: 55px;
+    bottom: -15px;
     content: '';
     height: 4px;
     left: -2px;
@@ -98,39 +105,14 @@ export default {
   }
 }
 
-@media only screen and (max-width: $desktop-min-width) {
-  .back-button {
-    margin-bottom: 33px;
-  }
+.genre{
+  margin: 5px 0 0 5px;
+}
 
-  .book {
-    height: 570px;
-    margin-top: 33px;
-    margin: 0;
-    max-width: 854px;
-    padding: 32px;
-  }
-
-  .book-cover {
-    grid-column: 1;
-    grid-row: 2;
-  }
-
-  .book-details-box {
-    align-self: center;
-  }
-
-  .book-title {
-    align-items: center;
-    display: flex;
-    flex-direction: column;
-    grid-column: 2;
-    justify-self: center;
-    margin: 0;
-
-    &::before {
-      display: none;
-    }
-  }
+.view{
+  display: flex;
+  justify-content: center;
+  background-color: $wildsand;
+  padding:  150px;
 }
 </style>
