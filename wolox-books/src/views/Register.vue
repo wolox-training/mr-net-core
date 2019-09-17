@@ -31,7 +31,7 @@
   .sign-up-container
       button.main-button.text-xsmall(@click='submit' type='button')
       | Sign up
-  router-link.secondary-button.text-xsmall.white(:to='routes.login')
+  router-link.secondary-button.text-xsmall.white(:to='{ name: routes.login }')
     | Login
 </template>
 
