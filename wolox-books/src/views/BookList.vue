@@ -3,27 +3,28 @@
   navbar
   .view
     ul.book-list
-      li.book-list-item(v-for="book in booksList" :key="book.id")
+      li.book-list-item(v-for='book in booksList' :key='book.id')
         img.book-list-cover(:src='book.image_url' alt='Wolox book cover')
         span.book-list-title.bold.text-small
-          | {{book.title}}
+          | {{ book.title }}
         span.book-list-author.grey.text-xsmall
-          | {{book.author}}
+          | {{ book.author }}
 </template>
 
 <script>
 import Navbar from '@/components/Navbar'
+
 import { getBookList } from '../services/BooksService'
 import { setHeaders } from '../config/api'
 
 export default {
+  components: {
+    Navbar
+  },
   data () {
     return {
       booksList: []
     }
-  },
-  components: {
-    Navbar
   },
   async created () {
     setHeaders()
@@ -49,11 +50,11 @@ export default {
   display: flex;
   flex-direction: column;
   margin: 18px;
+  max-height: 380px;
+  max-width: 200px;
   padding: 28px 28px 23px;
   transition: transform 0.3s linear;
-  max-width: 200px;
   width: 100%;
-  max-height: 380px;
 
   &:hover {
     transform: scale(1.1, 1.1);
