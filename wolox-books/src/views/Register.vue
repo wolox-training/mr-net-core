@@ -29,7 +29,7 @@
     span.text-xxxsmall.error(v-show='missingPassword')
       | Password is required
   .sign-up-container
-      button.main-button.text-xsmall(@click='submit' type='button')
+    button.main-button.text-xsmall(@click='submit' type='button')
       | Sign up
   button.secondary-button.text-xsmall.white(type='button')
     | Login
@@ -82,7 +82,6 @@ export default {
       if (this.$v.$invalid) {
         this.showErrors = true
       } else {
-<<<<<<< HEAD
         Register({
           user: {
             email: this.email,
@@ -91,18 +90,6 @@ export default {
             first_name: this.firstName,
             last_name: this.lastName,
             locale: 'en'
-=======
-        console.log(
-          `
-        {
-          'user': {
-            'email': ${this.email},
-            'password': ${this.password},
-            'password_confirmation': ${this.password},
-            'first_name': ${this.firstName},
-            'last_name': ${this.lastName},
-            'locale': 'en'
->>>>>>> validations
           }
         })
       }
