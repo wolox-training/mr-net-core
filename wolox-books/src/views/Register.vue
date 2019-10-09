@@ -1,5 +1,4 @@
 <template lang="pug">
-
 .register
   .register-logo-container
     img.register-logo(src='../assets/logo-wolox.png' alt='Wolox logo')
