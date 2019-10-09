@@ -114,8 +114,7 @@ export default {
   display: flex;
   flex-direction: column;
   margin-top: 16px;
-  max-width: 252px;
-  width: 110%;
+  min-width: 252px;
 }
 
 .input-label {
