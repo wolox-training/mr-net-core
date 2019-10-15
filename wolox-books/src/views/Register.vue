@@ -29,7 +29,7 @@
     span.text-xxxsmall.error(v-show='missingPassword')
       | Password is required
   .sign-up-container
-      button.main-button.text-xsmall(@click='submit' type='button')
+    button.main-button.text-xsmall(@click='submit' type='button')
       | Sign up
   router-link.secondary-button.text-xsmall.white(:to='{ name: routes.login }')
     | Login
@@ -38,10 +38,10 @@
 <script>
 import { required, minLength, email } from 'vuelidate/lib/validators'
 
-import { Register } from '../services/AuthService'
+import { register } from '../services/AuthService'
 import { routes } from '../router'
 
-import { passwordRegex } from '@/utils/regex'
+import { passwordRegex } from '../utils/regex'
 
 export default {
   data () {
@@ -80,17 +80,18 @@ export default {
     }
   },
   methods: {
-    submit () {
+    async submit () {
       if (this.$v.$invalid) {
         this.showErrors = true
       } else {
-        Register({
+        const { email, password, firstName, lastName } = this
+        await register({
           user: {
-            email: this.email,
-            password: this.password,
-            password_confirmation: this.password,
-            first_name: this.firstName,
-            last_name: this.lastName,
+            email,
+            password,
+            password_confirmation: password,
+            first_name: firstName,
+            last_name: lastName,
             locale: 'en'
           }
         })
@@ -115,8 +116,7 @@ export default {
   display: flex;
   flex-direction: column;
   margin-top: 16px;
-  max-width: 252px;
-  width: 100%;
+  min-width: 252px;
 }
 
 .input-label {

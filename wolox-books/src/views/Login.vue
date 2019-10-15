@@ -29,7 +29,7 @@
 <script>
 import { required, minLength, email } from 'vuelidate/lib/validators'
 
-import { Login } from '../services/AuthService'
+import { login } from '../services/AuthService'
 import { routes } from '../router'
 
 import { passwordRegex } from '@/utils/regex'
@@ -72,7 +72,7 @@ export default {
       if (this.$v.$invalid) {
         this.showErrors = true
       } else {
-        const response = await Login({ session: {
+        const response = await login({ session: {
           email: this.email,
           password: this.password
         }
