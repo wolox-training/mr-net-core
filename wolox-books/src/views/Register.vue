@@ -1,7 +1,7 @@
 <template lang="pug">
 .register
   .register-logo-container
-    img.register-logo(src="../assets/logo-wolox.png" alt="Wolox logo")
+    img.register-logo(src='../assets/logo-wolox.png' alt='Wolox logo')
     span.text-xxxsmall.bold
       | B O O K S
   .input-box
@@ -29,16 +29,18 @@
     span.text-xxxsmall.error(v-show='missingPassword')
       | Password is required
   .sign-up-container
-    button.main-button.text-xsmall(@click='signIn' type='button')
+    button.main-button.text-xsmall(@click='submit' type='button')
       | Sign up
   button.secondary-button.text-xsmall.white(type='button')
     | Login
 </template>
 
 <script>
-import { required, helpers, minLength, email } from 'vuelidate/lib/validators'
+import { required, minLength, email } from 'vuelidate/lib/validators'
 
-const passwordRegex = helpers.regex('passwordRegex', /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/)
+import { register } from '../services/AuthService'
+
+import { passwordRegex } from '../utils/regex'
 
 export default {
   data () {
@@ -76,24 +78,21 @@ export default {
     }
   },
   methods: {
-    signIn () {
+    async submit () {
       if (this.$v.$invalid) {
         this.showErrors = true
       } else {
-        console.log(
-          `
-        {
-          'user': {
-            'email': ${this.email},
-            'password': ${this.password},
-            'password_confirmation': ${this.password},
-            'first_name': ${this.firstName},
-            'last_name': ${this.lastName},
-            'locale': 'en'
+        const { email, password, firstName, lastName } = this
+        await register({
+          user: {
+            email,
+            password,
+            password_confirmation: password,
+            first_name: firstName,
+            last_name: lastName,
+            locale: 'en'
           }
-        }
-        `
-        )
+        })
       }
     }
   }
@@ -115,8 +114,7 @@ export default {
   display: flex;
   flex-direction: column;
   margin-top: 16px;
-  max-width: 252px;
-  width: 110%;
+  min-width: 252px;
 }
 
 .input-label {
