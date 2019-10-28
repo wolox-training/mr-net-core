@@ -1,48 +1,47 @@
 <template lang="pug">
-  .register
-      .register-logo-container
-        img.register-logo(src="../assets/logo-wolox.png" alt="Wolox logo")
-        span.text-xxxsmall.bold
-          | B O O K S
-      .input-box
-          label.text-xxxsmall.bold.input-label
-            | First Name
-          input.main-input(v-model='firstName')
-      .input-box
-          label.text-xxxsmall.bold.input-label
-            | Last Name
-          input.main-input(v-model='lastName')
-      .input-box
-          label.text-xxxsmall.bold.input-label
-            | Email
-          input.main-input(
-            type='mail'
-            v-model='email'
-          )
-          span.error(v-show='invalidEmail').text-xxxsmall
-            | Email is invalid
-          span.error(v-show='missingEmail').text-xxxsmall
-            | Email is required
-      .input-box
-          label.text-xxxsmall.bold.input-label
-            | Password
-          input.main-input(type='password' v-model='password')
-          span.error(v-show='invalidPassword').text-xxxsmall
-            | Password is invalid
-          span.error(v-show='missingPassword').text-xxxsmall
-            | Password is required
-      .sign-up-container
-        button.main-button.text-xsmall(@click='Submit')
-          | Sign up
-      router-link.secondary-button.text-xsmall.white(to='/login')
-        | Login
+.register
+  .register-logo-container
+    img.register-logo(src='../assets/logo-wolox.png' alt='Wolox logo')
+    span.text-xxxsmall.bold
+      | B O O K S
+  .input-box
+    label.text-xxxsmall.bold.input-label
+      | First Name
+    input.main-input(v-model='firstName')
+  .input-box
+    label.text-xxxsmall.bold.input-label
+      | Last Name
+    input.main-input(v-model='lastName')
+  .input-box
+    label.text-xxxsmall.bold.input-label
+      | Email
+    input.main-input(type='email' v-model='email')
+    span.text-xxxsmall.error(v-show='invalidEmail')
+      | Email is invalid
+    span.text-xxxsmall.error(v-show='missingEmail')
+      | Email is required
+  .input-box
+    label.text-xxxsmall.bold.input-label
+      | Password
+    input.main-input(type='password' v-model='password')
+    span.text-xxxsmall.error(v-show='invalidPassword')
+      | Password is invalid
+    span.text-xxxsmall.error(v-show='missingPassword')
+      | Password is required
+  .sign-up-container
+    button.main-button.text-xsmall(@click='submit' type='button')
+      | Sign up
+  router-link.secondary-button.center.text-xsmall.white(:to='{ name: routes.login }')
+    | Login
 </template>
 
 <script>
-import { required, helpers, minLength, email } from 'vuelidate/lib/validators'
-import { Register } from '../services/AuthService'
+import { required, minLength, email } from 'vuelidate/lib/validators'
 
-const passwordRegex = helpers.regex('passwordRegex', /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/)
+import { register } from '../services/AuthService'
+import { routes } from '../router'
+
+import { passwordRegex } from '../utils/regex'
 
 export default {
   data () {
@@ -51,7 +50,8 @@ export default {
       lastName: '',
       email: '',
       password: '',
-      showErrors: false
+      showErrors: false,
+      routes
     }
   },
   validations: {
@@ -80,17 +80,18 @@ export default {
     }
   },
   methods: {
-    Submit () {
+    async submit () {
       if (this.$v.$invalid) {
         this.showErrors = true
       } else {
-        Register({
+        const { email, password, firstName, lastName } = this
+        await register({
           user: {
-            email: this.email,
-            password: this.password,
-            password_confirmation: this.password,
-            first_name: this.firstName,
-            last_name: this.lastName,
+            email,
+            password,
+            password_confirmation: password,
+            first_name: firstName,
+            last_name: lastName,
             locale: 'en'
           }
         })
@@ -115,8 +116,7 @@ export default {
   display: flex;
   flex-direction: column;
   margin-top: 16px;
-  max-width: 252px;
-  width: 110%;
+  min-width: 252px;
 }
 
 .input-label {
@@ -148,8 +148,6 @@ export default {
 }
 
 .secondary-button {
-  align-items: center;
-  display: flex;
   margin-top: 18px;
   text-decoration: none;
 }
