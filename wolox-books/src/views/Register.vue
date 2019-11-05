@@ -31,7 +31,7 @@
   .sign-up-container
     button.main-button.text-xsmall(@click='submit' type='button')
       | Sign up
-  button.secondary-button.text-xsmall.white(type='button')
+  router-link.secondary-button.center.text-xsmall.white(:to='{ name: routes.login }')
     | Login
 </template>
 
@@ -39,6 +39,7 @@
 import { required, minLength, email } from 'vuelidate/lib/validators'
 
 import { register } from '../services/AuthService'
+import { routes } from '../router'
 
 import { passwordRegex } from '../utils/regex'
 
@@ -49,7 +50,8 @@ export default {
       lastName: '',
       email: '',
       password: '',
-      showErrors: false
+      showErrors: false,
+      routes
     }
   },
   validations: {
@@ -147,6 +149,7 @@ export default {
 
 .secondary-button {
   margin-top: 18px;
+  text-decoration: none;
 }
 
 .sign-up-container {
