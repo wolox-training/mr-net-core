@@ -1,26 +1,26 @@
 <template lang="pug">
 .login
-  form
+  form(@submit='submit')
     .login-logo-container
       img.login-logo(src='../assets/logo-wolox.png' alt='Wolox logo')
       span.text-xxxsmall.bold
         | B O O K S
     .input-box
-      label.text-xxxsmall.bold.input-label
+      label(for='email-input').text-xxxsmall.bold.input-label
         | Email
-      input.main-input(type='mail' v-model='email')
+      input.main-input(type='mail' id='email-input' v-model='email')
       span.error.text-xxxsmall(v-show='invalidEmail')
         | Email is invalid
       span.error.text-xxxsmall(v-show='missingEmail')
         | Email is required
     .input-box
-      label.text-xxxsmall.bold.input-label
+      label(for='password-input').text-xxxsmall.bold.input-label
         | Password
-      input.main-input(type='password' v-model='password')
+      input.main-input(type='password' id='password-input' v-model='password')
       span.error.text-xxxsmall(v-show='missingPassword')
         | Password is required
     .sign-up-container
-      button.main-button.text-xsmall(@click='submit')
+      button.main-button.text-xsmall(type='submit')
         | Login
     router-link.secondary-button.text-xsmall.white(:to='{ name: routes.register }')
       | Sign Up
