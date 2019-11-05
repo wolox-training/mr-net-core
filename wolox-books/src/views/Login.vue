@@ -1,6 +1,6 @@
 <template lang="pug">
 .login
-  form(@submit='Submit')
+  form
     .login-logo-container
       img.login-logo(src='../assets/logo-wolox.png' alt='Wolox logo')
       span.text-xxxsmall.bold
@@ -8,10 +8,7 @@
     .input-box
       label.text-xxxsmall.bold.input-label
         | Email
-      input.main-input(
-        type='mail'
-        v-model='email'
-      )
+      input.main-input(type='mail' v-model='email')
       span.error.text-xxxsmall(v-show='invalidEmail')
         | Email is invalid
       span.error.text-xxxsmall(v-show='missingEmail')
@@ -23,18 +20,20 @@
       span.error.text-xxxsmall(v-show='missingPassword')
         | Password is required
     .sign-up-container
-      button.main-button.text-xsmall
+      button.main-button.text-xsmall(@click='submit')
         | Login
-    router-link.secondary-button.text-xsmall.white(type='button' to='/register')
+    router-link.secondary-button.text-xsmall.white(:to='{ name: routes.register }')
       | Sign Up
 </template>
 
 <script>
-import { required, helpers, minLength, email } from 'vuelidate/lib/validators'
-import { Login } from '../services/AuthService'
-import LocalStorageService from '../services/LocalStorageService'
+import { required, minLength, email } from 'vuelidate/lib/validators'
 
-const passwordRegex = helpers.regex('passwordRegex', /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/)
+import LocalStorageService from '../services/LocalStorageService'
+import { login } from '../services/AuthService'
+import { routes } from '../router'
+
+import { passwordRegex } from '@/utils/regex'
 
 export default {
   data () {
@@ -43,7 +42,8 @@ export default {
       lastName: '',
       email: '',
       password: '',
-      showErrors: false
+      showErrors: false,
+      routes
     }
   },
   validations: {
@@ -69,18 +69,18 @@ export default {
     }
   },
   methods: {
-    async Submit () {
+    async submit () {
       if (this.$v.$invalid) {
         this.showErrors = true
       } else {
-        const response = await Login({ session: {
+        const response = await login({ session: {
           email: this.email,
           password: this.password
         }
         }).catch(e => e.response)
         if (response.ok) {
           LocalStorageService.setAuthToken(response.data.access_token)
-          this.$router.push('/bookList')
+          this.$router.push({ name: routes.booklist })
         }
       }
     }
