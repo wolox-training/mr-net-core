@@ -80,7 +80,7 @@ export default {
         }).catch(e => e.response)
         if (response.ok) {
           LocalStorageService.setAuthToken(response.data.access_token)
-          this.$router.push('/feed')
+          this.$router.push({ name: routes.feed })
         }
       }
     }

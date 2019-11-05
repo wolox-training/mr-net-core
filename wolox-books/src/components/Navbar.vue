@@ -1,21 +1,22 @@
 <template lang="pug">
 .navbar
-    .logo
-      img.navbar-image(src='../assets/logo-wolox.png' alt='Wolox logo')
-      span.bold.text-xxxsmall
-        | B O O K S
-    button.button-logout.text-small(type='button' @click='logout')
-      | Logout
+  .logo
+    img.navbar-image(src='../assets/logo-wolox.png' alt='Wolox logo')
+    span.bold.text-xxxsmall
+      | B O O K S
+  button.button-logout.text-small(type='button' @click='logout')
+    | Logout
 </template>
 
 <script>
 import LocalStorageService from '../services/LocalStorageService'
+import { routes } from '../router'
 
 export default {
   methods: {
     logout () {
       LocalStorageService.removeAuthToken()
-      this.$router.push('/login')
+      this.$router.push({ name: routes.login })
     }
   }
 }
