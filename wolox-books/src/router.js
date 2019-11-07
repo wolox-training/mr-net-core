@@ -6,7 +6,7 @@ Vue.use(Router)
 export const routes = {
   register: 'register',
   login: 'login',
-  feed: 'feed'
+  booklist: 'booklist'
 }
 
 export default new Router({
@@ -22,9 +22,9 @@ export default new Router({
       component: () => import(/* webpackChunkName: "login" */ './views/Login.vue')
     },
     {
-      path: '/feed',
-      name: routes.feed,
-      component: () => import(/* webpackChunkName: "feed" */ './views/Feed.vue')
+      path: '/booklist',
+      name: routes.booklist,
+      component: () => import(/* webpackChunkName: "booklist" */ './views/BookList.vue')
     },
     {
       path: '/',

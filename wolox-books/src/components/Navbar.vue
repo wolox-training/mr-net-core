@@ -40,6 +40,7 @@ export default {
 
 .navbar {
   align-items: center;
+  background-color: $white;
   border-top: 6px solid $cerulean;
   box-shadow: 0 4px 10px 0 $shadow;
   display: flex;
@@ -47,6 +48,7 @@ export default {
   justify-content: space-around;
   position: fixed;
   width: 100%;
+  z-index: 1;
 }
 
 .navbar-image {
