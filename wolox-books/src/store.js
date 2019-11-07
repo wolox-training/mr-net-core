@@ -1,16 +1,20 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-import { getBooks } from './services/BooksService'
+import { getBooks, getBook } from './services/BooksService'
 
 Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    books: []
+    books: [],
+    book: null
   },
   mutations: {
     setBooks (state, { books }) {
       state.books = books
+    },
+    setBook (state, { book }) {
+      state.book = book
     }
   },
   actions: {
@@ -18,6 +22,12 @@ export default new Vuex.Store({
       const response = await getBooks().catch(e => e.response)
       if (response.ok) {
         commit('setBooks', { books: response.data })
+      }
+    },
+    async fetchBook ({ commit }, { id }) {
+      const response = await getBook(id).catch(e => e.response)
+      if (response.ok) {
+        commit('setBook', { book: response.data })
       }
     }
   }
