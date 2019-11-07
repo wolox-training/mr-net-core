@@ -14,17 +14,17 @@
         .book-details-container
           .book-description-container
               span.book-description-title-container.text-medium.bold
-                | Book author:
+                | {{ $t('author') }} :
               span.text-medium.grey
                 | {{ book.author }}
           .book-description-container
               span.book-description-title-container.text-medium.bold
-                | Publisher:
+                | {{ $t('publisher') }} :
               span.text-medium.grey
                 | {{ book.publisher }}
           .book-description-container
               span.book-description-title-container.text-medium.bold
-                | Year of publication:
+                | {{ $t('yearOfPublication') }} :
               span.text-medium.grey
                 | {{ book.year }}
 </template>
