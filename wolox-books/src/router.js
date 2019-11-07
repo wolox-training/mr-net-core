@@ -24,7 +24,7 @@ export default new Router({
     {
       path: '/booklist',
       name: routes.booklist,
-      component: () => import(/* webpackChunkName: "feed" */ './views/BookList.vue')
+      component: () => import(/* webpackChunkName: "booklist" */ './views/BookList.vue')
     },
     {
       path: '/',
