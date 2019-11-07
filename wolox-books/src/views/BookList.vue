@@ -3,12 +3,16 @@
   navbar
   .view
     ul.book-list
+<<<<<<< HEAD
       router-link.book-list-item(v-for='book in books' :key='book.id' :to='`/book/${book.id}`')
+=======
+      li.book-list-item(v-for='book in books' :key='book.id')
+>>>>>>> vuex
         img.book-list-cover(:src='book.image_url' alt='Wolox book cover')
         span.book-list-title.bold.text-small
-          | {{book.title}}
+          | {{ book.title }}
         span.book-list-author.grey.text-xsmall
-          | {{book.author}}
+          | {{ book.author }}
 </template>
 
 <script>
@@ -17,6 +21,7 @@ import { mapState, mapActions } from 'vuex'
 import { routes } from '../router'
 
 import Navbar from '@/components/Navbar'
+
 import { setHeaders } from '../config/api'
 
 export default {
@@ -28,11 +33,12 @@ export default {
   computed: {
     ...mapState([
       'books'
-    ]) },
+    ])
+  },
   components: {
     Navbar
   },
-  async created () {
+  created () {
     setHeaders()
     this.fetchBooks()
   },
@@ -60,11 +66,11 @@ export default {
   display: flex;
   flex-direction: column;
   margin: 18px;
+  max-height: 380px;
+  max-width: 200px;
   padding: 28px 28px 23px;
   transition: transform 0.3s linear;
-  max-width: 200px;
   width: 100%;
-  max-height: 380px;
 
   &:hover {
     transform: scale(1.1, 1.1);
