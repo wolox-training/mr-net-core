@@ -5,27 +5,28 @@
     .book
       .book-cover
         img.book-cover-image(:src='book.image_url' alt='Wolox book cover')
-      .book-details-container
+      .book-information-container
         .book-title-container
           span.text-xbig.bold
-              | {{book.title}}
+              | {{ book.title }}
           span.text-big.bold.grey.genre
-              | {{book.genre}}
-        .book-description-container
-            span.text-medium.bold
-              | Book author:
-            span.text-medium.grey
-              | {{book.author}}
-        .book-description-container
-            span.text-medium.bold
-              | Publisher:
-            span.text-medium.grey
-              | {{book.publisher}}
-        .book-description-container
-            span.text-medium.bold
-              | Year of publication:
-            span.text-medium.grey
-              | {{book.year}}
+              | {{ book.genre }}
+        .book-details-container
+          .book-description-container
+              span.book-description-title-container.text-medium.bold
+                | Book author:
+              span.text-medium.grey
+                | {{ book.author }}
+          .book-description-container
+              span.book-description-title-container.text-medium.bold
+                | Publisher:
+              span.text-medium.grey
+                | {{ book.publisher }}
+          .book-description-container
+              span.book-description-title-container.text-medium.bold
+                | Year of publication:
+              span.text-medium.grey
+                | {{ book.year }}
 </template>
 
 <script>
@@ -79,18 +80,27 @@ export default {
   height: 100%;
 }
 
-.boob-description-container {
-  display: flex;
-  margin-top: 36px;
+.book-description-container {
+  margin-top: 15px;
 }
 
-.book-details-container {
+.book-information-container {
   width: 100%;
+}
+
+.book-description-title-container{
+  margin-right: 10px;
+}
+
+.book-details-container{
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
 }
 
 .book-title-container {
   display: flex;
-  margin-bottom: 52px;
+  margin-bottom: 35px;
   position: relative;
   width: 100%;
 
