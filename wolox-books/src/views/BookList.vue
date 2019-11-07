@@ -3,11 +3,7 @@
   navbar
   .view
     ul.book-list
-<<<<<<< HEAD
       router-link.book-list-item(v-for='book in books' :key='book.id' :to='`/book/${book.id}`')
-=======
-      li.book-list-item(v-for='book in books' :key='book.id')
->>>>>>> vuex
         img.book-list-cover(:src='book.image_url' alt='Wolox book cover')
         span.book-list-title.bold.text-small
           | {{ book.title }}
