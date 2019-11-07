@@ -6,17 +6,17 @@
       span.text-xxxsmall.bold
         | B O O K S
     .input-box
-      label(for='email-input').text-xxxsmall.bold.input-label
+      label.text-xxxsmall.bold.input-label(for='email-input')
         | Email
-      input.main-input(type='mail' id='email-input' v-model='email')
+      input#email-input.main-input(type='mail' v-model='email')
       span.error.text-xxxsmall(v-show='invalidEmail')
         | Email is invalid
       span.error.text-xxxsmall(v-show='missingEmail')
         | Email is required
     .input-box
-      label(for='password-input').text-xxxsmall.bold.input-label
+      label.text-xxxsmall.bold.input-label(for='password-input')
         | Password
-      input.main-input(type='password' id='password-input' v-model='password')
+      input#password-input.main-input(type='password' v-model='password')
       span.error.text-xxxsmall(v-show='missingPassword')
         | Password is required
     .sign-up-container
