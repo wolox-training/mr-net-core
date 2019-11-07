@@ -29,6 +29,7 @@
 <script>
 import { required, minLength, email } from 'vuelidate/lib/validators'
 
+import LocalStorageService from '../services/LocalStorageService'
 import { login } from '../services/AuthService'
 import { routes } from '../router'
 
@@ -78,7 +79,8 @@ export default {
         }
         }).catch(e => e.response)
         if (response.ok) {
-          console.log(response.data.access_token)
+          LocalStorageService.setAuthToken(response.data.access_token)
+          this.$router.push({ name: routes.feed })
         }
       }
     }
